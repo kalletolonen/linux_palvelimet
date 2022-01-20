@@ -1,4 +1,4 @@
-#Harjoitus1
+*Harjoitus1*
 
 ## z)
 
@@ -48,3 +48,24 @@ Raporttiin tulee kirjoittaa vain oikeasti tapahtuneita asioita ja muiden työtä
 Lähde: https://terokarvinen.com/2006/raportin-kirjoittaminen-4/
 
 Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyvällä dokumentoinnilla voi tarjota monimutkaisten ongelmien ratkaisuun ulkopuolisille tahoille hyvän aloituspisteen.
+
+##a)
+
+Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi.
+
+*Asennusvaiheet*:
+
+1. Latasin kurssilla käytössä olevan version Debianista osoitteesta: https://cdimage.debian.org/images/unofficial/non-free/images-including-firmware/current-live/amd64/iso-hybrid/debian-live-11.2.0-amd64-xfce+nonfree.iso
+2. Latasin VirtualBoxin osoitteesta: https://download.virtualbox.org/virtualbox/6.0.24/VirtualBox-6.0.24-139119-Win.exe
+3. Asensin VirtualBoxin
+4. Käynnistin VirtualBoxin
+![1.kuva](/pics/harjoitus_1/1.png)
+
+
+
+Asenna Linux joko 1) VirtualBoxiin (helpompaa) tai 2) Kokeile omaa Linux-tikkua raudalla. Tämä kohta ei vaadi asentamista suoraan raudalle (koneelle ilman virtualisointia) – jos kuitenkin asennat, ota ensin varmuuskopiot. Jos sinulla on jo Linux virtuaalikoneessa, voit kokeilla tikkua raudalla tai tehdä toisen asennuksen raportointia varten.
+b) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.
+c) Asenna kolme itsellesi uutta ohjelmaa. Kokeile kutakin ohjelmaa sen pääasiallisessa käyttötarkoituksessa. Ota ruutukaappaus.
+d) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa.
+e) Vapaaehtoinen lisätehtävä: Listaa käyttämäsi ohjelmat (esim. MS Word), kunkin ohjelman käyttötarkoitus (esim. Tekstinkäsittely) ja vastaava vapaa Linux-ohjelma (esim. LibreOffice Writer). Jos johonkin tarkoitukseen ei löydy vapaata Linux-ohjelmaa, listaa sekin.
+f) Vapaaehtoinen lisätehtävä: varmuuskopioi tiedostosi (voit käyttää esimerkiksi ulkoista USB-levyä)
