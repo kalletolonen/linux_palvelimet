@@ -40,10 +40,11 @@ Virtualisointi on helppo tapa kokeilla erilaisia Linux-distroja - asentaminen vi
 --Täsmällinen (Raportissa tulee olla myös esim. kellonajat, käytetyt komennot, onnistumiset ja epäonnistumiset)
 --Helppolukuinen (Tekstin tulee olla selkeää, jäsenneltyä ja julkaisukanavan demografian huomioivaa)
 --Lähdeviitteellinen (Viittaukset tuovat raportille uskottavuutta ja antavat tunnustusta alkuperäiselle lähteelle)
--Lisenssin käyttäminen on suositeltavaa
+
+-GPL-lisenssin käyttäminen on suositeltavaa
 
 Raporttiin tulee kirjoittaa vain oikeasti tapahtuneita asioita ja muiden työtä ei saa plagioida.
 
 Lähde: https://terokarvinen.com/2006/raportin-kirjoittaminen-4/
 
-
+Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyvällä dokumentoinnilla voi tarjota monimutkaisten ongelmien ratkaisuun ulkopuolisille tahoille hyvän aloituspisteen.
