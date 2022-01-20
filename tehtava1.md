@@ -1,8 +1,8 @@
-##Harjoitus1
+#Harjoitus1
 
-### z)
+## z)
 
-#### FSF: Free Software Definition
+### FSF: Free Software Definition
 
 -Määritelmän mukaisesti käyttäjillä on oikeus käyttää, kopioida, jakaa, tutkia ja muokata ohjelmakoodia/ohjelmistoa
 -Mikäli ohjelmakoodi ei täytä näitä kohtia, se ei ole FSF:n määritelmän mukaisesti vapaata koodia
@@ -12,7 +12,7 @@ Lähde: https://www.gnu.org/philosophy/free-sw.html
 
 Vapaata ohjelmakoodia voi ja kannattaa siis hyödyntää oman tekemisensä apuna ja pohjana, jolloin pyörää ei tarvitse keksiä uudestaan ja pääsee rakentamaan hyvien perustusten päälle.
 
-#### Karvinen 2021: Install Debian on VirtualBox
+### Karvinen 2021: Install Debian on VirtualBox
 
 -Linuxiin on mahdollista tutustua muilla käyttöjärjestelmillä, kun käytetään virtualisointia
 
@@ -30,7 +30,7 @@ Lähde: https://terokarvinen.com/2021/install-debian-on-virtualbox/
 
 Virtualisointi on helppo tapa kokeilla erilaisia Linux-distroja - asentaminen vie muutaman minuutin ja mitään pysyvää vahinkoa ei ole mahdollista saada aikaan.
 
-#### Karvinen 2016: Raportin kirjoittaminen
+### Karvinen 2016: Raportin kirjoittaminen
 
 -Raporttiin tulee kirjoittaa tarkasti mitä on tehty ja mitä tekemisestä seurasi
 -Raporttia tulee kirjoittaa samalla kun tekee työtä
