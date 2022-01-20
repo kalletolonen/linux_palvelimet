@@ -1,4 +1,4 @@
-*Harjoitus1*
+**Harjoitus1**
 
 ## z)
 
@@ -51,19 +51,109 @@ Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyväll
 
 ##a)
 
-Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi.
+Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli kello . Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
 
-*Asennusvaiheet*:
+**Asennusvaiheet**:
 
 1. Latasin kurssilla käytössä olevan version Debianista osoitteesta: https://cdimage.debian.org/images/unofficial/non-free/images-including-firmware/current-live/amd64/iso-hybrid/debian-live-11.2.0-amd64-xfce+nonfree.iso
 2. Latasin VirtualBoxin osoitteesta: https://download.virtualbox.org/virtualbox/6.0.24/VirtualBox-6.0.24-139119-Win.exe
 3. Asensin VirtualBoxin
-4. Käynnistin VirtualBoxin
+4. Käynnistin VirtualBoxin ja aloitin asennustyöt
+
 ![1.kuva](/pics/harjoitus_1/1.png)
+*VirtualBoxin aloitusnäkymä*
+
+Painoin New-nappia ja aloitin virtuaalikoneen luomisen.
+![2.kuva](/pics/harjoitus_1/2.png)
+*VirtualBoxin Create Virtual Machine -näkymä*
+
+Määritin virtuaaliseksi levytilaksi (joka siis allokoidaan oikealta levyasemalta dynaamisesti todellisen käytön mukaan) n. 50 gigaa.
+![3.kuva](/pics/harjoitus_1/3.png)
+*VirtualBoxin levynluonti*
+
+![4.kuva](/pics/harjoitus_1/4.png)
+*Toistaiseksi tyhjän koneen tietoja*
+
+![5.kuva](/pics/harjoitus_1/5.png)
+*Käynnistin virtuaalikoneen Start-nappulasta ja valitsin levykuvaksi kohdassa 1 lataamani levykuvan.*
+
+![6.kuva](/pics/harjoitus_1/6.png)
+*Valitsin asennusvalikosta ylimmän vaihtoehdon, joka starttaa Linuxin suoraan työpöytänäkymään, mutta ei varsinaisesti vielä asenna mitään.*
+
+![7.kuva](/pics/harjoitus_1/7.png)
+*Kone pyöritteli hetken aikaa itseään valmiiksi ja sitten käynnistin asennusohjelman työpöydältä tuplaklikkaamalla "Install Debian"-pikakuvaketta. Harmikseni VirtualBox ei salli kuvakaappausten ottamista Windowsin äärimmäisen kätevällä Win + Shift + s -yhdistelmällä, jolloin kuvan voi rajata samantien. Valikoista löytyi kuitenkin keino tehdä kuvankaappaus ja projekti pääsi eteenpäin. Asennuskieleksi valikoin englannin.
+*
+
+![8.kuva](/pics/harjoitus_1/8.png)
+*Lokalisaatioasetukseksi valitsin suomen aikavyöhykkeen.*
+
+![9.kuva](/pics/harjoitus_1/9.png)
+*Näppäimistöasetukseksi valitsin suomalaisen asettelun.*
+
+![10.kuva](/pics/harjoitus_1/10.png)
+*Valitsin levyn alustamisen ja syötin salasanan sen kryptaamista varten.*
+
+![11.kuva](/pics/harjoitus_1/11.png)
+*Syötin tarvittavat tiedot käyttäjätunnusta varten ja valitsin koneen nimeksi sellaisen, mistä identiteettiäni ei voida päätellä yhdistäessäni vieraisiin verkkoihin.*
+
+![12.kuva](/pics/harjoitus_1/12.png)
+*Hyväksyin syöttämäni asennusasetukset ja painoin Install-nappia.*
+
+![13.kuva](/pics/harjoitus_1/13.png)
+*Asennus valmistui n. viidessä minuutissa - tästä voi kiittää nopeahkoa ssd-levyä*
+
+![14.kuva](/pics/harjoitus_1/14.png)
+*Asennuksen päätteeksi käynnistin virtuaalisen koneen uudestaan*
+
+![15.kuva](/pics/harjoitus_1/15.png)
+*Kryptattu levy pyysi salasanaa uudelleenkäynnistämisen yhteydessä*
+
+![16.kuva](/pics/harjoitus_1/16.png)
+*Pari näyttöä ehti tämän jälkeen vilahtaa ohi liian nopeasti, jotta niistä olisi saanut kuvakaappauksia. Odotin muutaman minuuttin ajan ja näytöllä oli edelleen vain pelkkää mustaa.*
+
+Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai näppäimistön ja selkänojan välissä. Luen ]Karvisen artikkelin](https://terokarvinen.com/2021/install-debian-on-virtualbox/) uudemman kerran ja buuttaan koneen.
+
+![17.kuva](/pics/harjoitus_1/17.png)
+*Nyt ehdin lukea myös vaihtoehdot ja valitsen ylimmän*
+
+![18.kuva](/pics/harjoitus_1/18.png)
+*Tällä kertaa järjestelmä latautui.*
+
+![19.kuva](/pics/harjoitus_1/19.png)
+*Sisäänkirjautumisen kanssa ei ollut ongelmia*
+
+![20.kuva](/pics/harjoitus_1/20.png)
+*Avaan alapalkista komentokehotteen ja laitan koneen lataamaan päivityksiä*
+
+Lataan päivitykset komennolla:
+sudo apt-get update
+
+Sudo viittaa pääkäyttäjän oikeuksiin. Syötän salasanan terminaaliin ja päivitykset hoituvat yhdellä komennolla.
+
+##b)
 
 
 
-Asenna Linux joko 1) VirtualBoxiin (helpompaa) tai 2) Kokeile omaa Linux-tikkua raudalla. Tämä kohta ei vaadi asentamista suoraan raudalle (koneelle ilman virtualisointia) – jos kuitenkin asennat, ota ensin varmuuskopiot. Jos sinulla on jo Linux virtuaalikoneessa, voit kokeilla tikkua raudalla tai tehdä toisen asennuksen raportointia varten.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 b) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.
 c) Asenna kolme itsellesi uutta ohjelmaa. Kokeile kutakin ohjelmaa sen pääasiallisessa käyttötarkoituksessa. Ota ruutukaappaus.
 d) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa.
