@@ -1,17 +1,17 @@
-**Harjoitus1**
+# **Harjoitus1**
 
 ## z)
 
 ### FSF: Free Software Definition
 
--Määritelmän mukaisesti käyttäjillä on oikeus käyttää, kopioida, jakaa, tutkia ja muokata ohjelmakoodia/ohjelmistoa
--Mikäli ohjelmakoodi ei täytä näitä kohtia, se ei ole FSF:n määritelmän mukaisesti vapaata koodia
--Vapaa ohjelmakoodi voi olla kaupallista
-
-Lähde: https://www.gnu.org/philosophy/free-sw.html
-
-Vapaata ohjelmakoodia voi ja kannattaa siis hyödyntää oman tekemisensä apuna ja pohjana, jolloin pyörää ei tarvitse keksiä uudestaan ja pääsee rakentamaan hyvien perustusten päälle.
-
+-Määritelmän mukaisesti käyttäjillä on oikeus käyttää, kopioida, jakaa, tutkia ja muokata ohjelmakoodia/ohjelmistoa  
+-Mikäli ohjelmakoodi ei täytä näitä kohtia, se ei ole FSF:n määritelmän mukaisesti vapaata koodia  
+-Vapaa ohjelmakoodi voi olla kaupallista  
+  
+Lähde: https://www.gnu.org/philosophy/free-sw.html  
+  
+Vapaata ohjelmakoodia voi ja kannattaa siis hyödyntää oman tekemisensä apuna ja pohjana, jolloin pyörää ei tarvitse keksiä uudestaan ja pääsee rakentamaan hyvien perustusten päälle.  
+  
 ### Karvinen 2021: Install Debian on VirtualBox
 
 -Linuxiin on mahdollista tutustua muilla käyttöjärjestelmillä, kun käytetään virtualisointia

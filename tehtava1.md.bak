@@ -49,7 +49,7 @@ Lähde: https://terokarvinen.com/2006/raportin-kirjoittaminen-4/
   
 Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyvällä dokumentoinnilla voi tarjota monimutkaisten ongelmien ratkaisuun ulkopuolisille tahoille hyvän aloituspisteen.
 
-## a)
+## a) Asenna Linux
 
 Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli puoli neljään mennessä. Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
 
@@ -130,7 +130,7 @@ Latasin päivitykset komennoilla:
   
 Sudo viittaa pääkäyttäjän oikeuksiin - sellaiset on oltava, jos mielii tehdä muutoksia järjestelmään. Syötin salasanan terminaaliin ja päivitykset saatiin hoidettua yhdestä paikasta.  
   
-## b)Listaa testaamasi koneen rauta  
+## b) Listaa testaamasi koneen rauta  
 
 Käytin listaukseen tehtävänannon komentoa:  
 sudo lshw -short -sanitize  
@@ -218,7 +218,7 @@ e) Silloin kun GPL-lisenssi koskee muutoksia, saa modifioitua ohjelmistoa jaella
 3. Käyttäjälle tulee tarjota vähintään :version-komennolla tieto, että ohjelmistoa on muokattu  
 4. Muokkaajan yhteystietoja ei saa muokata tai poistaa  
   
-## e)Käyttämäni ohjelmat
+## e) Käyttämäni ohjelmat
 
 **Yleisimmät käyttämäni ohjelmat ovat:**  
 -Eclipse  
