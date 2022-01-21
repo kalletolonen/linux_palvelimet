@@ -49,7 +49,7 @@ Lähde: https://terokarvinen.com/2006/raportin-kirjoittaminen-4/
   
 Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyvällä dokumentoinnilla voi tarjota monimutkaisten ongelmien ratkaisuun ulkopuolisille tahoille hyvän aloituspisteen.
 
-##a)
+## a)
 
 Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli puoli neljään mennessä. Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
 
@@ -110,7 +110,7 @@ Määritin virtuaaliseksi levytilaksi (joka siis allokoidaan oikealta levyasemal
 ![16.kuva](/pics/harjoitus_1/16.png)  
 *Pari näyttöä ehti tämän jälkeen vilahtaa ohi liian nopeasti, jotta niistä olisi saanut kuvakaappauksia. Odotin muutaman minuuttin ajan ja näytöllä oli edelleen vain pelkkää mustaa.*  
   
-Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai näppäimistön ja selkänojan välissä. Luen ]Karvisen artikkelin](https://terokarvinen.com/2021/install-debian-on-virtualbox/) uudemman kerran ja buuttaan koneen.
+Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai näppäimistön ja selkänojan välissä. Luen [Karvisen artikkelin](https://terokarvinen.com/2021/install-debian-on-virtualbox/) uudemman kerran ja buuttaan koneen.
   
 ![17.kuva](/pics/harjoitus_1/17.png)  
 *Nyt ehdin lukea myös vaihtoehdot ja valitsen ylimmän*  
@@ -130,7 +130,7 @@ Latasinn päivitykset komennoilla:
   
 Sudo viittaa pääkäyttäjän oikeuksiin - sellaiset on oltava, jos mielii tehdä muutoksia järjestelmään. Syötin salasanan terminaaliin ja päivitykset saatiin hoidettua yhdestä paikasta.  
   
-##b)Listaa testaamasi koneen rauta  
+## b)Listaa testaamasi koneen rauta  
 
 Käytin listaukseen tehtävänannon komentoa:  
 sudo lshw -short -sanitize  
@@ -149,7 +149,7 @@ Tämän jälkeen komento tuottaa tuloksen.
 **Selitys listauksen riveille**  
 Listauksessa oli järjestelmän laitteita, joista ensimmäisenä löytyi bios (Basic Input Output System), jonka avulla tietokoneen rauta voi käynnistyä ja keskustella seuraavan ohjelmiston abstraktiotason kanssa. Muistia listauksesa oli 4 gigaa, joka tarkoittaa siis virtuaalikoneeseen allokoitua määrää järjestelmän todellisesta kapasiteetista. Tietokoneen prosessori näkyy sellaisenaan. Muuta huomionarvoista oli se, että Virtualbox oli emuloinut Linuxille käyttöön cd-aseman ja langaton verkkoyhteys ulkomaailmaan on toteutettu VirtualBoxin sisällä ikään kuin se olisi kiinteä verkkoyhteys.  
   
-##c) Asenna kolme itsellesi uutta ohjelmaa.  
+## c) Asenna kolme itsellesi uutta ohjelmaa.  
   
 Asensin kaikki ohjelmat komentokehotteesta käyttämällä komentoa:  
   
@@ -176,7 +176,7 @@ Käskyjä sai googlata, jotta sain koodinpätkän tallennettua tiedostoon.
 ![25.kuva](/pics/harjoitus_1/25.png)  
 *"Hello World" toimii*  
   
-##d) Mitä lisenssiä kukin näistä ohjelmista käyttää?   
+## d) Mitä lisenssiä kukin näistä ohjelmista käyttää?   
   
 **Chromium**  
   
@@ -218,7 +218,7 @@ e) Silloin kun GPL-lisenssi koskee muutoksia, saa modifioitua ohjelmistoa jaella
 3. Käyttäjälle tulee tarjota vähintään :version-komennolla tieto, että ohjelmistoa on muokattu  
 4. Muokkaajan yhteystietoja ei saa muokata tai poistaa  
   
-##Käyttämäni ohjelmat
+## e)Käyttämäni ohjelmat
 
 **Yleisimmät käyttämäni ohjelmat ovat:**  
 -Eclipse  
