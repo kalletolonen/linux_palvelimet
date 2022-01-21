@@ -181,49 +181,57 @@ Käskyjä sai googlata, jotta sain koodinpätkän tallennettua tiedostoon.
 
 **Chromium**
 
-Lisenssi:
-Oikeudet:
-Velvollisuudet:
+Lisenssi: [3-clause license ("BSD License 2.0", "Revised BSD License", "New BSD License", or "Modified BSD License")](https://en.wikipedia.org/wiki/BSD_licenses#3-clause_license_(%22BSD_License_2.0%22,_%22Revised_BSD_License%22,_%22New_BSD_License%22,_or_%22Modified_BSD_License%22))
+Oikeudet: BSD-lisenssi antaa levitysoikeudet mihin tahansa käyttötarkoitukseen, kunhan alkuperäiset copyright-merkinnät ja huomiolausekkeet(disclaimer) säilytetään. Sitä voi siis käyttää myös suljetun lähdekoodin ohjelmistossa.
+Velvollisuudet: Alkuperäisten tekijöiden nimiä ei saa käyttää koodista kehitetyn ohjelmiston mainostamisessa ilman heidän lupaansa.
+
+Lähde: https://en.wikipedia.org/wiki/Chromium_(web_browser)
+
+Googlen osuus koodista on BSD-lisenssin alla ja muut osat ovat lisensoituja MIT, LGPL, Ms-PL ja MPL/GPL/LGPL-lisensseillä. Ylläolevat kommentit koskevat BSD-lisenssiä. 
+
+-[MIT-lisenssi](https://en.wikipedia.org/wiki/MIT_License) on vastaava kuin BSD-lisenssi. 
+-[LGPL-lisenssin](https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License) erona on se, että mikäli lähdekoodia muokkaa, tulee muokatun osan lisenssiksi myös LGPL. 
+-[Ms-PL](https://en.wikipedia.org/wiki/Shared_Source_Initiative#Microsoft_Public_License_(Ms-PL)) on Microsoftin lisenssi, joka sallii valmiin ohjelmakoodin (compiled) jakamisen eteenpäin, mutta koodin muokkaamista ei. Ms-PL ei mielestäni myöskään salli lähdekoodin jakamista.
+-MPL/GPL/LGPL-monilisenssointi jäi minulle hieman epäselväksi
+
+Kaikki mainittuja lisenssejä voi käyttää kaupallisiin tarkoituksiin.
 
 **LibreOffice**
 
-Lisenssi:
-Oikeudet:
-Velvollisuudet:
+Lisenssi: [Mozilla Public License](https://www.mozilla.org/en-US/MPL/2.0/)
+Oikeudet: Saa käyttää osana suljettua ohjelmistoa tai avointa ohjelmistoa. Voi käyttää kaupallisiin tarkoituksiin.
+Velvollisuudet: Käytettyjen komponenttien on oltava myös MPL-ehtojen alla
 
 **Vim**
 
-Lisenssi:
-Oikeudet:
-Velvollisuudet:
+Lisenssi: Charitytware
+Oikeudet/velvollisuudet: Saa jaella miten tahansa, kunhan lisenssiteksti on mukana paketissa. Pakettiin voi myös liittää omia VIM-scriptejään. Muokattua ohjelmistoa saa jaella, jos neljä ehtoa täyttyvät:
+1. Lisenssitekstiä ei saa muokata
+2. 
+a) Muokattussa versiossa tulee olla muokkaajan yhteystiedot ja ylläpitäjälle tulee ilmaiseksi toimittaa lähdekoodi pyydettäessä. Ylläpitäjä voi liittää lähdekoodin osaksi viralliseen ohjelmistoversioon.
+b) Muokattua versiota saa muokata edelleen, a-kohdan ehto pätee myös seuraaviin muokkauskertoihin
+c) Omalle koodilleen voi asettaa muun lisenssiehdon, mutta lähdekoodin on oltava paketissa mukana. Lisenssi ei saa rajoittaa muiden oikeutta tehdä muutoksia ohjelmistoon.
+d) Ilman lähdekoodia voi modifioitua ohjelmistoa jakaa, jos:
+-Koodi on edelleen saatavilla Vim-ylläpitäjälle
+-"You keep the changes for at least three years after last distributing the corresponding modified Vim.  When the maintainer or someone who you distributed the modified Vim to asks you (in any way) for the changes within this period, you must make them available to him."
+-Yhteystietojen on oltava voimassa vähintään kolme vuotta jakelun aloittamisestea
+e) Silloin kun GPL-lisenssi koskee muutoksia, saa modifioitua ohjelmistoa jaella GPL2-lisenssillä tai uudemmalla versiolla
+3. Käyttäjälle tulee tarjota vähintään :version-komennolla tieto, että ohjelmistoa on muokattu
+4. Muokkaajan yhteystietoja ei saa muokata tai poistaa
 
+##Käyttämäni ohjelmat
 
+**Yleisimmät käyttämäni ohjelmat ovat:**
+-Eclipse
+-Git
+-VSCode
+-Blender
+-Steam
+-Firefox
+-Drive for desktop
+-Office
+-Polar Flow
+-Teams
+-Zoom
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-e) Vapaaehtoinen lisätehtävä: Listaa käyttämäsi ohjelmat (esim. MS Word), kunkin ohjelman käyttötarkoitus (esim. Tekstinkäsittely) ja vastaava vapaa Linux-ohjelma (esim. LibreOffice Writer). Jos johonkin tarkoitukseen ei löydy vapaata Linux-ohjelmaa, listaa sekin.
-f) Vapaaehtoinen lisätehtävä: varmuuskopioi tiedostosi (voit käyttää esimerkiksi ulkoista USB-levyä)
+Näistä miltei kaikki ovat suoraan saatavilla Linuxille. Steam ja sen tarjoamat pelit ovat suurin erottava tekijä Windows- ja Linux-ympäristössä. Steam sellaisenaan löytyy myös Linuxille, mutta edelleen pitää paikkansa, että Windows on ylivoimaisesti paras pelialusta. Polar Flow on näistä ohjelmistoista ainoa, joka ei ole suoraan saatavilla Linuxille.
