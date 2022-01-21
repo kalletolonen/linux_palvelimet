@@ -49,7 +49,7 @@ Lähde: https://terokarvinen.com/2006/raportin-kirjoittaminen-4/
   
 Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyvällä dokumentoinnilla voi tarjota monimutkaisten ongelmien ratkaisuun ulkopuolisille tahoille hyvän aloituspisteen.
 
-## a)
+## a) Asenna Linux
 
 Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli puoli neljään mennessä. Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
 
@@ -110,7 +110,7 @@ Määritin virtuaaliseksi levytilaksi (joka siis allokoidaan oikealta levyasemal
 ![16.kuva](/pics/harjoitus_1/16.png)  
 *Pari näyttöä ehti tämän jälkeen vilahtaa ohi liian nopeasti, jotta niistä olisi saanut kuvakaappauksia. Odotin muutaman minuuttin ajan ja näytöllä oli edelleen vain pelkkää mustaa.*  
   
-Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai näppäimistön ja selkänojan välissä. Luen [Karvisen artikkelin](https://terokarvinen.com/2021/install-debian-on-virtualbox/) uudemman kerran ja buuttaan koneen.
+Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai näppäimistön ja selkänojan välissä. Luei [Karvisen artikkelin](https://terokarvinen.com/2021/install-debian-on-virtualbox/) uudemman kerran ja buuttasin koneen.
   
 ![17.kuva](/pics/harjoitus_1/17.png)  
 *Nyt ehdin lukea myös vaihtoehdot ja valitsen ylimmän*  
@@ -124,24 +124,24 @@ Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai n
 ![20.kuva](/pics/harjoitus_1/20.png)  
 *Avaan alapalkista komentokehotteen ja laitan koneen lataamaan päivityksiä*  
   
-Latasinn päivitykset komennoilla:  
+Latasin päivitykset komennoilla:  
 *sudo apt-get update*  
 *sudo apt-get -y dist-upgrade*  
   
 Sudo viittaa pääkäyttäjän oikeuksiin - sellaiset on oltava, jos mielii tehdä muutoksia järjestelmään. Syötin salasanan terminaaliin ja päivitykset saatiin hoidettua yhdestä paikasta.  
   
-## b)Listaa testaamasi koneen rauta  
+## b) Listaa testaamasi koneen rauta  
 
 Käytin listaukseen tehtävänannon komentoa:  
 sudo lshw -short -sanitize  
   
-Komento tuottaa tulokseksi virheilmoituksen:  
+Komento tuotti tulokseksi virheilmoituksen:  
 bash: command not found  
   
-Päättelen, että lshw-käsky ei kuulu jakelun vakiotuotteisiin. Kirjoitan seuraavaksi käskyksi:  
+Päättelin, että lshw-käsky ei kuulu jakelun vakiotuotteisiin. Kirjoitin seuraavaksi käskyksi:  
 sudo apt-get install lshw  
   
-Tämän jälkeen komento tuottaa tuloksen.  
+Tämän jälkeen komento tuotti tuloksen.  
   
 ![21.kuva](/pics/harjoitus_1/21.png)  
 *Listaus virtuaalikoneeni raudasta*  
@@ -158,20 +158,20 @@ sudo apt-get install ohjelmannimi
 **Chromium**  
   
 ![22.kuva](/pics/harjoitus_1/22.png)  
-*Käytän Firefoxia ja päätin kokeilla vaihtoehtoista selainta*  
+*Käytän arjessani Firefoxia ja päätin kokeilla vaihtoehtoista selainta*  
   
 **Libreoffice**  
 ![23.kuva](/pics/harjoitus_1/23.png)  
-*Olen käyttänyt enimmäkseen Google Sheetsiä, sillä se on ilmainen ja pilvinatiivi sovellus**  
+*Olen käyttänyt enimmäkseen Google Sheetsiä, sillä se on ilmainen ja tallennustilaa tarjoava monilaitesovellus*  
   
 **Vim + (Python)**  
 ![24.kuva](/pics/harjoitus_1/24.png)  
 *Halusin kokeilla ohjelmointia alkeellisilla työkaluilla, joten asensin tekstieditorin*  
   
-Käskyjä sai googlata, jotta sain koodinpätkän tallennettua tiedostoon.  
+Käskyjä tuli haettua googlesta, jotta sain koodinpätkän tallennettua tiedostoon.  
   
-:w tiedostonnimi luo tiedoston  
-:q poistuu vim:stä  
+*:w tiedostonnimi luo tiedoston*  
+*:q poistuu vim:stä*  
   
 ![25.kuva](/pics/harjoitus_1/25.png)  
 *"Hello World" toimii*  
@@ -203,7 +203,7 @@ Velvollisuudet: Käytettyjen komponenttien on oltava myös MPL-ehtojen alla
   
 **Vim**  
   
-Lisenssi: Charitytware  
+Lisenssi: Charityware  
 Oikeudet/velvollisuudet: Saa jaella miten tahansa, kunhan lisenssiteksti on mukana paketissa. Pakettiin voi myös liittää omia VIM-scriptejään. Muokattua ohjelmistoa saa jaella, jos neljä ehtoa täyttyvät:  
 1. Lisenssitekstiä ei saa muokata  
 2.   
@@ -218,7 +218,7 @@ e) Silloin kun GPL-lisenssi koskee muutoksia, saa modifioitua ohjelmistoa jaella
 3. Käyttäjälle tulee tarjota vähintään :version-komennolla tieto, että ohjelmistoa on muokattu  
 4. Muokkaajan yhteystietoja ei saa muokata tai poistaa  
   
-## e)Käyttämäni ohjelmat
+## e) Käyttämäni ohjelmat
 
 **Yleisimmät käyttämäni ohjelmat ovat:**  
 -Eclipse  
