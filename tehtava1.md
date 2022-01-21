@@ -51,7 +51,7 @@ Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyväll
 
 ##a)
 
-Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli kello . Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
+Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli puoli neljään mennessä. Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
 
 **Asennusvaiheet**:
 
@@ -125,12 +125,77 @@ Käynnistin virtuaalikoneen uudestaan, jotta selviäisi onko vika koneessa vai n
 ![20.kuva](/pics/harjoitus_1/20.png)
 *Avaan alapalkista komentokehotteen ja laitan koneen lataamaan päivityksiä*
 
-Lataan päivitykset komennolla:
-sudo apt-get update
+Latasinn päivitykset komennoilla:
+*sudo apt-get update*
+*sudo apt-get -y dist-upgrade*
 
-Sudo viittaa pääkäyttäjän oikeuksiin. Syötän salasanan terminaaliin ja päivitykset hoituvat yhdellä komennolla.
+Sudo viittaa pääkäyttäjän oikeuksiin - sellaiset on oltava, jos mielii tehdä muutoksia järjestelmään. Syötin salasanan terminaaliin ja päivitykset saatiin hoidettua yhdestä paikasta.
 
-##b)
+##b)Listaa testaamasi koneen rauta
+
+Käytin listaukseen tehtävänannon komentoa:
+sudo lshw -short -sanitize
+
+Komento tuottaa tulokseksi virheilmoituksen:
+bash: command not found
+
+Päättelen, että lshw-käsky ei kuulu jakelun vakiotuotteisiin. Kirjoitan seuraavaksi käskyksi:
+sudo apt-get install lshw
+
+Tämän jälkeen komento tuottaa tuloksen.
+
+![21.kuva](/pics/harjoitus_1/21.png)
+*Listaus virtuaalikoneeni raudasta*
+
+**Selitys listauksen riveille**
+Listauksessa oli järjestelmän laitteita, joista ensimmäisenä löytyi bios (Basic Input Output System), jonka avulla tietokoneen rauta voi käynnistyä ja keskustella seuraavan ohjelmiston abstraktiotason kanssa. Muistia listauksesa oli 4 gigaa, joka tarkoittaa siis virtuaalikoneeseen allokoitua määrää järjestelmän todellisesta kapasiteetista. Tietokoneen prosessori näkyy sellaisenaan. Muuta huomionarvoista oli se, että Virtualbox oli emuloinut Linuxille käyttöön cd-aseman ja langaton verkkoyhteys ulkomaailmaan on toteutettu VirtualBoxin sisällä ikään kuin se olisi kiinteä verkkoyhteys.
+
+##c) Asenna kolme itsellesi uutta ohjelmaa.
+
+Asensin kaikki ohjelmat komentokehotteesta käyttämällä komentoa:
+
+sudo apt-get install ohjelmannimi
+
+**Chromium**
+
+![22.kuva](/pics/harjoitus_1/22.png)
+*Käytän Firefoxia ja päätin kokeilla vaihtoehtoista selainta*
+
+**Libreoffice**
+![23.kuva](/pics/harjoitus_1/23.png)
+*Olen käyttänyt enimmäkseen Google Sheetsiä, sillä se on ilmainen ja pilvinatiivi sovellus**
+
+**Vim + (Python)**
+![24.kuva](/pics/harjoitus_1/24.png)
+*Halusin kokeilla ohjelmointia alkeellisilla työkaluilla, joten asensin tekstieditorin*
+
+Käskyjä sai googlata, jotta sain koodinpätkän tallennettua tiedostoon.
+
+:w tiedostonnimi luo tiedoston
+:q poistuu vim:stä
+
+![25.kuva](/pics/harjoitus_1/25.png)
+*"Hello World" toimii*
+
+##d) Mitä lisenssiä kukin näistä ohjelmista käyttää? 
+
+**Chromium**
+
+Lisenssi:
+Oikeudet:
+Velvollisuudet:
+
+**LibreOffice**
+
+Lisenssi:
+Oikeudet:
+Velvollisuudet:
+
+**Vim**
+
+Lisenssi:
+Oikeudet:
+Velvollisuudet:
 
 
 
@@ -154,8 +219,11 @@ Sudo viittaa pääkäyttäjän oikeuksiin. Syötän salasanan terminaaliin ja p�
 
 
 
-b) Listaa testaamasi koneen rauta (‘sudo lshw -short -sanitize’). Selitä listaus.
-c) Asenna kolme itsellesi uutta ohjelmaa. Kokeile kutakin ohjelmaa sen pääasiallisessa käyttötarkoituksessa. Ota ruutukaappaus.
-d) Mitä lisenssiä kukin näistä ohjelmista käyttää? Selitä lyhyesti, mitä oikeuksia ja velvolisuuksia tuosta lisenssistä seuraa.
+
+
+
+
+
+
 e) Vapaaehtoinen lisätehtävä: Listaa käyttämäsi ohjelmat (esim. MS Word), kunkin ohjelman käyttötarkoitus (esim. Tekstinkäsittely) ja vastaava vapaa Linux-ohjelma (esim. LibreOffice Writer). Jos johonkin tarkoitukseen ei löydy vapaata Linux-ohjelmaa, listaa sekin.
 f) Vapaaehtoinen lisätehtävä: varmuuskopioi tiedostosi (voit käyttää esimerkiksi ulkoista USB-levyä)
