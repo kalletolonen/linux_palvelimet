@@ -51,6 +51,17 @@ Työnsä dokumentoinnilla pääsee siis helposti virheidensä jäljille. Hyväll
 
 ## a) Asenna Linux
 
+*Päivitys:  *
+*-Työssä käytetty tehtävänanto: https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/  *
+*-Järjestelmänä Win 11 + VirtualBox 6.0  *
+
+*Koneen perustiedot:  *
+*Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti  *
+*Muisti: 16 Gt LPDDR4X  *
+*Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6  *
+*Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD  *
+  
+
 Asensin Debianin VirtualBox-alustalle, koska minulla on käytössäni vain yksi tietokone ja tarvitsen koulutyössäni myös Microsoftin tuotteita, joiden käyttäminen toisella käyttöjärjestelmällä menee väistämättä monimutkaiseksi. Aloitin työt noin kahdelta ja dokumentoin niitä samalla. Valmista tuli puoli neljään mennessä. Päätin tehdä raportoinnin markdown-formaattia hyödyntäen, sillä tavoitteenani on rakentaa portfoliota pikkuhiljaa GitHubiin ja .md on siellä tuettu tiedostomuoto.
 
 **Asennusvaiheet**:
@@ -234,3 +245,5 @@ e) Silloin kun GPL-lisenssi koskee muutoksia, saa modifioitua ohjelmistoa jaella
 -Zoom  
   
 Näistä miltei kaikki ovat suoraan saatavilla Linuxille. Steam ja sen tarjoamat pelit ovat suurin erottava tekijä Windows- ja Linux-ympäristössä. Steam sellaisenaan löytyy myös Linuxille, mutta edelleen pitää paikkansa, että Windows on ylivoimaisesti paras pelialusta. Polar Flow on näistä ohjelmistoista ainoa, joka ei ole suoraan saatavilla Linuxille.  
+
+Kirjoittaja: Kalle Tolonen
