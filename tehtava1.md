@@ -214,7 +214,7 @@ Velvollisuudet: Käytettyjen komponenttien on oltava myös MPL-ehtojen alla
   
 **Vim**  
   
-Lisenssi: Charityware  
+Lisenssi: [Charityware](https://en.wikipedia.org/wiki/Careware)  
 Oikeudet/velvollisuudet: Saa jaella miten tahansa, kunhan lisenssiteksti on mukana paketissa. Pakettiin voi myös liittää omia VIM-scriptejään. Muokattua ohjelmistoa saa jaella, jos neljä ehtoa täyttyvät:  
 1. Lisenssitekstiä ei saa muokata  
 2.   
