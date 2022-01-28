@@ -18,19 +18,24 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 
 Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
   
-| Komento   |      Käyttötarkoitus      | 
-|----------|:-------------:|
-| col 1 is |  left-aligned |
-| col 2 is |    centered   |
-| col 3 is | right-aligned |
+| Komento   |      Käyttötarkoitus      |  Huom. |
+|----------|:-------------:|------:|
+| pwd |  nykyinen työhakemisto |  |
+| ls |    listaa hakemiston sisällön   |    |
+| cd HAKEMISTONNIMI | hakemiston vaihtaminen |     |
+|less TIEDOSTONNIMI|tiedoston sisällön tulostaminen näytölle||
+||||
+||||
+||||
+||||
   
 **Oleellisia komentoja**  
 |Komento|Käyttötarkoitus|
 ------------------------
-||pwd | nykyinen työhakemisto|
-ls = listaa hakemiston sisällön  
-cd HAKEMISTONNIMI = hakemiston vaihtaminen  
-less TIEDOSTONNIMI = tiedoston sisällön tulostaminen näytölle  
+|| | |
+ =   
+ =   
+ =   
 nano = miltei jokaisesta jakelusta löytyvä tekstieditori (nano UUSITIEDOSTO.TXT luo UUSITIEDOSTO.TXT:n)  
 mkdir HAKEMISTONNIMI = uuden hakemiston luominen  
 mv PARAMETRI1 PARAMETRI2 = hakemiston/tiedoston siirtäminen tai nimeäminen uudelleen  
