@@ -99,45 +99,45 @@ Kaikkien tehtävässä olevien hakemistojen sisällön listaamiseen käytin ls-k
 
 / on juurihakemisto, sillä sijaitsee kaikki mitä järjestelmä pitää sisällään.
   
-[1. Kuva: root](/pics/harjoitus_2/1.png)  
+![1. Kuva: root](/pics/harjoitus_2/1.png)  
 *Kuvassa kaikki kansiot, jokainen niistä on tärkeä.*  
 
 **/home/ ja /home/kallet**  
 
 /home/ on kirjautuneen käyttäjän kotihakemisto, tänne käyttäjän alakansioon tallentuvat kaikki ko. käyttäjän tiedostot. 
   
-[2. Kuva: kissa.txt](/pics/harjoitus_2/2.png)  
+![2. Kuva: kissa.txt](/pics/harjoitus_2/2.png)  
 *Kuvassa kallet-käyttäjän kissa.txt-tiedoston sisältö cat-komennolla iteroituna.*  
   
 **/etc/**  
 
 /etc-hakemistossa löytyvät kaikki järjestelmän asetukset. 
 
-[3. Kuva: /etc-hakemisto](/pics/harjoitus_2/3.png)  
+![3. Kuva: /etc-hakemisto](/pics/harjoitus_2/3.png)  
 *listasin sisällön ls:n avulla ja less-parametrillä, koska alirakenne ei mahtunut yhdelle näytölle.*  
 
 Valitsin tarkasteltavaksi hostnamen. Se näyttää sisältää käytössä olevan hostnamen.  
   
-[4. Kuva: hostname-tiedosto](/pics/harjoitus_2/4.png)  
+![4. Kuva: hostname-tiedosto](/pics/harjoitus_2/4.png)  
 *Kokeilin tiedoston kutsumista pelkästään hostnamella ja cat-käskyn kautta - lopputulos oli sama.*  
 
 **/media**  
 
 Media-kansiossa ei ollut mitään sisältöä, koska koneeseeni ei ollut yhdistetty ulkoisia tallennusmedioita.  
 
-[5. Kuva: /media-kansio](/pics/harjoitus_2/5.png)  
+![5. Kuva: /media-kansio](/pics/harjoitus_2/5.png)  
 *tarkistin pwd-komennolla olevani oikeassa kansiossa.*  
   
 **/var/log**  
 /var/log-kansiosta löytyvät kaikki lokitiedostot. Päätin tarkastella syslog-tiedostoa. Nimensä perusteella oletin sen olevan järjestelmäloki.  
   
-[6. Kuva: syslog](/pics/harjoitus_2/6.png)  
+![6. Kuva: syslog](/pics/harjoitus_2/6.png)  
 *Tiedoston tarkasteleminen ei onnistunut ilman sudo:a*  
 
-[7. Kuva: syslog](/pics/harjoitus_2/7.png)  
+![7. Kuva: syslog](/pics/harjoitus_2/7.png)  
 *sudon avulla listaus avautui*  
 
-Tiedoston rivit eivät tarkoittaneet minulle juuri mitään, sillä ymmärrykseni ei riittänyt. Lokista löytyy ainakin muistiosoitteita, laitteita ja ladattuja tiedostoja.  
+Tiedoston rivit eivät tarkoittaneet minulle juuri mitään, sillä ymmärrykseni ei riittänyt. Lokista löytyi ainakin muistiosoitteita, laitteita ja ladattuja tiedostoja.  
 
 ### My CLI  
   
@@ -150,6 +150,11 @@ Olin käyttänyt Git:iä aikaisemmin Windowsin komentokehotteesta, joten täysin
 Asensin kaikki ohjelmat kerralla käyttämällä komentoa:  
 *sudo apt-get install -y wget micro git-all*  
 
+Yritin ottaa yhteyden Osuuspankin nettipankkiin. Tässä vaiheessa minulle selvisi, että wget ei toimi tähän tarkoitukseen, joten googlasin ja asensin Lynxin komennolla:  
+*sudo apt-get install -y lynx*  
+
+
+  
 
 
 

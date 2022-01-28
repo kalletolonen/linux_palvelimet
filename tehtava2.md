@@ -137,19 +137,27 @@ Media-kansiossa ei ollut mitään sisältöä, koska koneeseeni ei ollut yhdiste
 ![7. Kuva: syslog](/pics/harjoitus_2/7.png)  
 *sudon avulla listaus avautui*  
 
-Tiedoston rivit eivät tarkoittaneet minulle juuri mitään, sillä ymmärrykseni ei riittänyt. Lokista löytyy ainakin muistiosoitteita, laitteita ja ladattuja tiedostoja.  
+Tiedoston rivit eivät tarkoittaneet minulle juuri mitään, sillä ymmärrykseni ei riittänyt. Lokista löytyi ainakin muistiosoitteita, laitteita ja ladattuja tiedostoja.  
 
 ### My CLI  
   
 Asennettavat ohjelmat: wget, micro & Git.
 
-Halusin kokeilla nettipankin käyttämistä komentoriviltä, tämän raportin kirjoittamista TUI-käyttöliittymällä ja raportin tallentamista repositorioon Gitillä. Gitin oikean paketin selvitin [githubista](https://github.com/git-guides/install-git), koska komentokehotteesta sitä ei helposti saanut kaivettua.
+Halusin kokeilla nettipankin käyttämistä komentoriviltä, tämän raportin kirjoittamista TUI-käyttöliittymällä ja raportin tallentamista repositorioon Gitillä, jotta raportista tulisi sopivan metamainen. Gitin oikean paketin selvitin [githubista](https://github.com/git-guides/install-git), koska komentokehotteesta sitä ei helposti saanut kaivettua.
 
 Olin käyttänyt Git:iä aikaisemmin Windowsin komentokehotteesta, joten täysin vierasta se ei minulle ollut.
-  
+
+![8. Kuva: asennusta](/pics/harjoitus_2/8.png)    
 Asensin kaikki ohjelmat kerralla käyttämällä komentoa:  
 *sudo apt-get install -y wget micro git-all*  
 
+Yritin ottaa yhteyden Osuuspankin nettipankkiin. Tässä vaiheessa minulle selvisi, että wget ei toimi tähän tarkoitukseen, joten googlasin ja asensin Lynxin komennolla:  
+*sudo apt-get install -y lynx*  
+
+ctrl + g-kombolla pääsin syöttämään osoitteen, johon syötin pankkini nettisivujen osoitteen. Lynx kyseli evästeasetuksia ja vastasin niihin.  
+
+
+  
 
 
 
