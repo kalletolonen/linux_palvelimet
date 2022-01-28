@@ -17,6 +17,8 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 *Lähdeartikkeli [Karvinen 2020: Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/])
 
 Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
+
+**Oleellisia komentoja**  
   
 | Komento   |      Käyttötarkoitus      |  Huom. |
 |----------:|:-------------|------:|
@@ -27,27 +29,11 @@ Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo 
 |nano|miltei jokaisesta jakelusta löytyvä tekstieditori|nano UUSITIEDOSTO.TXT luo UUSITIEDOSTO.TXT:n|
 |mkdir HAKEMISTONNIMI|uuden hakemiston luominen||
 |mv PARAMETRI1 PARAMETRI2|hakemiston/tiedoston siirtäminen tai nimeäminen uudelleen  |komennolla voi myös helposti ylikirjoittaa tiedoston, mikäli molemmat parametrit ovat olemassaolevia tiedostoja!|
-||||
-||||
-||||
-||||
+|cp -r LÄHDE KOHDE|kopioidaan tiedosto kohteeseen|mikäli lähde on kansio, kopioidaan myös kansion sisältö|
+|rmdir HAKEMISTO|poista tyhjä hakemisto||
+|rm TIEDOSTO|poistaa tiedoston||
+|rm -r KANSIO|poistaa kansion sisältöineen||
     
-**Oleellisia komentoja**  
-|Komento|Käyttötarkoitus|
-------------------------
-|| | |
- =   
- =   
- =   
- =  ()  
- =   
- = 
-*Huom. *  
-cp -r LÄHDE KOHDE = kopioidaan tiedosto kohteeseen (mikäli lähde on kansio, kopioidaan myös kansion sisältö)  
-rmdir HAKEMISTO = poista tyhjä hakemisto  
-rm TIEDOSTO = poistaa tiedoston
-rm -r KANSIO = poistaa kansion sisältöineen
-  
 Komentoja syöttäessä on hyvä muistaa, että Linux ei juuri jakele varoituksia käskyjä toteuttaessaan.  
   
 SSH kalle@serveri.com = ottaa yhteyden serveri.com-serveriin käyttäjätunnuksella kalle  
