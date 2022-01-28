@@ -91,7 +91,7 @@ Lähdeartikkeli: https://hub.github.com/
  
 ### A) FHS
 
-Aloitin tehtävän tekemisen 10.00 ja lopetin sen taukojen jälkeen 17.00.
+Aloitin tehtävän tekemisen 10.00 ja lopetin sen taukojen jälkeen 15.25.
 
 Kaikkien tehtävässä olevien hakemistojen sisällön listaamiseen käytin ls-komentoa.
 
@@ -159,22 +159,30 @@ ctrl + g-kombolla pääsin syöttämään osoitteen, johon syötin pankkini nett
   
 Sisäänkirjautuminen ei kuitenkaan onnistunut, epäilen että kyseessä oli Lynxin JavaScriptin puute, sillä OP:n sivuston napit käyttävät JS:ä. Nettipankin käyttäminen ei siis onnistunut komentokehotteesta.  
   
-Seuraavaksi oli vuorossa tämän raportin kirjoittaminen microlla, joten googlasin ohjeita miten repositorion [saa ladattua koneelle](https://github.com/git-guides/git-pull).  
+Seuraavaksi oli vuorossa tämän raportin kirjoittaminen microlla, joten googlasin ohjeita miten repositorion [saa ladattua koneelle](https://github.com/git-guides/git-pull). Lisähaun perusteella tähän tarvittiin myös [git clone-komentoa](https://github.com/git-guides/git-init)  
 ![10. Kuva: Git-kansio](/pics/harjoitus_2/10.png)  
 *loin kotihakemistooni uuden kansion raporttia varten mkdir-komennolla*  
 
- 
+Tein vielä viimeisen push-komennon Windowsin komentokehotteessa, jotta saisin pull-komennolla vedettyä Githubista viimeisimmän version repositoriosta.  
+![11. Git-clone](/pics/harjoitus_2/11.png)  
+*kloonatun repositorion sisältö virtuaalikoneessa*  
 
+Kloonasin etärepositorion virtuaalikoneeseeni komennolla:  
+git clone osoite  
   
+Sitten kirjoitin muokkauksia raporttiini microlla avaamalla sen komennolla:  
+git micro tehtava_2.md  
+![12. Git-clone](/pics/harjoitus_2/12.png)  
+*Tässä vaiheessa olin vielä optimistinen siitä, että onnistun lataamaan muutokset näyttökaappauksia lukuunottamatta VirtualBoxin sisältä repoon*  
 
-  
+![13. Git-clone](/pics/harjoitus_2/13.png)  
+*Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
+
+Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitettykin.  
+
+## C) Tukki
 
 
-
-
-   
-
-    ### b) My CLI. Keksi jokin asia, jota haluaisit tehdä komentokehotteessa. Etsi ja asenna komentokehotteen paketinhallinnasta ohjelmat, joilla asian voi ratkaista. Asenna ainakin kolme itsellesi uutta komentorivillä (command line interface, CLI) tai tekstitilassa (text user interface, TUI) toimivaa ohjelmaa. Näytä, miten kuvitteellista ongelmaa voi ratkoa näillä ohjelmilla. Voit valita jonkin helpon tai yksinkertaistetun esimerkin.
 
     ### c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
 
