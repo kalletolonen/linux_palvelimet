@@ -2,14 +2,14 @@
 
 Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h2-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h2)
 
-** Harjoituksen laitekokoonpano**  
-* -Järjestelmänä Win 11 + VirtualBox 6.0  *
+**Harjoituksen laitekokoonpano**  
+*Järjestelmänä Win 11 + VirtualBox 6.0*  
   
-* Koneen perustiedot:  *
-* Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti  *
-* Muisti: 16 Gt LPDDR4X  *
-* Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6  *
-* Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD  *
+*Koneen perustiedot:*  
+*Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti*  
+*Muisti: 16 Gt LPDDR4X*  
+*Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
+*Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
 
 ## CLI
 

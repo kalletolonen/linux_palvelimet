@@ -21,7 +21,7 @@ Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo 
 **Oleellisia komentoja**  
   
 | Komento   |      Käyttötarkoitus      |  Huom. |
-|----------:|:-------------|------:|
+|----------:|:-------------|:------|
 | pwd |  nykyinen työhakemisto |  |
 | ls |    listaa hakemiston sisällön   |    |
 | cd HAKEMISTONNIMI | hakemiston vaihtaminen |     |
