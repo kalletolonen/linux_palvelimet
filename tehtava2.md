@@ -1,25 +1,27 @@
 # **Harjoitus 2**
 
-Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää (h2-kohtaa)[https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h2]
+Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h2-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h2)
 
-**Harjoituksen laitekokoonpano**
-*-Järjestelmänä Win 11 + VirtualBox 6.0  *
-
-*Koneen perustiedot:  *
-*Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti  *
-*Muisti: 16 Gt LPDDR4X  *
-*Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6  *
-*Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD  *
+** Harjoituksen laitekokoonpano**  
+* -Järjestelmänä Win 11 + VirtualBox 6.0  *
+  
+* Koneen perustiedot:  *
+* Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti  *
+* Muisti: 16 Gt LPDDR4X  *
+* Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6  *
+* Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD  *
 
 ## CLI
 
 ### z) Lue ja tiivistä
-*Lähdeartikkeli (Karvinen 2020: Command Line Basics Revisited)[https://terokarvinen.com/2020/command-line-basics-revisited/]*
+*Lähdeartikkeli [Karvinen 2020: Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/])
 
--Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
+Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
   
 **Oleellisia komentoja**  
-pwd = nykyinen työhakemisto  
+|Komento|Käyttötarkoitus|
+------------------------
+||pwd | nykyinen työhakemisto|
 ls = listaa hakemiston sisällön  
 cd HAKEMISTONNIMI = hakemiston vaihtaminen  
 less TIEDOSTONNIMI = tiedoston sisällön tulostaminen näytölle  
