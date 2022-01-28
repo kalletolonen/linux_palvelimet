@@ -19,7 +19,7 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
   
 | Komento   |      Käyttötarkoitus      |  Huom. |
-|----------|:-------------:|------:|
+|----------:|:-------------:|------:|
 | pwd |  nykyinen työhakemisto |  |
 | ls |    listaa hakemiston sisällön   |    |
 | cd HAKEMISTONNIMI | hakemiston vaihtaminen |     |

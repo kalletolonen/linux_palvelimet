@@ -23,11 +23,11 @@ Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo 
 | pwd |  nykyinen työhakemisto |  |
 | ls |    listaa hakemiston sisällön   |    |
 | cd HAKEMISTONNIMI | hakemiston vaihtaminen |     |
-|||||
-|||||
-|||||
-|||||
-|||||
+|less TIEDOSTONNIMI|tiedoston sisällön tulostaminen näytölle||
+||||
+||||
+||||
+||||
   
 **Oleellisia komentoja**  
 |Komento|Käyttötarkoitus|
@@ -35,7 +35,7 @@ Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo 
 || | |
  =   
  =   
- = tiedoston sisällön tulostaminen näytölle  
+ =   
 nano = miltei jokaisesta jakelusta löytyvä tekstieditori (nano UUSITIEDOSTO.TXT luo UUSITIEDOSTO.TXT:n)  
 mkdir HAKEMISTONNIMI = uuden hakemiston luominen  
 mv PARAMETRI1 PARAMETRI2 = hakemiston/tiedoston siirtäminen tai nimeäminen uudelleen  
