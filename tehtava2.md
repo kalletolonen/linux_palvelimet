@@ -181,20 +181,57 @@ git micro tehtava_2.md
 ![14. Git-status](/pics/harjoitus_2/14.png)  
 *Lisäsin muutokset commit-viestiin*  
   
-![15. Git-status](/pics/harjoitus_2/15.png)  
+
 *Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
   
 Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitettykin.  
 
+
+Jatkoin tehtävien tekemistä myöhemmin illalla, aloitin työt klo 20.24.
+
 ## C) Tukki
 
-Jatkoin tehtävien tekemistä seuraavana päivänä, aloitin työt klo 
+Tätä tehtävää tehdessäni tulin samalla selvittäneeksi miten VirtualBoxin ja oman koneen välillä saa leikepöydän toimimaan. Se tapahtui valitsemalla virtuaalikoneen asetuksista jaettu leikepöytä. Tai niin luulin, kun kirjoitin tätä raporttia samalla tehdessäni harjoitusta.  
+
+![17. Git-status](/pics/harjoitus_2/17.png)  
+*Settings -> General -> Advanced -> Shared Clipboard*  
+
+Totuus kuitenkin paljastui ja [näillä ohjeilla](https://www.howtogeek.com/187535/how-to-copy-and-paste-between-a-virtualbox-host-machine-and-a-guest-machine/) ei leikepöytä alkanut toimimaan.  
+
+Kokeilen vielä toisia [ohjeita](https://www.pc-freak.net/blog/copy-paste-virtualbox-enable-linux-host-guest-virtual-machine/), ja saan aikaiseksi virheilmoituksen VirtualBoxissa.  
+
+	Unable to insert the virtual optical disk C:\Program Files\Oracle\VirtualBox\VBoxGuestAdditions.iso into the machine virtual_debian.
+  
+	Could not mount the media/drive 'C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso' (VERR_PDM_MEDIA_LOCKED).
+
+	Result Code: E_FAIL (0x80004005)  
+	Component: ConsoleWrap  
+	Interface: IConsole {872da645-4a9b-1727-bee2-5585105b9eed}  
+	Callee: IMachine {5047460a-265d-4538-b23e-ddba5fb84976}  
+
+Jatkoin matkaa ja analysoin varsinaisen tehtävän lokimerkinnät suoraan kuvasta.  
+  
+![17. Git-status](/pics/harjoitus_2/17.png)  
+*Lokiin tallentui epäonnistunut salasanan syöttäminen*  
+
+Ensimmäisenä kuvassa näkyivät päivämäärä ja kellonaika, sitten hostname (eli se tietokone, jota ilmoitus koskee), seuraavaksi käytetty komento (sudo) ja lopulta käyttäjätunnus. Virheilmoituksena annetaan 3 väärää salasanayritystä. TTY=pts/0:n merkitys ei auennut ja PWD tulostaa virheilmoituksen hetken työhakemiston, USER kertoo käyttäjän ja COMMAND syötetyn komennon. Lokitiedosto siis kertoo siitä, mitä on yritetty tehdä, milloin ja kenen toimesta.  
+  
+Lopetin työt 21.20 ja laitoin tehtävän vielä latautumaan Githubiin.    
 
     ### c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
 
     ### d) The Friendly M. Näytä 2-3 kuvaavaa esimerkkiä grep-komennon käytöstä. Ohjeita löytyy 'man grep' ja tietysti verkosta.
 
-    ### e) Pwnkit. Päivitä kaikki Linux-ohjelmat ja asenna tietoturvapäivitykset.
+
+## E) Pwnkit
+
+Ajoin järjestelmäpäivitykset seuraavilla komennoilla:  
+*sudo apt-get update*  
+*sudo apt-get system-upgrade*  
+
+![16. Järjestelmäpäivitys](/pics/harjoitus_2/16.png)  
+*Järjestelmäni oli jo ajantasainen, joten lisäpäivityksiä ei asennettu.*  
+
 
     ### y) cdlspwd! Opettele tärkeimmät komennot ulkoa ja harjoittele suurella määrällä kokeiluja. Opeteltavat komennot ovat artikkelissa Karvinen 2020: Command Line Basics Revisited (tätä y-alakohtaa ei tarvitse raportoida lainkaan)
 

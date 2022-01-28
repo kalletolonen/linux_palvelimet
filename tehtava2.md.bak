@@ -180,21 +180,42 @@ git micro tehtava_2.md
 
 ![14. Git-status](/pics/harjoitus_2/14.png)  
 *Lisäsin muutokset commit-viestiin*  
+  
 
-![15. Git-status](/pics/harjoitus_2/15.png)  
 *Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
-
+  
 Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitettykin.  
+
+
+Jatkoin tehtävien tekemistä myöhemmin illalla, aloitin työt klo 20.24 ja lopetin ne 21.00
 
 ## C) Tukki
 
-Jatkoin tehtävien tekemistä seuraavana päivänä, aloitin työt klo 
+Tätä tehtävää tehdessäni tulin samalla selvittäneeksi miten VirtualBoxin ja oman koneen välillä saa leikepöydän toimimaan. Se tapahtui valitsemalla virtuaalikoneen asetuksista jaettu leikepöytä.  
+
+![17. Git-status](/pics/harjoitus_2/17.png)  
+*Settings -> General -> Advanced -> Shared Clipboard*  
+
+Totuus kuitenkin paljastui ja [näillä ohjeilla](https://www.howtogeek.com/187535/how-to-copy-and-paste-between-a-virtualbox-host-machine-and-a-guest-machine/) ei leikepöytä alkanut toimimaan.  
+
+Lokiin tallentui epäonnistunut salasanan syöttäminen:
+
+**
 
     ### c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
 
     ### d) The Friendly M. Näytä 2-3 kuvaavaa esimerkkiä grep-komennon käytöstä. Ohjeita löytyy 'man grep' ja tietysti verkosta.
 
-    ### e) Pwnkit. Päivitä kaikki Linux-ohjelmat ja asenna tietoturvapäivitykset.
+
+## E) Pwnkit
+
+Ajoin järjestelmäpäivitykset seuraavilla komennoilla:  
+*sudo apt-get update*  
+*sudo apt-get system-upgrade*  
+
+![16. Järjestelmäpäivitys](/pics/harjoitus_2/16.png)  
+*Järjestelmäni oli jo ajantasainen, joten lisäpäivityksiä ei asennettu.*  
+
 
     ### y) cdlspwd! Opettele tärkeimmät komennot ulkoa ja harjoittele suurella määrällä kokeiluja. Opeteltavat komennot ovat artikkelissa Karvinen 2020: Command Line Basics Revisited (tätä y-alakohtaa ei tarvitse raportoida lainkaan)
 
