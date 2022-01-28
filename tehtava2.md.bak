@@ -20,8 +20,8 @@ Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo 
   
 **Oleellisia komentoja**  
 |Komento|Käyttötarkoitus|
--------------------------
-|pwd = nykyinen työhakemisto  
+------------------------
+||pwd | nykyinen työhakemisto|
 ls = listaa hakemiston sisällön  
 cd HAKEMISTONNIMI = hakemiston vaihtaminen  
 less TIEDOSTONNIMI = tiedoston sisällön tulostaminen näytölle  
