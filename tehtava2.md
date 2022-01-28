@@ -157,10 +157,14 @@ Yritin ottaa yhteyden Osuuspankin nettipankkiin. Tässä vaiheessa minulle selvi
 ctrl + g-kombolla pääsin syöttämään osoitteen, johon syötin pankkini nettisivujen osoitteen. Lynx kyseli evästeasetuksia ja vastasin niihin.  
 ![9. Kuva: op.fi](/pics/harjoitus_2/9.png)    
   
-Sisäänkirjautuminen ei kuitenkaan onnistunut, epäilen että kyseessä oli Lynxin JavaScriptin puute, sillä OP:n sivuston napit käyttävät JS:ä.  
-![9. Kuva: op.fi](/pics/harjoitus_2/9.png)    
+Sisäänkirjautuminen ei kuitenkaan onnistunut, epäilen että kyseessä oli Lynxin JavaScriptin puute, sillä OP:n sivuston napit käyttävät JS:ä. Nettipankin käyttäminen ei siis onnistunut komentokehotteesta.  
+  
+Seuraavaksi oli vuorossa tämän raportin kirjoittaminen microlla, joten googlasin ohjeita miten repositorion [saa ladattua koneelle](https://github.com/git-guides/git-pull).  
+![10. Kuva: Git-kansio](/pics/harjoitus_2/10.png)  
+*loin kotihakemistooni uuden kansion raporttia varten mkdir-komennolla*  
 
-Nettipankin käyttäminen ei siis onnistunut komentokehotteesta.  
+
+
   
 
   
