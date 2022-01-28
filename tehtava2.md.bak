@@ -145,7 +145,11 @@ Asennettavat ohjelmat: wget, micro & Git.
 
 Halusin kokeilla nettipankin käyttämistä komentoriviltä, tämän raportin kirjoittamista TUI-käyttöliittymällä ja raportin tallentamista repositorioon Gitillä. Gitin oikean paketin selvitin [githubista](https://github.com/git-guides/install-git), koska komentokehotteesta sitä ei helposti saanut kaivettua.
 
-Olen käyttänyt Git:iä aikaisemmin Windowsin komentokehotteesta, joten täysin vierasta se ei minulle ollut.
+Olin käyttänyt Git:iä aikaisemmin Windowsin komentokehotteesta, joten täysin vierasta se ei minulle ollut.
+  
+Asensin kaikki ohjelmat kerralla käyttämällä komentoa:  
+*sudo apt-get install -y wget micro git-all*  
+
 
 
 
