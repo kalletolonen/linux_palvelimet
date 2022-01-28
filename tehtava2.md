@@ -14,7 +14,7 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 ## CLI
 
 ### z) Lue ja tiivistä
-*Lähdeartikkeli [Karvinen 2020: Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/])
+*Lähdeartikkeli [Karvinen 2020: Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/])*  
 
 Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
 
@@ -44,13 +44,51 @@ KOMENTO -h tai --help = KOMENNON lyhyempi help-tiedosto
 
 Tabulaattorilla täydennetään komentoja ja hakemistopolkuja. Tabulaattorin tuplapainalluksella järjestelmä näyttää vaihtoehdot, joista valita.  
 
-**Tärkeitä hakemistoja**
+**Tärkeitä hakemistoja**  
+
 Linuxissa kaikki asiat ovat hakemistoissa.
 
-|Hakemisto|Käyttötarkoitus|HOX|
-|/|Tämä on juurihakemisto, kaikki sijaitsee juurihakemiston alla|
+|Hakemisto|Käyttötarkoitus|Huom.|
+|---------:|:---------------|:----|
+|/|Tämä on juurihakemisto, kaikki sijaitsee juurihakemiston alla||
+|/home/|Käyttäjien kotihakemistot||
+|/home/kalle|Käyttäjän kalle hakemisto|Vain tämä käyttäjä voi tallentaa ko. hakemistoon|
+|/etc|Järjestelmäasetukset|ASetukset ovat selkokielisissä tekstitiedostoissa|
+|/media/|irrotettava levytila|Esim. muistitikku|
+|/var/log/|lokitiedostot||
+  
+**Admin-komennot**  
 
-        YCombinator Hacker News, vapaavalintainen artikkeli kommentteineen Linuxin komentokehotteesta (Kommentit aukeavat siitä pienestä "420 comments" linkistä. Riittää, kun silmäilet artikkelin ja kommentit soveltuvin osin, osa voi olla kirjan mittaisia etkä ehdi tässä lukea niitä kokonaan. Samoin tiivistelmäksi riittää muutama bulletti, ei tarvitse kattaa koko sisältöä)
+Linuxissa on periaate, jossa operoidaan aina pienimmillä mahdollisilla käyttäjäoikeuksilla. Korkeampia käyttäjäoikeuksia tarvitaan järjestelmään vaikuttavien komentojen yhteydessä, esimerkiksi silloin, kun asennetaan uusia ohjelmia.  
+  
+Paketinhallinnan avulla uusien ohjelmien asentaminen on jouhevaa.  
+  
+*sudo apt-get update*  
+Päivittää saatavissa olevien pakettien listan.  
+  
+*apt-cache search hakusana*  
+Etsii saatavilla paketteja hakusanalla.  
+  
+*sudo apt-get -y install paketinnimi*  
+Asentaa paketin ja vastaa kyllä kaikkiin kysymyksiin asennusvaiheessa.  
+  
+*dpkg --listfiles paketinnimi*  
+Etsii tiedostoja hakusanalla  
+  
+*sudo apt-get purge ohjelma*  
+Poistaa asennuksen ja siihen liittyvät asetukset  
+  
+*sudo apt-get -y install blender nethack-console pico*  
+apt-get -komentoon voi myös ketjuttaa monien ohjelmien asennukset.
+
+**YCombinator Hacker News**  
+
+Lähdeartikkeli: https://hub.github.com/
+
+* Artikkelissa neuvotaan miten Githubia voi käyttää suoraan komentokehotteesta hub-ohjelmalla
+* Käytän Git:iä hyvin alkeellisesti, eikä minulle intuitiivisesti aukea työkalun tuottama arvo
+* Kommenteista tulkitsen, että kyseessä on niche-tuote, joka helpottaa tiettyjä operaatioita
+
 
     ### a) FHS. Esittele kansiot, jotka on listattu "Command Line Basics Revisited" kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
 
