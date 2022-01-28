@@ -51,11 +51,11 @@ Linuxissa kaikki asiat ovat hakemistoissa.
 |Hakemisto|Käyttötarkoitus|Huom.|
 |---------:|:---------------|:----|
 |/|Tämä on juurihakemisto, kaikki sijaitsee juurihakemiston alla||
-|/home/|Käyttäjien kotihakemistot||
+|/home|Käyttäjien kotihakemistot||
 |/home/kalle|Käyttäjän kalle hakemisto|Vain tämä käyttäjä voi tallentaa ko. hakemistoon|
-|/etc|Järjestelmäasetukset|ASetukset ovat selkokielisissä tekstitiedostoissa|
-|/media/|irrotettava levytila|Esim. muistitikku|
-|/var/log/|lokitiedostot||
+|/etc|Järjestelmäasetukset|Asetukset ovat selkokielisissä tekstitiedostoissa|
+|/media|irrotettava levytila|Esim. muistitikku|
+|/var/log|lokitiedostot||
   
 **Admin-komennot**  
 
@@ -91,13 +91,70 @@ Lähdeartikkeli: https://hub.github.com/
  
 ### A) FHS
 
+Aloitin tehtävän tekemisen 10.00 ja lopetin sen taukojen jälkeen 17.00.
+
+Kaikkien tehtävässä olevien hakemistojen sisällön listaamiseen käytin ls-komentoa.
+
 **/**  
 
 / on juurihakemisto, sillä sijaitsee kaikki mitä järjestelmä pitää sisällään.
+  
+[1. Kuva: root](/pics/harjoitus_2/1.png)  
+*Kuvassa kaikki kansiot, jokainen niistä on tärkeä.*  
 
-[1. Kuva](/pics/harjoitus_2/1.png)
+**/home/ ja /home/kallet**  
 
-    ### a) FHS. Esittele kansiot, jotka on listattu "Command Line Basics Revisited" kappaleessa "Important directories". Näytä kuvaava esimerkki kunkin tärkeän kansion sisältämästä tiedostosta tai kansiosta. Jos kyseessä on tiedosto, näytä siitä kuvaava esimerkkirivi. Työskentele komentokehotteessa ja näytä komennot, joilla etsit esimerkit.
+/home/ on kirjautuneen käyttäjän kotihakemisto, tänne käyttäjän alakansioon tallentuvat kaikki ko. käyttäjän tiedostot. 
+  
+[2. Kuva: kissa.txt](/pics/harjoitus_2/2.png)  
+*Kuvassa kallet-käyttäjän kissa.txt-tiedoston sisältö cat-komennolla iteroituna.*  
+  
+**/etc/**  
+
+/etc-hakemistossa löytyvät kaikki järjestelmän asetukset. 
+
+[3. Kuva: /etc-hakemisto](/pics/harjoitus_2/3.png)  
+*listasin sisällön ls:n avulla ja less-parametrillä, koska alirakenne ei mahtunut yhdelle näytölle.*  
+
+Valitsin tarkasteltavaksi hostnamen. Se näyttää sisältää käytössä olevan hostnamen.  
+  
+[4. Kuva: hostname-tiedosto](/pics/harjoitus_2/4.png)  
+*Kokeilin tiedoston kutsumista pelkästään hostnamella ja cat-käskyn kautta - lopputulos oli sama.*  
+
+**/media**  
+
+Media-kansiossa ei ollut mitään sisältöä, koska koneeseeni ei ollut yhdistetty ulkoisia tallennusmedioita.  
+
+[5. Kuva: /media-kansio](/pics/harjoitus_2/5.png)  
+*tarkistin pwd-komennolla olevani oikeassa kansiossa.*  
+  
+**/var/log**  
+/var/log-kansiosta löytyvät kaikki lokitiedostot. Päätin tarkastella syslog-tiedostoa. Nimensä perusteella oletin sen olevan järjestelmäloki.  
+  
+[6. Kuva: syslog](/pics/harjoitus_2/6.png)  
+*Tiedoston tarkasteleminen ei onnistunut ilman sudo:a*  
+
+[7. Kuva: syslog](/pics/harjoitus_2/7.png)  
+*sudon avulla listaus avautui*  
+
+Tiedoston rivit eivät tarkoittaneet minulle juuri mitään, sillä ymmärrykseni ei riittänyt. Lokista löytyy ainakin muistiosoitteita, laitteita ja ladattuja tiedostoja.  
+
+### My CLI  
+  
+Asennettavat ohjelmat: wget, micro & Git.
+
+Halusin kokeilla nettipankin käyttämistä komentoriviltä, tämän raportin kirjoittamista TUI-käyttöliittymällä ja raportin tallentamista repositorioon Gitillä. Gitin oikean paketin selvitin [githubista](https://github.com/git-guides/install-git), koska komentokehotteesta sitä ei helposti saanut kaivettua.
+
+Olin käyttänyt Git:iä aikaisemmin Windowsin komentokehotteesta, joten täysin vierasta se ei minulle ollut.
+  
+Asensin kaikki ohjelmat kerralla käyttämällä komentoa:  
+*sudo apt-get install -y wget micro git-all*  
+
+
+
+
+
+   
 
     ### b) My CLI. Keksi jokin asia, jota haluaisit tehdä komentokehotteessa. Etsi ja asenna komentokehotteen paketinhallinnasta ohjelmat, joilla asian voi ratkaista. Asenna ainakin kolme itsellesi uutta komentorivillä (command line interface, CLI) tai tekstitilassa (text user interface, TUI) toimivaa ohjelmaa. Näytä, miten kuvitteellista ongelmaa voi ratkoa näillä ohjelmilla. Voit valita jonkin helpon tai yksinkertaistetun esimerkin.
 
