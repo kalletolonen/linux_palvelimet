@@ -175,9 +175,15 @@ git micro tehtava_2.md
 ![12. Git-clone](/pics/harjoitus_2/12.png)  
 *Tässä vaiheessa olin vielä optimistinen siitä, että onnistun lataamaan muutokset näyttökaappauksia lukuunottamatta VirtualBoxin sisältä repoon*  
 
-![13. Git-clone](/pics/harjoitus_2/13.png)  
-*Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
+![13. Git-status](/pics/harjoitus_2/13.png)  
+*Tarkistin statuksen*  
 
+![14. Git-status](/pics/harjoitus_2/14.png)  
+*Lisäsin muutokset commit-viestiin*  
+  
+![15. Git-status](/pics/harjoitus_2/15.png)  
+*Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
+  
 Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitettykin.  
 
 ## C) Tukki
