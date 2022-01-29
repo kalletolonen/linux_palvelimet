@@ -87,7 +87,7 @@ Lähdeartikkeli: https://hub.github.com/
 
 * Artikkelissa neuvotaan miten Githubia voi käyttää suoraan komentokehotteesta hub-ohjelmalla
 * Käytän Git:iä hyvin alkeellisesti, eikä minulle intuitiivisesti aukea työkalun tuottama arvo
-* Kommenteista tulkitsen, että kyseessä on niche-tuote, joka helpottaa tiettyjä operaatioita
+* [Kommenteista](https://news.ycombinator.com/item?id=20372770) tulkitsen, että kyseessä on niche-tuote, joka helpottaa tiettyjä operaatioita
  
 ## A) FHS
 

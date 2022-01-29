@@ -18,7 +18,7 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 
 Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
 
-##**Oleellisia komentoja**  
+## **Oleellisia komentoja**  
   
 | Komento   |      Käyttötarkoitus      |  Huom. |
 |----------:|:-------------|:------|
@@ -44,7 +44,7 @@ Komentoja syöttäessä on hyvä muistaa, että Linux ei juuri jakele varoituksi
 
 Tabulaattorilla täydennetään komentoja ja hakemistopolkuja. Tabulaattorin tuplapainalluksella järjestelmä näyttää vaihtoehdot, joista valita.  
 
-##**Tärkeitä hakemistoja**  
+## **Tärkeitä hakemistoja**  
 
 Linuxissa kaikki asiat ovat hakemistoissa.
 
@@ -57,7 +57,7 @@ Linuxissa kaikki asiat ovat hakemistoissa.
 |/media|irrotettava levytila|Esim. muistitikku|
 |/var/log|lokitiedostot||
   
-##**Admin-komennot**  
+## **Admin-komennot**  
 
 Linuxissa on periaate, jossa operoidaan aina pienimmillä mahdollisilla käyttäjäoikeuksilla. Korkeampia käyttäjäoikeuksia tarvitaan järjestelmään vaikuttavien komentojen yhteydessä, esimerkiksi silloin, kun asennetaan uusia ohjelmia.  
   
@@ -81,7 +81,7 @@ Paketinhallinnan avulla uusien ohjelmien asentaminen on jouhevaa.
 	*sudo apt-get -y install blender nethack-console pico*  
 	apt-get -komentoon voi myös ketjuttaa monien ohjelmien asennukset.
 
-##**YCombinator Hacker News**  
+## **YCombinator Hacker News**  
 
 Lähdeartikkeli: https://hub.github.com/
 
@@ -135,7 +135,7 @@ Media-kansiossa ei ollut mitään sisältöä, koska koneeseeni ei ollut yhdiste
 
 Tiedoston rivit eivät tarkoittaneet minulle juuri mitään, sillä ymmärrykseni ei riittänyt. Lokista löytyi ainakin muistiosoitteita, laitteita ja ladattuja tiedostoja.  
 
-### My CLI  
+## My CLI  
   
 Asennettavat ohjelmat: wget, micro & Git.
 
