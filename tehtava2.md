@@ -220,7 +220,7 @@ Onnistnut lokimerkintä oli sisältönsä puolesta ylläolevan kaltainen, paitsi
   
 Grep on [etsintätyökalu](https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/#Use_grep_to_search_a_file). 
 
-	Grepin avulla voi:  
+Grepin avulla voi:  
 1. Etsiä tekstiä tiedostojen sisältä 
 ![20. Git-status](/pics/harjoitus_2/20.png)  
 *grep -r "kissa" /home/ | less*-komento palautti listauksen, jossa oli ruutu kerrallaan kaikki /home/-hakemiston ja sen alikansioiden kissa-sanan sisältävät rivit tiedostoista.    
@@ -248,6 +248,8 @@ Ajoin järjestelmäpäivitykset seuraavilla komennoilla:
 ## Bonus: Recursive  
 
 Etsin kaikki kissa-sanan sisältävät rivit etsitään *grep -r -i "kissa" /home/*-komennolla. Komennon -i-parametri tarkoittaa kirjainkoon jättämistä huomioimatta.  
+  
+Lopetin harjoituksen tekimisen 13.49.  
   
 *Tekijä: Kalle Tolonen*
 
