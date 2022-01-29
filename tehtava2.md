@@ -182,7 +182,7 @@ git micro tehtava_2.md
 *Lisäsin muutokset commit-viestiin*  
   
 
-*Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
+*Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, joten kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
   
 Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitettykin.  
 
@@ -191,14 +191,14 @@ Jatkoin tehtävien tekemistä myöhemmin illalla, aloitin työt klo 20.24.
 
 ## C) Tukki
 
-Tätä tehtävää tehdessäni tulin samalla selvittäneeksi miten VirtualBoxin ja oman koneen välillä saa leikepöydän toimimaan. Se tapahtui valitsemalla virtuaalikoneen asetuksista jaettu leikepöytä. Tai niin luulin, kun kirjoitin tätä raporttia samalla tehdessäni harjoitusta.  
+Tätä tehtävää tehdessäni tulin samalla selvittäneeksi miten voisin saada VirtualBoxin ja oman koneen välillä leikepöydän toimimaan. Se tapahtui valitsemalla virtuaalikoneen asetuksista jaettu leikepöytä. Tai niin luulin, kun kirjoitin tätä raporttia samalla tehdessäni harjoitusta.  
 
 ![17. Git-status](/pics/harjoitus_2/17.png)  
 *Settings -> General -> Advanced -> Shared Clipboard*  
 
 Totuus kuitenkin paljastui ja [näillä ohjeilla](https://www.howtogeek.com/187535/how-to-copy-and-paste-between-a-virtualbox-host-machine-and-a-guest-machine/) ei leikepöytä alkanut toimimaan.  
 
-Kokeilen vielä toisia [ohjeita](https://www.pc-freak.net/blog/copy-paste-virtualbox-enable-linux-host-guest-virtual-machine/), ja saan aikaiseksi virheilmoituksen VirtualBoxissa.  
+Kokeilen vielä toisia [ohjeita](https://www.pc-freak.net/blog/copy-paste-virtualbox-enable-linux-host-guest-virtual-machine/), ja sain aikaiseksi virheilmoituksen VirtualBoxissa.  
 
 	Unable to insert the virtual optical disk C:\Program Files\Oracle\VirtualBox\VBoxGuestAdditions.iso into the machine virtual_debian.
   
@@ -211,18 +211,35 @@ Kokeilen vielä toisia [ohjeita](https://www.pc-freak.net/blog/copy-paste-virtua
 
 Jatkoin matkaa ja analysoin varsinaisen tehtävän lokimerkinnät suoraan kuvasta.  
   
-![17. Git-status](/pics/harjoitus_2/17.png)  
+![18. Git-status](/pics/harjoitus_2/18.png)  
 *Lokiin tallentui epäonnistunut salasanan syöttäminen*  
 
-Ensimmäisenä kuvassa näkyivät päivämäärä ja kellonaika, sitten hostname (eli se tietokone, jota ilmoitus koskee), seuraavaksi käytetty komento (sudo) ja lopulta käyttäjätunnus. Virheilmoituksena annetaan 3 väärää salasanayritystä. TTY=pts/0:n merkitys ei auennut ja PWD tulostaa virheilmoituksen hetken työhakemiston, USER kertoo käyttäjän ja COMMAND syötetyn komennon. Lokitiedosto siis kertoo siitä, mitä on yritetty tehdä, milloin ja kenen toimesta.  
+Ensimmäisenä kuvassa näkyivät päivämäärä ja kellonaika, sitten hostname (eli se tietokone, jota ilmoitus koskee), seuraavaksi käytetty komento (sudo) ja lopulta käyttäjätunnus. Virheilmoituksena annetaan 3 väärää salasanayritystä. TTY=pts/0:n merkitys ei auennut intuitiivisesti, joten selvitin sen [googlaamalla](https://www.golinuxcloud.com/difference-between-pty-vs-tty-vs-pts-linux/) (se liittyi siihen, että käsky on syötetty terminaalista.  PWD tulostaa virheilmoituksen hetken työhakemiston, USER kertoo käyttäjän ja COMMAND syötetyn komennon. Lokitiedosto siis kertoo siitä, mitä on yritetty tehdä, milloin ja kenen toimesta.  
   
-Lopetin työt 21.20 ja laitoin tehtävän vielä latautumaan Githubiin.    
+Lopetin työt 21.20 ja laitoin tehtävän vielä latautumaan Githubiin.  
 
-    ### c) Tukki. Aiheuta lokiin kaksi eri tapahtumaa: yksi esimerkki onnistuneesta ja yksi esimerkki epäonnistuneesta tai kielletystä toimenpiteestä. Analysoi rivit yksityiskohtaisesti.
+Aloitin harjoituksen täyttämisen seuraavana päivänä 12.30.  
+  
+![19. Git-status](/pics/harjoitus_2/19.png)  
+*Lokiin tallentui sudo apt-get update-käskyn ajaminen*  
+  
+Onnistunt lokimerkintä oli sisältönsä puolesta ylläolevan kaltainen, paitsi että siinä ei ollut merkintää epäonnistumisesta. Tämäkin merkintä kertoi siitä, että kuka on tehnyt mitä, millä ja milloin, sekä mahdollesesti seurasi. Huomion arvoista oli myös se, että korostetun rivin alapuoliset rivit liittyivät komentoon, sillä siinä avattiin sessio (jossa suorittiin käsky?) sudo-valtuuksilla ja sen jälkeen sessio suljettiin.  
+  
+## D) The Friendly M.  
+  
+Grep on [etsintätyökalu](https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/#Use_grep_to_search_a_file). 
 
-    ### d) The Friendly M. Näytä 2-3 kuvaavaa esimerkkiä grep-komennon käytöstä. Ohjeita löytyy 'man grep' ja tietysti verkosta.
-
-
+	Grepin avulla voi:  
+	1. Etsiä tekstiä tiedostojen sisältä 
+	![20. Git-status](/pics/harjoitus_2/20.png)  
+	*grep -r "kissa" /home/ | less*-komento palautti listauksen, jossa oli ruutu kerrallaan kaikki /home/-hakemiston ja sen alikansioiden kissa-sanan sisältävät rivit tiedostoista.    
+	2. Suodattaa laitelistauksista haluamaansa tietoa  
+	![21. Git-status](/pics/harjoitus_2/21.png)  
+	*Pelkän prosessorimallin sisältävä listaus laadittiin komentoyhdistelmällä.*  
+	3. Etsiä ja suodattaa laitelistauksesta kiintolevyt  
+	![22. Git-status](/pics/harjoitus_2/22.png)  
+	*dmesg | egrep "(s|h)d[a-z]"*-komento etsi dmesg-hausta grepin avulla [regex-tarkenteella](https://en.wikipedia.org/wiki/Regular_expression). Regex tarkoittaa standardimallin ilmaisuja, joilla on mahdollista suodattaa merkkijonoja. Tässä esimerkissä listattiin laitteet, jotka alkoivat a:lla tai h:lla, joiden keskimmäinen kirjain on d ja jotka päättyvät mihin tahansa aakkoseen a:n ja z:n välillä.  
+  
 ## E) Pwnkit
 
 Ajoin järjestelmäpäivitykset seuraavilla komennoilla:  
@@ -232,12 +249,9 @@ Ajoin järjestelmäpäivitykset seuraavilla komennoilla:
 ![16. Järjestelmäpäivitys](/pics/harjoitus_2/16.png)  
 *Järjestelmäni oli jo ajantasainen, joten lisäpäivityksiä ei asennettu.*  
 
+## Bonus: Recursive. 
 
-    ### y) cdlspwd! Opettele tärkeimmät komennot ulkoa ja harjoittele suurella määrällä kokeiluja. Opeteltavat komennot ovat artikkelissa Karvinen 2020: Command Line Basics Revisited (tätä y-alakohtaa ei tarvitse raportoida lainkaan)
-
-    ### Bonus: Recursive. Pystytkö etsimään kaikki rivit, joilla lukee Tero isolla tai pienellä, kun tiedostoja on sisäkkäisissä kansioissa? (Eli tutkimaan jonkin kansion kaikkine alihakemistoineen)
-
-    ### g) Sshecrets. Vaikeampi vapaaehtoinen bonuskohta, ei ole opetettu vielä: Asenna SSH-demoni. Kokeile omalla ssh-palvelimellasi jotain seuraavista: ssh-copy-id, sshfs, scp tai git. (Helpoin lienee scp: ‘scp foo.txt tero@example.com:’)
+Etsin kaikki kissa-sanan sisältävät rivit etsitään *grep -r -i "kissa" /home/*-komennolla. Komennon -i-parametri tarkoittaa kirjainkoon jättämistä huomioimatta.  
 
 
 
