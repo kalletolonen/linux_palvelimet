@@ -249,6 +249,8 @@ Ajoin järjestelmäpäivitykset seuraavilla komennoilla:
 
 Etsin kaikki kissa-sanan sisältävät rivit etsitään *grep -r -i "kissa" /home/*-komennolla. Komennon -i-parametri tarkoittaa kirjainkoon jättämistä huomioimatta.  
   
+Lopetin harjoituksen tekimisen 13.49.  
+  
 *Tekijä: Kalle Tolonen*
 
 
