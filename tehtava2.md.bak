@@ -11,14 +11,14 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 *Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
 *Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
 
-## CLI
+# CLI
 
-### Z) Lue ja tiivistä
+## Z) Lue ja tiivistä
 *Lähdeartikkeli [Karvinen 2020: Command Line Basics Revisited](https://terokarvinen.com/2020/command-line-basics-revisited/])*  
 
 Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo kauan ennen nykyaikaisia GUI-järjestelmiä. Samat komennot ovat olleet käytössä vuosikymmeniä, ja tulevat olemaan käytössä vuosikymmeniä, sillä ne ovat tehokas tapa saada asioita tehtyä. GUI tarkoittaa graafista käyttäjäympäristöä.  
 
-**Oleellisia komentoja**  
+##**Oleellisia komentoja**  
   
 | Komento   |      Käyttötarkoitus      |  Huom. |
 |----------:|:-------------|:------|
@@ -36,15 +36,15 @@ Komentokehotteen opetteleminen on hyödyllistä, sillä se on ollut olemassa jo 
     
 Komentoja syöttäessä on hyvä muistaa, että Linux ei juuri jakele varoituksia käskyjä toteuttaessaan.  
   
-SSH kalle@serveri.com = ottaa yhteyden serveri.com-serveriin käyttäjätunnuksella kalle  
-exit = palaa omalle tietokoneelle  
-scp -r KANSIO kalle@serveri.com:KOHDEKANSIO/ = kopioi kansio omalta koneelta kohdekoneelle  
-man KOMENTO = näytä KOMENNON manuaali  
-KOMENTO -h tai --help = KOMENNON lyhyempi help-tiedosto  
+	SSH kalle@serveri.com = ottaa yhteyden serveri.com-serveriin käyttäjätunnuksella kalle  
+	exit = palaa omalle tietokoneelle  
+	scp -r KANSIO kalle@serveri.com:KOHDEKANSIO/ = kopioi kansio omalta koneelta kohdekoneelle  
+	man KOMENTO = näyttää KOMENNON manuaali  
+	KOMENTO -h tai --help = KOMENNON lyhyempi help-tiedosto  
 
 Tabulaattorilla täydennetään komentoja ja hakemistopolkuja. Tabulaattorin tuplapainalluksella järjestelmä näyttää vaihtoehdot, joista valita.  
 
-**Tärkeitä hakemistoja**  
+##**Tärkeitä hakemistoja**  
 
 Linuxissa kaikki asiat ovat hakemistoissa.
 
@@ -57,31 +57,31 @@ Linuxissa kaikki asiat ovat hakemistoissa.
 |/media|irrotettava levytila|Esim. muistitikku|
 |/var/log|lokitiedostot||
   
-**Admin-komennot**  
+##**Admin-komennot**  
 
 Linuxissa on periaate, jossa operoidaan aina pienimmillä mahdollisilla käyttäjäoikeuksilla. Korkeampia käyttäjäoikeuksia tarvitaan järjestelmään vaikuttavien komentojen yhteydessä, esimerkiksi silloin, kun asennetaan uusia ohjelmia.  
   
 Paketinhallinnan avulla uusien ohjelmien asentaminen on jouhevaa.  
   
-*sudo apt-get update*  
-Päivittää saatavissa olevien pakettien listan.  
+	*sudo apt-get update*  
+	Päivittää saatavissa olevien pakettien listan.  
   
-*apt-cache search hakusana*  
-Etsii saatavilla paketteja hakusanalla.  
+	*apt-cache search hakusana*  
+	Etsii saatavilla paketteja hakusanalla.  
   
-*sudo apt-get -y install paketinnimi*  
-Asentaa paketin ja vastaa kyllä kaikkiin kysymyksiin asennusvaiheessa.  
+	*sudo apt-get -y install paketinnimi*  
+	Asentaa paketin ja vastaa kyllä kaikkiin kysymyksiin asennusvaiheessa.  
   
-*dpkg --listfiles paketinnimi*  
-Etsii tiedostoja hakusanalla  
+	*dpkg --listfiles paketinnimi*  
+	Etsii tiedostoja hakusanalla  
   
-*sudo apt-get purge ohjelma*  
-Poistaa asennuksen ja siihen liittyvät asetukset  
+	*sudo apt-get purge ohjelma*  
+	Poistaa asennuksen ja siihen liittyvät asetukset  
   
-*sudo apt-get -y install blender nethack-console pico*  
-apt-get -komentoon voi myös ketjuttaa monien ohjelmien asennukset.
+	*sudo apt-get -y install blender nethack-console pico*  
+	apt-get -komentoon voi myös ketjuttaa monien ohjelmien asennukset.
 
-**YCombinator Hacker News**  
+##**YCombinator Hacker News**  
 
 Lähdeartikkeli: https://hub.github.com/
 
@@ -89,47 +89,43 @@ Lähdeartikkeli: https://hub.github.com/
 * Käytän Git:iä hyvin alkeellisesti, eikä minulle intuitiivisesti aukea työkalun tuottama arvo
 * Kommenteista tulkitsen, että kyseessä on niche-tuote, joka helpottaa tiettyjä operaatioita
  
-### A) FHS
+## A) FHS
 
 Aloitin tehtävän tekemisen 10.00 ja lopetin sen taukojen jälkeen 15.25.
 
 Kaikkien tehtävässä olevien hakemistojen sisällön listaamiseen käytin ls-komentoa.
 
 **/**  
-
 / on juurihakemisto, sillä sijaitsee kaikki mitä järjestelmä pitää sisällään.
   
 ![1. Kuva: root](/pics/harjoitus_2/1.png)  
 *Kuvassa kaikki kansiot, jokainen niistä on tärkeä.*  
 
 **/home/ ja /home/kallet**  
-
 /home/ on kirjautuneen käyttäjän kotihakemisto, tänne käyttäjän alakansioon tallentuvat kaikki ko. käyttäjän tiedostot. 
   
 ![2. Kuva: kissa.txt](/pics/harjoitus_2/2.png)  
 *Kuvassa kallet-käyttäjän kissa.txt-tiedoston sisältö cat-komennolla iteroituna.*  
   
 **/etc/**  
-
-/etc-hakemistossa löytyvät kaikki järjestelmän asetukset. 
+/etc-hakemistossa löytyivät kaikki järjestelmän asetukset. 
 
 ![3. Kuva: /etc-hakemisto](/pics/harjoitus_2/3.png)  
 *listasin sisällön ls:n avulla ja less-parametrillä, koska alirakenne ei mahtunut yhdelle näytölle.*  
 
-Valitsin tarkasteltavaksi hostnamen. Se näyttää sisältää käytössä olevan hostnamen.  
+Valitsin tarkasteltavaksi hostnamen. Se näytti käytössä olleen hostnamen.  
   
 ![4. Kuva: hostname-tiedosto](/pics/harjoitus_2/4.png)  
 *Kokeilin tiedoston kutsumista pelkästään hostnamella ja cat-käskyn kautta - lopputulos oli sama.*  
 
 **/media**  
-
 Media-kansiossa ei ollut mitään sisältöä, koska koneeseeni ei ollut yhdistetty ulkoisia tallennusmedioita.  
 
 ![5. Kuva: /media-kansio](/pics/harjoitus_2/5.png)  
 *tarkistin pwd-komennolla olevani oikeassa kansiossa.*  
   
 **/var/log**  
-/var/log-kansiosta löytyvät kaikki lokitiedostot. Päätin tarkastella syslog-tiedostoa. Nimensä perusteella oletin sen olevan järjestelmäloki.  
+/var/log-kansiosta löytyivät kaikki lokitiedostot. Päätin tarkastella syslog-tiedostoa. Nimensä perusteella oletin sen olevan järjestelmäloki.  
   
 ![6. Kuva: syslog](/pics/harjoitus_2/6.png)  
 *Tiedoston tarkasteleminen ei onnistunut ilman sudo:a*  
@@ -154,10 +150,9 @@ Asensin kaikki ohjelmat kerralla käyttämällä komentoa:
 Yritin ottaa yhteyden Osuuspankin nettipankkiin. Tässä vaiheessa minulle selvisi, että wget ei toimi tähän tarkoitukseen, joten googlasin ja asensin Lynxin komennolla:  
 *sudo apt-get install -y lynx*  
 
-ctrl + g-kombolla pääsin syöttämään osoitteen, johon syötin pankkini nettisivujen osoitteen. Lynx kyseli evästeasetuksia ja vastasin niihin.  
+ctrl + g-kombolla pääsin syöttämään osoitteen, johon syötin pankkini nettisivujen osoitteen. Lynx kyseli evästeasetuksia ja vastasin niihin myöntävästi.  
 ![9. Kuva: op.fi](/pics/harjoitus_2/9.png)    
-  
-Sisäänkirjautuminen ei kuitenkaan onnistunut, epäilen että kyseessä oli Lynxin JavaScriptin puute, sillä OP:n sivuston napit käyttävät JS:ä. Nettipankin käyttäminen ei siis onnistunut komentokehotteesta.  
+*Sisäänkirjautuminen ei kuitenkaan onnistunut, epäilen että kyseessä oli Lynxin JavaScriptin puute, sillä OP:n sivuston napit käyttävät JS:ä. Nettipankin käyttäminen ei siis onnistunut komentokehotteesta.*  
   
 Seuraavaksi oli vuorossa tämän raportin kirjoittaminen microlla, joten googlasin ohjeita miten repositorion [saa ladattua koneelle](https://github.com/git-guides/git-pull). Lisähaun perusteella tähän tarvittiin myös [git clone-komentoa](https://github.com/git-guides/git-init)  
 ![10. Kuva: Git-kansio](/pics/harjoitus_2/10.png)  
@@ -168,12 +163,13 @@ Tein vielä viimeisen push-komennon Windowsin komentokehotteessa, jotta saisin p
 *kloonatun repositorion sisältö virtuaalikoneessa*  
 
 Kloonasin etärepositorion virtuaalikoneeseeni komennolla:  
-git clone osoite  
+*git clone osoite*  
   
 Sitten kirjoitin muokkauksia raporttiini microlla avaamalla sen komennolla:  
-git micro tehtava_2.md  
+*git micro tehtava_2.md*  
+  
 ![12. Git-clone](/pics/harjoitus_2/12.png)  
-*Tässä vaiheessa olin vielä optimistinen siitä, että onnistun lataamaan muutokset näyttökaappauksia lukuunottamatta VirtualBoxin sisältä repoon*  
+*Tässä vaiheessa olin vielä optimistinen siitä, että onnistuisin lataamaan muutokset näyttökaappauksia lukuunottamatta VirtualBoxin sisältä repoon*  
 
 ![13. Git-status](/pics/harjoitus_2/13.png)  
 *Tarkistin statuksen*  
@@ -181,21 +177,16 @@ git micro tehtava_2.md
 ![14. Git-status](/pics/harjoitus_2/14.png)  
 *Lisäsin muutokset commit-viestiin*  
   
-
-*Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, joten kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää.*  
+Meni kuitenkin vaikeaksi, kun Github alkoi vaatimaan jotain tunnistetietoja, joten kirjoitin saman asian uudelleen sellaisessa ympäristössä, jota osaan käyttää. Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitetty.  
   
-Ongelmaan löytynee ratkaisu netistä, sillä uskon monien tekevän kehitystyötä usealla eri koneella, sillä sitä varten koko Git on kehitettykin.  
-
-
 Jatkoin tehtävien tekemistä myöhemmin illalla, aloitin työt klo 20.24.
 
 ## C) Tukki
 
 Tätä tehtävää tehdessäni tulin samalla selvittäneeksi miten voisin saada VirtualBoxin ja oman koneen välillä leikepöydän toimimaan. Se tapahtui valitsemalla virtuaalikoneen asetuksista jaettu leikepöytä. Tai niin luulin, kun kirjoitin tätä raporttia samalla tehdessäni harjoitusta.  
-
-![17. Git-status](/pics/harjoitus_2/17.png)  
+  
 *Settings -> General -> Advanced -> Shared Clipboard*  
-
+  
 Totuus kuitenkin paljastui ja [näillä ohjeilla](https://www.howtogeek.com/187535/how-to-copy-and-paste-between-a-virtualbox-host-machine-and-a-guest-machine/) ei leikepöytä alkanut toimimaan.  
 
 Kokeilen vielä toisia [ohjeita](https://www.pc-freak.net/blog/copy-paste-virtualbox-enable-linux-host-guest-virtual-machine/), ja sain aikaiseksi virheilmoituksen VirtualBoxissa.  
@@ -214,7 +205,7 @@ Jatkoin matkaa ja analysoin varsinaisen tehtävän lokimerkinnät suoraan kuvast
 ![18. Git-status](/pics/harjoitus_2/18.png)  
 *Lokiin tallentui epäonnistunut salasanan syöttäminen*  
 
-Ensimmäisenä kuvassa näkyivät päivämäärä ja kellonaika, sitten hostname (eli se tietokone, jota ilmoitus koskee), seuraavaksi käytetty komento (sudo) ja lopulta käyttäjätunnus. Virheilmoituksena annetaan 3 väärää salasanayritystä. TTY=pts/0:n merkitys ei auennut intuitiivisesti, joten selvitin sen [googlaamalla](https://www.golinuxcloud.com/difference-between-pty-vs-tty-vs-pts-linux/) (se liittyi siihen, että käsky on syötetty terminaalista.  PWD tulostaa virheilmoituksen hetken työhakemiston, USER kertoo käyttäjän ja COMMAND syötetyn komennon. Lokitiedosto siis kertoo siitä, mitä on yritetty tehdä, milloin ja kenen toimesta.  
+Ensimmäisenä kuvassa näkyivät päivämäärä ja kellonaika, sitten hostname (eli se tietokone, jota ilmoitus koskee), seuraavaksi käytetty komento (sudo) ja lopulta käyttäjätunnus. Virheilmoituksena annettiin 3 väärää salasanayritystä. TTY=pts/0:n merkitys ei auennut intuitiivisesti, joten selvitin sen [googlaamalla](https://www.golinuxcloud.com/difference-between-pty-vs-tty-vs-pts-linux/) (se liittyi siihen, että käsky on syötetty terminaalista).  PWD tulostaa virheilmoituksen hetken työhakemiston, USER kertoo käyttäjän ja COMMAND syötetyn komennon. Lokitiedosto siis kertoo siitä, mitä on yritetty tehdä, milloin ja kenen toimesta.  
   
 Lopetin työt 21.20 ja laitoin tehtävän vielä latautumaan Githubiin.  
 
@@ -223,35 +214,41 @@ Aloitin harjoituksen täyttämisen seuraavana päivänä 12.30.
 ![19. Git-status](/pics/harjoitus_2/19.png)  
 *Lokiin tallentui sudo apt-get update-käskyn ajaminen*  
   
-Onnistunt lokimerkintä oli sisältönsä puolesta ylläolevan kaltainen, paitsi että siinä ei ollut merkintää epäonnistumisesta. Tämäkin merkintä kertoi siitä, että kuka on tehnyt mitä, millä ja milloin, sekä mahdollesesti seurasi. Huomion arvoista oli myös se, että korostetun rivin alapuoliset rivit liittyivät komentoon, sillä siinä avattiin sessio (jossa suorittiin käsky?) sudo-valtuuksilla ja sen jälkeen sessio suljettiin.  
+Onnistnut lokimerkintä oli sisältönsä puolesta ylläolevan kaltainen, paitsi että siinä ei ollut merkintää epäonnistumisesta. Tämäkin merkintä kertoi siitä, että kuka on tehnyt mitä, millä ja milloin, sekä mahdollisesti seurasi. Huomion arvoista oli myös se, että korostetun rivin alapuoliset rivit liittyivät komentoon, sillä siinä avattiin sessio (jossa suorittiin käsky?) sudo-valtuuksilla ja sen jälkeen sessio suljettiin.  
   
 ## D) The Friendly M.  
   
 Grep on [etsintätyökalu](https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/#Use_grep_to_search_a_file). 
 
 	Grepin avulla voi:  
-	1. Etsiä tekstiä tiedostojen sisältä 
-	![20. Git-status](/pics/harjoitus_2/20.png)  
-	*grep -r "kissa" /home/ | less*-komento palautti listauksen, jossa oli ruutu kerrallaan kaikki /home/-hakemiston ja sen alikansioiden kissa-sanan sisältävät rivit tiedostoista.    
-	2. Suodattaa laitelistauksista haluamaansa tietoa  
-	![21. Git-status](/pics/harjoitus_2/21.png)  
-	*Pelkän prosessorimallin sisältävä listaus laadittiin komentoyhdistelmällä.*  
-	3. Etsiä ja suodattaa laitelistauksesta kiintolevyt  
-	![22. Git-status](/pics/harjoitus_2/22.png)  
-	*dmesg | egrep "(s|h)d[a-z]"*-komento etsi dmesg-hausta grepin avulla [regex-tarkenteella](https://en.wikipedia.org/wiki/Regular_expression). Regex tarkoittaa standardimallin ilmaisuja, joilla on mahdollista suodattaa merkkijonoja. Tässä esimerkissä listattiin laitteet, jotka alkoivat a:lla tai h:lla, joiden keskimmäinen kirjain on d ja jotka päättyvät mihin tahansa aakkoseen a:n ja z:n välillä.  
+1. Etsiä tekstiä tiedostojen sisältä 
+![20. Git-status](/pics/harjoitus_2/20.png)  
+*grep -r "kissa" /home/ | less*-komento palautti listauksen, jossa oli ruutu kerrallaan kaikki /home/-hakemiston ja sen alikansioiden kissa-sanan sisältävät rivit tiedostoista.    
   
-## E) Pwnkit
-
+2. Suodattaa laitelistauksista haluamaansa tietoa  
+![21. Git-status](/pics/harjoitus_2/21.png)  
+*Pelkän prosessorimallin sisältävä listaus laadittiin komentoyhdistelmällä.*  
+  
+3. Etsiä ja suodattaa laitelistauksesta kiintolevyt  
+![22. Git-status](/pics/harjoitus_2/22.png)  
+*dmesg | egrep "(s|h)d[a-z]"*-komento etsi dmesg-hausta grepin avulla.  
+  
+Regex tarkoittaa standardimallin ilmaisuja, joilla on mahdollista suodattaa merkkijonoja. Tässä esimerkissä listattiin laitteet, jotka alkoivat a:lla tai h:lla, joiden keskimmäinen kirjain on d ja jotka päättyvät mihin tahansa aakkoseen a:n ja z:n välillä.  
+  
+[regex-tarkenne](https://en.wikipedia.org/wiki/Regular_expression)  
+  
+## E) Pwnkit  
+  
 Ajoin järjestelmäpäivitykset seuraavilla komennoilla:  
 *sudo apt-get update*  
 *sudo apt-get system-upgrade*  
-
 ![16. Järjestelmäpäivitys](/pics/harjoitus_2/16.png)  
 *Järjestelmäni oli jo ajantasainen, joten lisäpäivityksiä ei asennettu.*  
 
-## Bonus: Recursive. Pystytkö etsimään kaikki rivit, joilla lukee Tero isolla tai pienellä, kun tiedostoja on sisäkkäisissä kansioissa? (Eli tutkimaan jonkin kansion kaikkine alihakemistoineen)
+## Bonus: Recursive  
 
-    ### g) Sshecrets. Vaikeampi vapaaehtoinen bonuskohta, ei ole opetettu vielä: Asenna SSH-demoni. Kokeile omalla ssh-palvelimellasi jotain seuraavista: ssh-copy-id, sshfs, scp tai git. (Helpoin lienee scp: ‘scp foo.txt tero@example.com:’)
+Etsin kaikki kissa-sanan sisältävät rivit etsitään *grep -r -i "kissa" /home/*-komennolla. Komennon -i-parametri tarkoittaa kirjainkoon jättämistä huomioimatta.  
 
+*Tekijä: Kalle Tolonen*
 
 
