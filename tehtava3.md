@@ -165,6 +165,8 @@ Lopetin tehtävien täyttämisen tältä erää ja kello oli 14.15.
 
 ## b) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit.
   
+Aloitin työt uudelleen n. 14.50.  
+  
 Yritin siirtyä olettamaani apache2-lokikansioon hakemistossa:  
 */var/log/apache2*  
   
@@ -199,7 +201,9 @@ Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.
 4. Osoite jota GET-käskyllä kutsuttiin ja protokolla
 5. Ilmoitusten tunnisteet [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) (sivulataus ok) ja 446, jonka merkitys ei auennut hakukoneenkaan kautta
 6. Selaimen ja käyttöjärjestelmän versiot, selaimen ytimen version
-
+  
+Latasin git-palvelimelle työn viimeisimmän vaiheen 15.27.  
+  
 ## c) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi
 
 ## f) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)
