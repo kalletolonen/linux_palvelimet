@@ -160,6 +160,8 @@ Lopuksi tarkistin selaimesta, että käyttäjällä kallet01 on todella localhos
 
 ![Kuva 23. systemctl](./harjoitus_3/23.png)  
 *Kotisivut olivat localhostilla pyörimässä onnistuneesti*  
+  
+Lopetin tehtävien täyttämisen tältä erää ja kello oli 14.15.  
 
 ## b) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit.
   
