@@ -33,15 +33,15 @@ Seuraavana vaiheena oli poistaa Apache2 ja sen pakettiriippuvuudet komennoilla:
 *sudo apt-get autoremove*  
   
 ![Kuva 3. purge](pics/harjoitus_3/3.png)  
-*purge-komennon lopputulos. Ohjeesta poiketen apache2.2-bin- ja apache2-common -paketteja ei ollut koneellani asennettuna, joten niitä ei myöskään voida poistaa*  
+*purge-komennon lopputulos. Ohjeesta poiketen apache2.2-bin- ja apache2-common -paketteja ei ollut koneellani asennettuna, joten niitä ei myöskään pystytty poistamaan*  
 
 ![Kuva 4. autoremove](pics/harjoitus_3/4.png)  
 *autoremove-komennon lopputulos - mitään ei tehty?*  
   
-	Tiedonhaun tuloksena päättelin, että autoremove poistaa sellaisia paketteja, joita asennettiin ja jotka olivat pelkästään asennetun ohjelman, l. Apache2-daemonin, käytössä, mutta joita eivät enää muut ohjelmat tarvitse. Tästä syystä mitään ei siis tehty käskyn tuloksena.  
-	  
-	Lähde: https://www.networkworld.com/article/3453032/cleaning-up-with-apt-get.html  
-
+Tiedonhaun tuloksena päättelin, että autoremove poistaa sellaisia paketteja, joita asennettiin ja jotka olivat pelkästään asennetun ohjelman, l. Apache2-daemonin, käytössä, mutta joita eivät enää muut ohjelmat tarvitse. Tästä syystä mitään ei siis tehty käskyn tuloksena.  
+  	  
+Lähde: https://www.networkworld.com/article/3453032/cleaning-up-with-apt-get.html  
+  
 Whereis-komennolla selvisi, että Apache2 jäi edelleen kummittelemaan moneen paikkaan, joten päätin poistaa kaikki loputkin tiedostot.  
 
 ![Kuva 5. whereis](pics/harjoitus_3/5.png)  
@@ -50,7 +50,7 @@ Whereis-komennolla selvisi, että Apache2 jäi edelleen kummittelemaan moneen pa
 Poistin loput tiedostot ja kansiot komennolla:
 *sudo rm -r  hakemistot ja tiedostot*  
 
-Yritin säästää kirjoittamista ja tehdä pipe-komennon, mutta en siinä onnistunut. Käyttämäni logiikka oli:
+Yritin säästää kirjoittamista ja tehdä pipe-komennon, mutta en siinä onnistunut. Käyttämäni logiikka oli:  
 *rm -r | whereis apache2*  
   
 ![Kuva 6. rm -r](pics/harjoitus_3/6.png)  
@@ -78,7 +78,7 @@ Edellisen asennuksen poistamisen jälkeen oli vuorossa apache2-paketin asentamin
 Ensimmäisenä toimenpiteenä päätin käynnistää järjestelmän uudestaan komennolla:
 *sudo reboot*  
 
-Uudelleenkäynnistäminen ei korjannut ongelmaa, joten etsin lisää tietoa hakulauseella "how to reinstall apache2". Ohjeet löytyivät näppärästi, ja päätin kokeilla [niitä](sudo apt-get --purge remove apache2). Aloitin syöttämällä komennon:  
+Uudelleenkäynnistäminen ei korjannut ongelmaa, joten etsin lisää tietoa hakulauseella "how to reinstall apache2". Ohjeet löytyivät näppärästi, ja päätin kokeilla [niitä](https://askubuntu.com/questions/111770/how-reinstall-apache2). Aloitin syöttämällä komennon:  
 *sudo apt-get -purge remove apache2*  
 
 ![Kuva 10. apt-get remove](pics/harjoitus_3/10.png)  
@@ -87,9 +87,9 @@ Uudelleenkäynnistäminen ei korjannut ongelmaa, joten etsin lisää tietoa haku
 Tein siis samat toimenpiteet kuin ylempänä, mutta nyt parametri apt-getille syötettiin väliviivan kanssa. Sain tulokseksi virheilmoituksen, joka kertoi että -purge ei ole Debianissa kelvollinen parametri. Palasin etsimään lisäohjeita tarkennetulla hakulauseella ja löysin [ohjeet](https://unix.stackexchange.com/questions/367338/re-install-apache2-after-purge-apt-get-says-its-already-the-newest-version).  
 
 *Toimin seuraavasti:*  
-	sudo apt-get remove --purge apache2*
-	sudo apt-get --reinstall install apache2
-	
+sudo apt-get remove --purge apache2*  
+sudo apt-get --reinstall install apache2  
+  
 ![Kuva 11. apt-get remove2](pics/harjoitus_3/11.png)  
 *Onnistunut poisto*  
   
@@ -117,7 +117,7 @@ Etsin käsiini ohjeet localhostin sijainnista [koneella](https://www.linuxquesti
 ![Kuva 15. localhost-sijainti](pics/harjoitus_3/15.png)  
 *localhostin sijainti koneella on /var/www/html/*  
 
-Muokkasin tiedoston sisältöä microlla:
+Muokkasin tiedoston sisältöä microlla:  
 *micro index.html*  
   
 ![Kuva 16. micro](pics/harjoitus_3/16.png)  
@@ -135,7 +135,7 @@ Syötin kaikki tarpeelliset tiedot ja tuloksena oli uusi käyttäjä.
 ![Kuva 18. micro](pics/harjoitus_3/18.png)  
 *Uuden käyttäjän luominen sujui hyvin*  
 
-Siirryin kallet01-käyttäjän kotihakemistoon /home/kallet01 ja loin sinne kansion "public_html" komennolla:
+Siirryin kallet01-käyttäjän kotihakemistoon /home/kallet01 ja loin sinne kansion "public_html" komennolla:  
 *sudo mkdir public_html*  
   
 Pääkäyttäjän oikeuksia tarvittiin luomiseen, sillä olin kirjautunut sisään toisella käyttäjätunnuksella.  
@@ -144,7 +144,7 @@ Pääkäyttäjän oikeuksia tarvittiin luomiseen, sillä olin kirjautunut sisä�
 *Tässä luotiin uusi index.html-tiedosto micro-editorilla*  
   
 ![Kuva 20. mkdir](pics/harjoitus_3/20.png)  
-*Unohdin jälleen käyttää sudoa micron ajamiseen, mutta onneksi se osaa pyytää valtuuksia myös jälkikäteen*  
+*Unohdin jälleen käyttää sudoa micron ajamiseen, mutta onneksi se osasi pyytää valtuuksia myös jälkikäteen*  
   
 Iteroin index.html-tiedoston läpi cat-komennolla:  
 *cat index.html*  
@@ -155,7 +155,7 @@ Lopuksi tarkistin selaimesta, että käyttäjällä kallet01 on todella localhos
 *sudo systemctl a2enmod userdir*  
 *sudo systemctl restart apache2*  
   
-![Kuva 22. systemctl](pics/harjoitus_3/22.png) 
+![Kuva 22. systemctl](pics/harjoitus_3/22.png)  
 *Luulen että ensimmäinen komento määrittää käyttäjähakemistot aktiivisiksi apache2-daemonille. Tiedän että jälkimmäinen käynnistää daemonin uudestaan.*  
 
 ![Kuva 23. systemctl](pics/harjoitus_3/23.png)  
