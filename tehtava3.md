@@ -165,8 +165,43 @@ Lopetin tehtävien täyttämisen tältä erää ja kello oli 14.15.
 
 ## b) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit.
   
-## c) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi
+Yritin siirtyä olettamaani apache2-lokikansioon hakemistossa:  
+*/var/log/apache2*  
   
+Kohtasin kuitenkin "access is denied"-ilmoituksen, joten yritin ajaa cd-komentoa sudolla.  
+
+![Kuva 24. sudo + cd](pics/harjoitus_3/24.png)  
+*Sudo ei tunnistanut cd-komentoa*  
+  
+![Kuva 25. sudo + ls](pics/harjoitus_3/25.png)  
+*sudo ls-komento pystyy kuitenkin listaamaan hakemiston sisällön*  
+  
+Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.  
+  
+![Kuva 26. sudo + cat tiedostonnimi](pics/harjoitus_3/25.png)  
+*Korostettuna epäonnistunut sivulataus*  
+
+**Analyysi:  **
+1. IP-osoite (localhost tässä tapauksessa)  
+2. Aikaleima  
+3. Backendille lähetetty kutsu, tässä tapauksessa GET
+4. Osoite jota GET-käskyllä kutsuttiin ja protokolla
+5. Virheilmoitusten tunnisteet: [404](https://en.wikipedia.org/wiki/HTTP_404) (sivua ei löydy) ja [488](https://knowledgebase-iframe.polycom.com/kb/viewContent.do;jsessionid=172A396E013F34FA5174D2BA3ABEE42B?externalId=45626) (pyyntöä ei hyväksytty)
+6. Selaimen ja käyttöjärjestelmän versiot, selaimen ytimen version
+  
+![Kuva 27. sudo + cat tiedostonnimi](pics/harjoitus_3/27.png)  
+*Korostettuna onnistunut sivulataus*  
+  
+**Analyysi:  **
+1. IP-osoite (localhost tässä tapauksessa)  
+2. Aikaleima  
+3. Backendille lähetetty kutsu, tässä tapauksessa GET
+4. Osoite jota GET-käskyllä kutsuttiin ja protokolla
+5. Ilmoitusten tunnisteet [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) (sivulataus ok) ja 446, jonka merkitys ei auennut hakukoneenkaan kautta
+6. Selaimen ja käyttöjärjestelmän versiot, selaimen ytimen version
+
+## c) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi
+
 ## f) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)
   
 
