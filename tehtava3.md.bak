@@ -11,7 +11,7 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 *Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
 *Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
 
-## a)Asenna Apache, laita käyttäjien kotisivut (http://example.com/~tero) toimimaan. Testaa esimerkkikotisivulla.
+## a) Asenna Apache ja osoita testillä, että se toimii.
 
 Aloitin tehtävän tekemisen kello 11:41.  
 
@@ -126,7 +126,7 @@ Muokkasin tiedoston sisältöä microlla:
 ![Kuva 17. micro](pics/harjoitus_3/17.png)  
 *Päivitetty localhostin sivu*  
 
-## Uuden käyttäjän tekeminen
+## b) Laita käyttäjien kotisivut (http://example.com/~tero) toimimaan. Testaa esimerkkikotisivulla.
 
 Tein uuden käyttäjän komennolla:  
 *sudo adduser kallet01*  
@@ -163,7 +163,24 @@ Lopuksi tarkistin selaimesta, että käyttäjällä kallet01 on todella localhos
   
 Lopetin tehtävien täyttämisen tältä erää ja kello oli 14.15.  
 
-## b) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit.
+## c) Tee validi HTML5 sivu, ja testaa sen toiminta https://validator.w3.org
+
+Tein jo ylläolevassa esimerkissä validin html5-sivun, mutta päätin korjata siitä kauneusvirheet, eli puuttuvat ääkköset ja kielitiedon.  
+  
+Siirryin kallet01-käyttäjän kotihakemistoon ja siellä public_html-kansioon ja editoin microlla index.html-tiedostoa.  
+  
+![Kuva 28. validointi](pics/harjoitus_3/28.png)  
+*Lopputulos selaimessa*  
+  
+Lopuksi tarkistin lähdekoodin klikkaamalla selaimessa hiiren oikealla napilla "View Page Source"-valintaa.  
+  
+![Kuva 29. validointi_2](pics/harjoitus_3/29.png)  
+*Sivuston lähdekoodin näyttäminen*  
+  
+![Kuva 30. validointi_2](pics/harjoitus_3/30.png)  
+*Validoinnin tuloksena oli standardin mukainen html5-sivu*  
+  
+## d) Surffaa oman palvelimesi weppisivuja. Etsi Apachen lokista esimerkki onnistuneesta (200 ok) sivulatauksesta ja epäonnistuneesta (esim 404 not found) sivulatauksesta. Analysoi rivit eli kerro jokaisesta rivistä niin paljon yksityiskohtia kuin osaat.
   
 Aloitin työt uudelleen n. 14.50.  
   
@@ -180,7 +197,7 @@ Kohtasin kuitenkin "access is denied"-ilmoituksen, joten yritin ajaa cd-komentoa
   
 Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.  
   
-![Kuva 26. sudo + cat tiedostonnimi](pics/harjoitus_3/25.png)  
+![Kuva 26.](pics/harjoitus_3/25.png)  
 *Korostettuna epäonnistunut sivulataus*  
 
 **Analyysi:  **
@@ -191,7 +208,7 @@ Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.
 5. Virheilmoitusten tunnisteet: [404](https://en.wikipedia.org/wiki/HTTP_404) (sivua ei löydy) ja [488](https://knowledgebase-iframe.polycom.com/kb/viewContent.do;jsessionid=172A396E013F34FA5174D2BA3ABEE42B?externalId=45626) (pyyntöä ei hyväksytty)
 6. Selaimen ja käyttöjärjestelmän versiot, selaimen ytimen version
   
-![Kuva 27. sudo + cat tiedostonnimi](pics/harjoitus_3/27.png)  
+![Kuva 27. ](pics/harjoitus_3/27.png)  
 *Korostettuna onnistunut sivulataus*  
   
 **Analyysi:  **
@@ -202,12 +219,105 @@ Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.
 5. Ilmoitusten tunnisteet [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) (sivulataus ok) ja 446, jonka merkitys ei auennut hakukoneenkaan kautta
 6. Selaimen ja käyttöjärjestelmän versiot, selaimen ytimen version
   
-Latasin git-palvelimelle työn viimeisimmän vaiheen 15.30.  
+Latasin git-palvelimelle työn viimeisimmän vaiheen 15.27.  
   
-## c) Tee virhe weppipalvelimella ajettavaan koodiin (esim PHP tai Python), etsi se lokista ja analysoi tuo lokirivi
-
 ## f) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)
+
+Aloitin työt 19.40.
   
+Päätin lähteä haastamaan itseäni ja valitsin viimeiseksi tehtäväksi dynaamisen nettisivun.  
+  
+Hain netistä tietoa ja aloitin urakan ohjeilla: http://wiki.centos-webpanel.com/apache-run-python-script  
+  
+Ensimmäisenä tarkistin, että python on asennettu koneelle komennolla:
+*python -V*  
+  
+![Kuva 31.](pics/harjoitus_3/31.png)  
+*Python oli asennettu*  
+
+Seuraavaksi tein ohjeen mukaisesti testikäyttäjäni kotihakemiston /public_html-kansioon uuden alakansion cgi-bin ja sinne test.py-tiedoston:  
+*sudo mkdir cgi-bin*  
+*sudo micro cgi-bin/test.py*  
+
+![Kuva 32. ensimmäinen versio](pics/harjoitus_3/32.png)  
+*Lähteen lähdekoodista muokattu testitiedosto*  
+  
+![Kuva 33. korjattu koodi](pics/harjoitus_3/33.png)  
+*Korjasin koodiani ja laitoin ääkköset toimimaan tulosteessa*  
+  
+![Kuva 34. testi](pics/harjoitus_3/34.png)  
+*Ohjelman pystyi ajamaan komentokehotteesta*  
+  
+Päivitin kansion ja tiedoston käyttöoikeudet komennoilla:  
+*chown -R kallet01.kallet01 /home/kallet01/public_html/cgi-bin*  
+*chmod +x /home/kallet01/public_html/cgi-bin/test.py*  
+  
+![Kuva 35. käyttöoikeuksia](pics/harjoitus_3/35.png)  
+*Käyttöoikeuksien päivitystä*  
+  
+Seuraavaksi tein ohjeiden mukaisen .htaccess-tiedoston cgi-bing-kansioon.  
+  
+![Kuva 36. iterointi](pics/harjoitus_3/36.png)  
+*Tiedoston sisältö*  
+  
+Sitten vuorossa oli mod.cgid.conf-tiedoston luominen.  
+![Kuva 37. iterointi](pics/harjoitus_3/37.png)  
+*Tiedoston sisältö*  
+  
+Seuraavaksi käynnistin httpd-palvelun uudestaan komennolla:  
+*sudo systemctl restart apache2.service*  
+  
+![Kuva 38. testi](pics/harjoitus_3/38.png)  
+*Kuten kuvasta näkyy, ei lopputulos ollut toivotun kaltainen*  
+  
+Päätin diagnosoida ongelmaa palvelimen virhelokeista:  
+*sudo ls /var/log/apache2/*  
+*sudo cat /var/log/apache2/error.log*  
+  
+![Kuva 39. logit](pics/harjoitus_3/39.png)  
+*Päättelin lokista, että ohjeen kaltainen .htaccess-tiedosto ei ole sallittu serverikonfiguraatiossani*  
+  
+Etsin seuraavan [ohjeen](https://www.server-world.info/en/note?os=Debian_9&p=httpd&f=5).  
+
+[a2enmod] alkoi kiinnostamaan sen verran, että piti etsiä lisätietoa siitä, ja selvisi että a2enmod hoitaa  apache2-daemonissa eri moduulien käyttöönoton.  
+  
+Syötin seuraavat komennot:  
+*sudo a2enmod cgi*  
+*systemctl restart apache2.service*  
+  
+![Kuva 39. ssystemctl](pics/harjoitus_3/39.png)  
+*Daemoni käynnistettiin jälleen uudestaan*  
+  
+![Kuva 40. sudo + cat tiedostonnimi](pics/harjoitus_3/40.png)  
+*Muokkasin ohjeen tiedostoa*  
+  
+Syötin komennot:  
+*sudo aen2conf cgi-enabled*  
+*sudo systemctl reload apache2*  
+  
+Ohjeilla en päässyt enää eteenpäin niitä soveltaen, joten päätin [etsiä uudet](https://www.linux.com/training-tutorials/configuring-apache2-run-python-scripts/) ja tehdä ne kohta kohdalta pilkulleen niitä noudattaen.  
+
+Syötin orjallisesti kaikki komennot, vaikka tiesin niiden olevan turhia. Halusin tehdä niin varmistaakseni, että en ole aiemmin tehnyt jotain virhettä apache2-asennuksessa tai pythonin asentamisessa. Myös cgi oli enabloitu jo aiemmin, joten ohjeen noudattaminen tuotti vain ilmoituksen siitä, että cgi on enabloitu.  
+  
+Ohjeet olivat perinteiseen tapaan vajavaiset, eikä niissä ollut jokaista askelta erikseen selitettynä, vaan niissä viitattiin toisaalla oleviin [dokumentteihin](https://httpd.apache.org/docs/2.2/howto/cgi.html).  
+
+Menin tarkistamaan, että httpd-konffauseni olisi oikea komennoilla:
+*cat /etc/apache2/apache2.conf | grep Load*  
+
+Ohjeessa mainitusta LoadModulesta ei löytynyt jälkeäkään konffaustiedostosta.  
+
+Päätin lopettaa tältä illalta ja kello oli 21.12.  
+
+  
+
+  
+
+
+
+
+
+
+
 
 *Tekijä: Kalle Tolonen*
 
