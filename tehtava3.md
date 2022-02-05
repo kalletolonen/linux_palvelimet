@@ -59,10 +59,6 @@ Yritin säästää kirjoittamista ja tehdä pipe-komennon, mutta en siinä onnis
 ![Kuva 7. whereis-tarkistus](pics/harjoitus_3/7.png)  
 *Tarkistin lopputuloksen ajamalla whereis-komennon uudestaan.*  
   
-Lopuksi tarkistin löytyikö koneelta enää Apache2-asennukseen liittyviä tiedostoja:
-*whereis apache2*  
-
-  
 ### Apache2-asennus
   
 Edellisen asennuksen poistamisen jälkeen oli vuorossa apache2-paketin asentaminen uudelleen. Aloitin urakan komennoilla:  
@@ -101,13 +97,14 @@ Näillä komennoilla sain asennuksen tehtyä, joten pystyin siirtymään projekt
 ### Apache2-daemonin käynnistäminen ja testaaminen
 
 Käynnistämiseen ja käynnistymisen tarkastamiseen käytin komentoja:  
-*systemctl start apache2.service* (ajoin tämän vahingossa ilman sudoa, jolloin päädyin täyttämään käyttöoikeuden antaneen salasanan popup-ikkunaan)  
+*systemctl start apache2.service*  
+(ajoin tämän vahingossa ilman sudoa, jolloin päädyin täyttämään käyttöoikeuden antaneen salasanan popup-ikkunaan)  
 *sudo service apache2 status*  
   
 ![Kuva 13. systemctl](pics/harjoitus_3/13.png)  
 *Daemoni saatiin käynnistettyä*  
 
-Tämän lisäksi päätin varmistua daemonin käynnistymisestä tarkastamalla localhostin tilanteen selaimesta ja terminaalista. Kirjoitin selaimen osoitepalkkiin osoitteeksi "localhost", jolloin huomasin, että tuntiharjoitus kummitteli edelleen serverin tarjoamassa sivussa.
+Tämän lisäksi päätin varmistua daemonin käynnistymisestä tarkastamalla localhostin tilanteen selaimesta. Kirjoitin selaimen osoitepalkkiin osoitteeksi "localhost", jolloin huomasin, että tuntiharjoitus kummitteli edelleen serverin tarjoamassa sivussa.
 
 ![Kuva 14. systemctl](pics/harjoitus_3/14.png)  
 *Tuntiharjoituksen jäämistöä*  
@@ -156,7 +153,7 @@ Lopuksi tarkistin selaimesta, että käyttäjällä kallet01 on todella localhos
 *sudo systemctl restart apache2*  
   
 ![Kuva 22. systemctl](pics/harjoitus_3/22.png)  
-*Luulen että ensimmäinen komento määrittää käyttäjähakemistot aktiivisiksi apache2-daemonille. Tiedän että jälkimmäinen käynnistää daemonin uudestaan.*  
+*Ensimmäinen komento luutavasti määritti käyttäjähakemistot aktiivisiksi apache2-daemonille. Tiedän että jälkimmäinen käynnisti daemonin uudestaan.*  
 
 ![Kuva 23. systemctl](pics/harjoitus_3/23.png)  
 *Kotisivut olivat localhostilla pyörimässä onnistuneesti*  
@@ -165,7 +162,7 @@ Lopetin tehtävien täyttämisen tältä erää ja kello oli 14.15.
 
 ## c) Tee validi HTML5 sivu, ja testaa sen toiminta https://validator.w3.org
 
-Tein jo ylläolevassa esimerkissä validin html5-sivun, mutta päätin korjata siitä kauneusvirheet, eli puuttuvat ääkköset ja kielitiedon.  
+Tein jo ylläolevassa esimerkissä miltei validin html5-sivun, mutta päätin korjata siitä kauneusvirheet, eli puuttuvat ääkköset ja kielitiedon.  
   
 Siirryin kallet01-käyttäjän kotihakemistoon ja siellä public_html-kansioon ja editoin microlla index.html-tiedostoa.  
   
@@ -193,14 +190,14 @@ Kohtasin kuitenkin "access is denied"-ilmoituksen, joten yritin ajaa cd-komentoa
 *Sudo ei tunnistanut cd-komentoa*  
   
 ![Kuva 25. sudo + ls](pics/harjoitus_3/25.png)  
-*sudo ls-komento pystyy kuitenkin listaamaan hakemiston sisällön*  
+*sudo ls-komento pystyi kuitenkin listaamaan hakemiston sisällön*  
   
-Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.  
+Lokit saatiin avattua ja etsittyä sieltä epäonnistunut sivulataus.  
   
-![Kuva 26.](pics/harjoitus_3/25.png)  
+![Kuva 26.](pics/harjoitus_3/26.png)  
 *Korostettuna epäonnistunut sivulataus*  
-
-**Analyysi:  **
+  
+** Analyysi:**  
 1. IP-osoite (localhost tässä tapauksessa)  
 2. Aikaleima  
 3. Backendille lähetetty kutsu, tässä tapauksessa GET
@@ -211,7 +208,7 @@ Lokit saatiin avattua ja sieltä etsittyä epäonnistunut sivulataus.
 ![Kuva 27. ](pics/harjoitus_3/27.png)  
 *Korostettuna onnistunut sivulataus*  
   
-**Analyysi:  **
+** Analyysi:**  
 1. IP-osoite (localhost tässä tapauksessa)  
 2. Aikaleima  
 3. Backendille lähetetty kutsu, tässä tapauksessa GET
@@ -279,7 +276,7 @@ Päätin diagnosoida ongelmaa palvelimen virhelokeista:
   
 Etsin seuraavan [ohjeen](https://www.server-world.info/en/note?os=Debian_9&p=httpd&f=5).  
 
-[a2enmod] alkoi kiinnostamaan sen verran, että piti etsiä lisätietoa siitä, ja selvisi että a2enmod hoitaa  apache2-daemonissa eri moduulien käyttöönoton.  
+[a2enmod](http://manpages.ubuntu.com/manpages/trusty/man8/a2enmod.8.html) alkoi kiinnostamaan sen verran, että piti etsiä lisätietoa siitä, ja selvisi että a2enmod hoitaa  apache2-daemonissa eri moduulien käyttöönoton.  
   
 Syötin seuraavat komennot:  
 *sudo a2enmod cgi*  
@@ -295,19 +292,18 @@ Syötin komennot:
 *sudo aen2conf cgi-enabled*  
 *sudo systemctl reload apache2*  
   
-Ohjeilla en päässyt enää eteenpäin niitä soveltaen, joten päätin [etsiä uudet](https://www.linux.com/training-tutorials/configuring-apache2-run-python-scripts/) ja tehdä ne kohta kohdalta pilkulleen niitä noudattaen.  
-
-Syötin orjallisesti kaikki komennot, vaikka tiesin niiden olevan turhia. Halusin tehdä niin varmistaakseni, että en ole aiemmin tehnyt jotain virhettä apache2-asennuksessa tai pythonin asentamisessa. Myös cgi oli enabloitu jo aiemmin, joten ohjeen noudattaminen tuotti vain ilmoituksen siitä, että cgi on enabloitu.  
+Ohjeilla en päässyt enää eteenpäin niitä soveltaen, joten päätin [etsiä uudet](https://www.linux.com/training-tutorials/configuring-apache2-run-python-scripts/).  
   
 Ohjeet olivat vajavaiset, eikä niissä ollut jokaista askelta erikseen selitettynä, vaan niissä viitattiin toisaalla oleviin [dokumentteihin](https://httpd.apache.org/docs/2.2/howto/cgi.html).  
 
-Menin tarkistamaan, että httpd-konffauseni olisi oikea komennoilla:
+Menin tarkistamaan, että httpd-konffauseni olisi oikea komennoilla:  
 *cat /etc/apache2/apache2.conf | grep Load*  
 
 Ohjeessa mainitusta LoadModulesta ei löytynyt jälkeäkään konffaustiedostosta.  
 
 Päätin lopettaa tältä illalta ja kello oli 21.12.  
   
+## Uusi yritys ##  
 Aloitin työt uudestaan 7.36.
 
 Tällä kertaa työohjeenani oli: https://stackoverflow.com/questions/44871139/how-do-i-run-python-cgi-script-on-apache2-server-on-ubuntu-16-04  
@@ -316,13 +312,15 @@ Aloitin komennolla:
 *sudo micro /etc/apache2/apache2.conf*  
 -Tällä komennolla editoin apache2:n konfiguraatiotiedostoa.  
   
-Lisäsin ohjeen mukaisesti apache2.conf-tiedoston loppuun määrittelyt CGI-scripteistä:  
-*#########     Adding capaility to run CGI-scripts #################  
-*ServerName localhost  
-*ScriptAlias /cgi-bin/ /var/www/cgi-bin/  
-*Options +ExecCGI  
-*AddHandler cgi-script .cgi .pl .py  *
-
+```
+Lisäsin ohjeen mukaisesti apache2.conf-tiedoston loppuun määrittelyt CGI-scripteistä: ´´´´´´
+#########     Adding capaility to run CGI-scripts #################  
+ServerName localhost  
+ScriptAlias /cgi-bin/ /var/www/cgi-bin/  
+Options +ExecCGI  
+AddHandler cgi-script .cgi .pl .py
+```
+  
 Avasin seuraavan tiedoston komennolla:  
 *sudo micro /etc/apache2/conf-available/serve-cgi-bin.conf*  
 
@@ -332,7 +330,7 @@ Avasin seuraavan tiedoston komennolla:
 Käynnistin daemonin uudestaan:  
 *sudo systemctl restart apache2.service*  
   
-Loin testitiedosto:  
+Loin testihakemiston ja -tiedoston:  
 *sudo mkdir /var/www/cgi-bin*  
 *sudo micro /var/www/cgi-bin/first.py*  
 
@@ -351,12 +349,9 @@ Lopuksi testasin onnistumiseni selaimella.
   
 Käyttämäni työohje oli: https://towardsdatascience.com/how-to-easily-run-python-scripts-on-website-inputs-d5167bd4eb4b  
   
-Käytin tunnin sen toteuttamiseen, mutta en saanut toimimaan, joten oli aika ottaa seuraava [työohje](https://www.xmodulo.com/create-use-python-cgi-scripts.html) työn alle.  
+Käytin tunnin sen toteuttamiseen, mutta en saanut sitä toimimaan, joten oli aika ottaa seuraava [työohje](https://www.xmodulo.com/create-use-python-cgi-scripts.html) työn alle.  
   
-![Kuva 47. tiedoston sisältö](pics/harjoitus_3/47.png)  
-*Editoin jälleen index.html-tiedostoa.*  
-  
-Loin testitiedoston:  
+Loin testihakemiston ja -tiedoston:  
 *sudo mkdir /var/www/cgi-bin*  
 *sudo micro /var/www/cgi-bin/bmi.py*    
   
@@ -369,7 +364,7 @@ Tiedostolle annettiin ajo-oikeudet komennolla:
 Tällä kertaa ohje on toimiva, ja saan nappulan välittämään painalluksen ja pythonin ajamaan itsensä.  
   
 ![Kuva 49. testisivu](pics/harjoitus_3/49.png)  
-*Pythonin tuotti html-koodia*  
+*Python tuotti html-koodia*  
 
 Seuraavaksi muokkasin index.html ja bmi.py-tiedostoja.  
 
@@ -386,7 +381,7 @@ Paino: <input type="text" name="paino"><br>
 </html>
 ```
   
-*bmi.py:n sisältö*    
+**bmi.py**    
   
 ```
 #!/usr/bin/python
