@@ -223,7 +223,7 @@ Latasin git-palvelimelle työn viimeisimmän vaiheen 15.27.
   
 ## f) Tee palvelimella ajettava weppiohjelma, joka tekee käyttäjälle jonkin yksinkertaisen laskun (esim. painoindeksi BMI)
 
-Aloitin työt 19.40.
+Aloitin työt 19.40.  
   
 Päätin lähteä haastamaan itseäni ja valitsin viimeiseksi tehtäväksi dynaamisen nettisivun.  
   
@@ -299,7 +299,7 @@ Ohjeilla en päässyt enää eteenpäin niitä soveltaen, joten päätin [etsiä
 
 Syötin orjallisesti kaikki komennot, vaikka tiesin niiden olevan turhia. Halusin tehdä niin varmistaakseni, että en ole aiemmin tehnyt jotain virhettä apache2-asennuksessa tai pythonin asentamisessa. Myös cgi oli enabloitu jo aiemmin, joten ohjeen noudattaminen tuotti vain ilmoituksen siitä, että cgi on enabloitu.  
   
-Ohjeet olivat perinteiseen tapaan vajavaiset, eikä niissä ollut jokaista askelta erikseen selitettynä, vaan niissä viitattiin toisaalla oleviin [dokumentteihin](https://httpd.apache.org/docs/2.2/howto/cgi.html).  
+Ohjeet olivat vajavaiset, eikä niissä ollut jokaista askelta erikseen selitettynä, vaan niissä viitattiin toisaalla oleviin [dokumentteihin](https://httpd.apache.org/docs/2.2/howto/cgi.html).  
 
 Menin tarkistamaan, että httpd-konffauseni olisi oikea komennoilla:
 *cat /etc/apache2/apache2.conf | grep Load*  
@@ -307,17 +307,126 @@ Menin tarkistamaan, että httpd-konffauseni olisi oikea komennoilla:
 Ohjeessa mainitusta LoadModulesta ei löytynyt jälkeäkään konffaustiedostosta.  
 
 Päätin lopettaa tältä illalta ja kello oli 21.12.  
-
   
+Aloitin työt uudestaan 7.36.
 
+Tällä kertaa työohjeenani oli: https://stackoverflow.com/questions/44871139/how-do-i-run-python-cgi-script-on-apache2-server-on-ubuntu-16-04  
+
+Aloitin komennolla:  
+*sudo micro /etc/apache2/apache2.conf*  
+-Tällä komennolla editoin apache2:n konfiguraatiotiedostoa.  
   
+Lisäsin ohjeen mukaisesti apache2.conf-tiedoston loppuun määrittelyt CGI-scripteistä:  
+*#########     Adding capaility to run CGI-scripts #################  
+*ServerName localhost  
+*ScriptAlias /cgi-bin/ /var/www/cgi-bin/  
+*Options +ExecCGI  
+*AddHandler cgi-script .cgi .pl .py  *
 
+Avasin seuraavan tiedoston komennolla:  
+*sudo micro /etc/apache2/conf-available/serve-cgi-bin.conf*  
 
+![Kuva 41. tiedoston sisältö](pics/harjoitus_3/41.png)  
+*Uusi serve-cgi-bin.conf*  
+  
+Käynnistin daemonin uudestaan:  
+*sudo systemctl restart apache2.service*  
+  
+Loin testitiedosto:  
+*sudo mkdir /var/www/cgi-bin*  
+*sudo micro /var/www/cgi-bin/first.py*  
 
+![Kuva 42. tiedoston sisältö](pics/harjoitus_3/42.png)  
+*Testitiedoston ohjelmakoodi*  
+  
+Tiedostolle annettiin ajo-oikeudet komennolla:  
+*sudo chmod +x /var/www/cgi-bin/first.py*  
+  
+Lopuksi testasin onnistumiseni selaimella.  
+  
+![Kuva 43. tiedoston sisältö](pics/harjoitus_3/43.png)  
+*Selain tulostaa pythonin printtaaman html:n*  
+  
+## BMI-laskuri ##  
+  
+Käyttämäni työohje oli: https://towardsdatascience.com/how-to-easily-run-python-scripts-on-website-inputs-d5167bd4eb4b  
+  
+Käytin tunnin sen toteuttamiseen, mutta en saanut toimimaan, joten oli aika ottaa seuraava [työohje](https://www.xmodulo.com/create-use-python-cgi-scripts.html) työn alle.  
+  
+![Kuva 47. tiedoston sisältö](pics/harjoitus_3/47.png)  
+*Editoin jälleen index.html-tiedostoa.*  
+  
+Loin testitiedoston:  
+*sudo mkdir /var/www/cgi-bin*  
+*sudo micro /var/www/cgi-bin/bmi.py*    
+  
+Tiedostolle annettiin ajo-oikeudet komennolla:  
+*sudo chmod +x /var/www/cgi-bin/bmi.py*  
+  
+![Kuva 48. tiedoston sisältö](pics/harjoitus_3/48.png)  
+*bmi.py-tiedoston sisältö /cgi-bin-kansiossa*  
+  
+Tällä kertaa ohje on toimiva, ja saan nappulan välittämään painalluksen ja pythonin ajamaan itsensä.  
+  
+![Kuva 49. testisivu](pics/harjoitus_3/49.png)  
+*Pythonin tuotti html-koodia*  
 
+Seuraavaksi muokkasin index.html ja bmi.py-tiedostoja.  
 
+**index.html**:  
 
-
+```
+<html>
+<h1>BMI-laskuri</h1>
+<form name="input" action="/cgi-bin/bmi.py" method="get">
+Pituus: <input type="text" name="pituus"><br>
+Paino: <input type="text" name="paino"><br>
+<input type="submit" value="Submit">
+</form>
+</html>
+```
+  
+*bmi.py:n sisältö*    
+  
+```
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
+ 
+import cgi
+form = cgi.FieldStorage()
+pituus = float(form["pituus"].value)
+paino = float(form["paino"].value)
+bmi = paino / (pituus**2)
+viesti = ''
+ 
+if bmi <= 19:
+    viesti = 'Olet alipainoinen'
+elif bmi <= 25:
+    viesti = 'Olet normaalipainoinen'
+else:
+    viesti = 'Olet ylipainoinen'
+ 
+print "Content-Type: text/html"
+print ""
+print "<html>"
+print "<meta charset=\"utf-8\">"
+print "<a href=\"/index.html\">Takaisin alkuun</a>"
+print "<h2>Painoindeksisi on</h2>"
+print "<p>"
+print "Laskennassa käytetyt tiedot:<br>"
+print "<b>Pituus:</b> ", pituus, "<br>"
+print "<b>Paino:</b> ", paino, "<br>"
+print "Painoindeksisi on: ", bmi, "<br>"
+print viesti
+print "</p>"
+print "</html>"
+```  
+  
+![Kuva 52. testisivu](pics/harjoitus_3/52.png)  
+*Toimiva index.html*  
+  
+![Kuva 53. testisivu](pics/harjoitus_3/53.png)  
+*Totuus: olin ylipainoinen*  
 
 *Tekijä: Kalle Tolonen*
 
