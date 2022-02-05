@@ -1,4 +1,4 @@
-# **Harjoitus 2**
+# **Harjoitus 3**
 
 Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h3-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h3)
 

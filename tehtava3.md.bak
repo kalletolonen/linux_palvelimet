@@ -381,7 +381,7 @@ Paino: <input type="text" name="paino"><br>
 </html>
 ```
   
-*bmi.py:n sisältö*    
+**bmi.py**    
   
 ```
 #!/usr/bin/python
