@@ -69,7 +69,7 @@ Klikkailin itseni Billing-alasivulla ja rullasin näkymän alas asti, jotta pä�
 ![Kuva 10.](pics/harjoitus_4/10.png)  
 *Droplets -> Create a Droplet*  
   
-** Valintani:**  
+**Valintani:**  
 1. Debian
 2. Shared CPU Basic
 3. Regular Intel with SSD
@@ -80,6 +80,13 @@ Klikkailin itseni Billing-alasivulla ja rullasin näkymän alas asti, jotta pä�
   
 Virtuaalipalvelin asenteli itseään hetken valitulta levykuvalta, jonka jälkeen sen löysi "first-project"-projektin alta.  
 
+**Nimipalvelimen ja linux-palvelimen saattaminen yhteen**  
+  
+Kirjauduin sisään NameCheapiin ja valitsin Domain Listista domainini kohdalta Adcanced DNS-valinnan. Tänne tein kaksi uutta recordia "Add New Record"-painikkeella, joille annoin molemmille tyypiksi "A record" ja toiselle hostiksi "@", sekä toiselle "www".  
+  
+![Kuva 16](pics/harjoitus_4/16.png)    
+*Tältä näytti valmis konfigurointi*  
+  
 ## d) Suuri muuri. Suojaa palvelin tulimuurilla. Muista ensin reikä ssh-palvelimelle.  
   
 ![Kuva 11.](pics/harjoitus_4/11.png)  
@@ -105,10 +112,76 @@ Laitoin palomuurin päälle komennolla:
 
 Lopetin työt 20.30
 
-root-tunnus pois
-kalle-tunnus tilalle
+Aloitin työt 16.30 junan lähtiessä Turusta Helsinkiin.  
+  
+Kirjauduin sisään palvelimelle komennolla:  
+*ssh root@ip-osoite*  
+  
+Loin uuden käyttäjän komennolla:  
+*sudo adduser kallet*  
+  
+![Kuva 13](pics/harjoitus_4/13.png)  
+*Syötin uudelle käyttäjälle turvallisen salasanan ja tunnuksen luominen onnistui.*  
+  
+Seuraavaksi lisäsin kallet-käyttäjän sudo-oikeudellisten käyttäjien ryhmään:  
+*sudo adduser kallet sudo*  
+  
+![Kuva 14](pics/harjoitus_4/14.png)  
+*Käyttäjän lisääminen sudo-ryhmään onnistui*  
+  
+Kirjauduin ulos ssh-yhteydestä root-käyttäjällä ja sisään uudelleen uudella käyttäjällä komennoilla:  
+*exit*  
+*ssh kallet@ip-osoite*  
+
+Testasin vielä sudo-oikeudet ajamalla järjestelmään uusimmat päivitykset komennoilla:  
+*sudo apt-get update*  
+*sudo apt-get dist-upgrade*  
+
+![Kuva 15](pics/harjoitus_4/15.png)  
+'Käyttäjällä oli oikeudet ajaa järjestelmäpäivitykset*  
+
+Tämän jälkeen lukitsin root-käyttäjän komennolla:  
+*sudo usermod --lock root*  
   
 ## e) Served. Laita koneellesi Apache-weppipalvelin. Korvaa testisivu. Laita käyttäjän kotisivut toimimaan. Kokeile eri koneelta, esim. kännykällä, että sivut toimivat. Vinkki: tee kotisivut normaalina käyttäjänä public_html/ alle.  
+  
+Asensin Apachen komennolla:  
+*sudo apt-get update*  
+*sudo apt-get install -y apache2*  
+  
+![Kuva 17](pics/harjoitus_4/17.png)  
+*Apache2 asentui nikottelematta*  
+  
+Käyynistin daemonin ja tarkistin sen käynistymisen:  
+*sudo systemctl start apache2.service*  
+*sudo systemctl status apache2.service*  
+  
+![Kuva 18](pics/harjoitus_4/18.png)  
+*Käynnistynyt daemoni*  
+  
+![Kuva 19](pics/harjoitus_4/19.png)  
+*En muistanut puhkaista palomuuriin aukkoa, joten netistä en päässyt kiinni sivustoon*  
+  
+Tein palomuuriin aukon komennolla:  
+*sudo ufw allow 80/tcp*  
+  
+![Kuva 20](pics/harjoitus_4/20.png)  
+*Reiän tekeminen palomuuriin ratkaisi ongelman*  
+  
+Siirryin kallet-käyttäjän kotihakemistoon (/home/kallet) ja tein sinne public_html alakansion:  
+*mkdir public_html*  
+
+Tein index.html tiedoston putkella:  
+*echo moi |tee index.html*  
+  
+![Kuva 20](pics/harjoitus_4/20.png)  
+'Vastaluotu index.html iteroituna*  
+  
+Seuraavaksi kerroin Apachelle, että haluan [käyttäjien hakemistot saataville palvelimelta](https://websiteforstudents.com/setup-apache2-userdir-module-on-ubuntu-16-04-lts-servers/).  
+  
+![Kuva 20](pics/harjoitus_4/20.png)  
+*Lopputuloksena on julkisessa internetissä näkyvillä oleva kallet-hakemiston index.html*  
+  
   
 ## f) Päivitys. Päivitä palvelimesi kaikki ohjelmat.  
   
