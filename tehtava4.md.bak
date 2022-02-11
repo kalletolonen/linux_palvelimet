@@ -1,0 +1,114 @@
+# **Harjoitus 4**
+
+Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h4-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h4)
+
+**Harjoituksen laitekokoonpano**  
+*Järjestelmänä Win 11 + VirtualBox 6.0*  
+  
+*Koneen perustiedot:*  
+*Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti*  
+*Muisti: 16 Gt LPDDR4X*  
+*Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
+*Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
+
+## a) Pilvi. Vuokraa ja asenna oma julkinen palvelin Internetiin. Vuokraa nimi osoittamaan siihen. (Jos sinulla on jo oma palvelin, ks kohta b. Jos et halua vuokrata palvelinta, ks kohta c. Jos haluat kokeilla vuokrattavia palveluita ilmaiseksi, voit käyttää GitHub Education pakettia tai eri pilvioperaattoreiden ilmaisia tutustumistarjouksia.)  
+
+Olin ennen kurssia päätynyt jo hankkimaan GitHubin Education packagen, joten sen hankkimista en valitettavasti pystynyt raporttiin dokumentoimaan. Se onnistui kuitenkin koulun (Haaga-Helian) opiskelijasähköpostin avulla.  
+Päädyin valitsemaan palveluntuottajikseni [NameCheapin](https://www.namecheap.com/) ja [Digital Oceanin](https://www.digitalocean.com/). Kirjoitushetkellä tarjouksena oli ilmainen .me-domain yhdeksi vuodeksi NameCheapista ja 100$ krediittejä VPS(Kubenets)-palveluun Digital Oceanilla.  
+  
+Ensimmäiseksi työkseni kirjauduin sisään GitHub Educationiin sinne rekisteröidyttyäni:  
+https://education.github.com/globalcampus/student  
+  
+![Kuva 1.](pics/harjoitus_4/1.png)  
+*Etusivunäkymä*  
+  
+Klikkasin Student Developer Pack-osaston [logoja](https://education.github.com/pack/offers#namecheap). Valitsin ensimmäiseksi NameCheapin.  
+  
+![Kuva 2.](pics/harjoitus_4/2.png)  
+*NameCheapin ja Digital Oceanin mainokset*  
+  
+Klikkasin [NameCheapin](https://nc.me/github/auth) linkkiä. Ehdin jo valitettavasti rekisteröimään .me-domainin aiemmin, joten loput kuvakaappaukset ovat .com-domainin ostoprosessista.  
+  
+![Kuva 3.](pics/harjoitus_4/3.png)  
+*Saatavuus tarkistettiin useiden domainien osalta automaattisesti.*  
+  
+![Kuva 4.](pics/harjoitus_4/4.png)  
+*Valitsin GitHub Pages toiminnon*  
+  
+Sähköpostikenttään syötin pääasiallisen GitHub-tilini sähköpostiosoitteen. Seuraavalla sivulla luotiin muistaakseni käyttäjätunnus ja salasana. Valitettavasti tämä osa projektista jäi dokumentoimatta.  
+  
+![Kuva 5.](pics/harjoitus_4/5.png)  
+*Näkymä kirjautuneena näytti tältä*  
+  
+Painoin manage-nappulaa.  
+  
+![Kuva 6.](pics/harjoitus_4/6.png)  
+*Valitsin Advanced DNS-asetukset*  
+  
+Hyvin piilotetusta näkymästä paljastui, että domainini TTL(Time To Live)-aika oli aika pitkä. Seuraavaksi oli aika pystyttää pilvipalvelin. Digital Oceanille sai etukoodin klikkaamalla GitHub Educationin talteen ja pasteamalla sen palveluun.  
+  
+
+![Kuva 7.](pics/harjoitus_4/7.png)  
+*Palvelu vaatii rekisteröitymisen jälkeen luottokortin tai PayPalin. Valitsin luottokortin.*  
+  
+Palvelu veloitti kortilta henkilöllisyyden tarkistamiseksi yhden dollarin. Ymmärrykseni mukaan summa hyvitetään asiakkaalle takaisin.  
+
+Klikkasin My Teamia, josta pääsin tililleni ja sieltä pystyin valitsemaan "Go to My Team"-valinnan.  
+  
+![Kuva 8.](pics/harjoitus_4/8.png)  
+*Sisäänkirjautumisnäyttö oli sekavahko*  
+  
+Klikkailin itseni Billing-alasivulla ja rullasin näkymän alas asti, jotta pääsin syöttämään etukoodin.  
+  
+![Kuva 9.](pics/harjoitus_4/9.png)  
+*Etukoodi GitHub Educationista syötettiin tänne*  
+  
+![Kuva 10.](pics/harjoitus_4/10.png)  
+*Droplets -> Create a Droplet*  
+  
+** Valintani:**  
+1. Debian
+2. Shared CPU Basic
+3. Regular Intel with SSD
+4. Palvelinkeskus Euroopassa (Frankfurt), koska GDPR-säännökset
+5. Authenticattion "Password"
+6. Mitäänsanomaton hostname, valitsin itselleni "linux"
+7. Create a Droplet  
+  
+Virtuaalipalvelin asenteli itseään hetken valitulta levykuvalta, jonka jälkeen sen löysi "first-project"-projektin alta.  
+
+## d) Suuri muuri. Suojaa palvelin tulimuurilla. Muista ensin reikä ssh-palvelimelle.  
+  
+![Kuva 11.](pics/harjoitus_4/11.png)  
+*Näkymässä linux-droplet*  
+  
+Kopioin ip-osoitteen ja yhdistin siihen ssh:lla virtuaalikoneeni komentokehotteesta:  
+*ssh root@ip-osoite*  
+
+Syötin laatimani salasanan komentokehotteessa ja pääsin sisään palvelimelle. Ensimmäisenä päivitin saatavilla olevat paketit komennolla:  
+*sudo apt-get update*  
+  
+Asensin palomuurin komennolla:  
+*sudo apt-get ufw*  
+
+Tein reiän palomuuriin ssh-liikenteelle porttiin 22/tcp komennolla:  
+*sudo ufw allow 22/tcp*  
+  
+Laitoin palomuurin päälle komennolla:  
+*sudo ufw enable*  
+  
+![Kuva 12.](pics/harjoitus_4/12.png)  
+*SSH-kirjautuminen*  
+
+root-tunnus pois
+kalle-tunnus tilalle
+  
+## e) Served. Laita koneellesi Apache-weppipalvelin. Korvaa testisivu. Laita käyttäjän kotisivut toimimaan. Kokeile eri koneelta, esim. kännykällä, että sivut toimivat. Vinkki: tee kotisivut normaalina käyttäjänä public_html/ alle.  
+  
+## f) Päivitys. Päivitä palvelimesi kaikki ohjelmat.  
+  
+## g) Rosvot porteilla. Etsi lokeistasi merkkejä murtautumisyrityksistä ja analysoi ne.  
+  
+## h) Vapaaehtoinen: Etusivu uusiksi. Laita weppipalvelimesi etusivu (http://example.com/ eikä http://example.com/~tero) näkyviin, tietysti niin, että sivuja voi muokata normaalin käyttäjän oikeuksin ja ne ovat jonkun käyttäjän kotihakemistossa.  
+  
+##  i) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
