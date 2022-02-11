@@ -173,12 +173,26 @@ Siirryin kallet-käyttäjän kotihakemistoon (/home/kallet) ja tein sinne public
 
 Tein index.html tiedoston putkella:  
 *echo moi |tee index.html*  
-  
-![Kuva 20](pics/harjoitus_4/20.png)  
+
+![Kuva 21](pics/harjoitus_4/21.png)  
 'Vastaluotu index.html iteroituna*  
   
-
+Seuraavaksi kerroin Apachelle, että haluan [käyttäjien hakemistot saataville palvelimelta](https://websiteforstudents.com/setup-apache2-userdir-module-on-ubuntu-16-04-lts-servers/).  
+  
+![Kuva 22](pics/harjoitus_4/22.png)  
+*Lopputuloksena on julkisessa internetissä näkyvillä oleva kallet-hakemiston index.html*  
+  
 ## f) Päivitys. Päivitä palvelimesi kaikki ohjelmat.  
+  
+Päivitin palvelimeni kaikki ohjelmat komennoilla:  
+*sudo apt-get update*  
+*sudo apt-get dist-upgrade*  
+  
+![Kuva 22](pics/harjoitus_4/22.png)  
+'Palvelimeni oli ajan tasalla*  
+
+Lopetin työt 17.44 ja latasin version GitHubiin.  
+
   
 ## g) Rosvot porteilla. Etsi lokeistasi merkkejä murtautumisyrityksistä ja analysoi ne.  
   
