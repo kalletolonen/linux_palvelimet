@@ -259,6 +259,9 @@ Tämän jälkeen käynnistin daemonin uudestaan:
 ![Kuva 27](pics/harjoitus_4/27.png)  
 *Daemonin uudelleenkäynnistämisen jälkeen julkisessa netistä löytyivät sivut oikeasta osoitteesta*  
   
+Lopuksi kirjauduin palvelimeltani ulos komennolla:  
+*exit*  
+
 Lopetin työt 15.00 ja latasin viimeisimmän version tehtävistä Git-repositoriooni.  
     
 ##  i) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
