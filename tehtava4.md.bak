@@ -188,14 +188,77 @@ Päivitin palvelimeni kaikki ohjelmat komennoilla:
 *sudo apt-get update*  
 *sudo apt-get dist-upgrade*  
   
-![Kuva 22](pics/harjoitus_4/22.png)  
+![Kuva 23](pics/harjoitus_4/23.png)  
 'Palvelimeni oli ajan tasalla*  
 
-Lopetin työt 17.44 ja latasin version GitHubiin.  
-
+Lopetin työt 17.48 ja latasin version GitHubiin.  
   
 ## g) Rosvot porteilla. Etsi lokeistasi merkkejä murtautumisyrityksistä ja analysoi ne.  
   
+Aloitin työt 13.57.  
+  
+Avasin Apache2:n lokitiedoston komennolla:  
+*sudo cat var/log/apache2/access.log*  
+
+![Kuva 24](pics/harjoitus_4/24.png)  
+*Yliviivattu lokirivi kiinnitti huomioni*  
+  
+1. Kyselyn tehneen koneen ip-osoite  
+2. RFC 1413 identity of the client-tieto ei saatavilla
+3. Kyselyn tehneen käyttäjätunnus ei ole saatavilla
+4. Aikaleima  
+5. Palvelimelle lähetetyn kutsun tyyppi ja sisältö
+-Arvioin, että palvelimelle on yritetty lähettää GET-kutsulla käskyä, joka lähettäisi löydöksensä wgetillä hyökkääjän haluamaan osoitteeseen  
+6. Kyselyyn tuotettu vastaus (400 pyyntöä ei voida käsitellä)
+7. Vastauksen koko
+8. Järjestelmän tietoja, jotka puuttuvat hyökkääjältä. Tässä olisi käytetty selain, käyttöjärjestelmä, prosessoriperhe ja selaimen versio 
+9. Selainytimen tyyppi ja versio  
+  
+Avasin listasta vielä toisen pyynnön eritellyt rivin komennolla:  
+*sudo cat var/log/apache2/access.log*  |grep Gpon*  
+  
+![Kuva 25](pics/harjoitus_4/25.png)  
+*Gponform-yrityksen lokirivi*  
+
+1. Kyselyn tehneen koneen ip-osoite  
+2. RFC 1413 identity of the client-tieto ei saatavilla
+3. Kyselyn tehneen käyttäjätunnus ei ole saatavilla
+4. Aikaleima  
+5. Palvelimelle lähetetyn kutsun tyyppi ja sisältö
+-Arvioin, että palvelimelle on yritetty lähettää POST-kutsun avulla hyökkäys, jolla saataisiin Dasanin valmistamana reititin haltuun 
+6. Kyselyyn tuotettu vastaus (404 not found)
+7. Vastauksen koko
+8. Järjestelmän tietoja, jotka puuttuvat hyökkääjältä. Tässä olisi käytetty selain, käyttöjärjestelmä, prosessoriperhe ja selaimen versio 
+9. Selainytimen tyyppi ja versio, tässä tapauksessa klassinen ohjelmointiprinttaus  
+  
+Lähde lokimerkintöjen tyypeille: https://httpd.apache.org/docs/2.4/logs.html  
+Lähde Gponform-hyökkäykselle: https://security.stackexchange.com/questions/204096/how-do-the-cve-2018-10562-and-cve-2018-10561-exploits-work
+
 ## h) Vapaaehtoinen: Etusivu uusiksi. Laita weppipalvelimesi etusivu (http://example.com/ eikä http://example.com/~tero) näkyviin, tietysti niin, että sivuja voi muokata normaalin käyttäjän oikeuksin ja ne ovat jonkun käyttäjän kotihakemistossa.  
   
+Lähde: https://stackoverflow.com/questions/5891802/how-do-i-change-the-root-directory-of-an-apache-server  
+  
+Käytin komentoa:  
+*ls etc/apache2/sites-available/*  
+
+Tämä listasi hakemiston tiedostot, ja päätin avata 000-default.conf-tiedoston komennolla:  
+*sudo micro tiedosto*  
+  
+Olin unohtanut, että en ollut asentanut Microa vielä tälle palvelemelle, joten korjasin virheeni:  
+*sudo apt-get update*  
+*sudo apt-get install -y micro*  
+  
+![Kuva 26](pics/harjoitus_4/26.png)    
+*DocumentRoot-parametri*
+
+Löysin tiedostosta lupaavan DocumentRoot-parametrin ja päätin editoida sitä. Syötin tilalle käyttäjän kallet tekemän aiemman sivun kansion.  
+  
+Tämän jälkeen käynnistin daemonin uudestaan:  
+*sudo systemctl restart apache2*  
+
+![Kuva 27](pics/harjoitus_4/27.png)  
+*Daemonin uudelleenkäynnistämisen jälkeen julkisessa netistä löytyivät sivut oikeasta osoitteesta*  
+  
+Lopetin työt 15.00 ja latasin viimeisimmän version tehtävistä Git-repositoriooni.  
+    
 ##  i) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
