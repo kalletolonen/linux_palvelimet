@@ -48,23 +48,24 @@ Painoin manage-nappulaa.
 ![Kuva 6.](pics/harjoitus_4/6.png)  
 *Valitsin Advanced DNS-asetukset*  
   
-Hyvin piilotetusta näkymästä paljastui, että domainini TTL(Time To Live)-aika oli aika pitkä. Seuraavaksi oli aika pystyttää pilvipalvelin. Digital Oceanille sai etukoodin klikkaamalla GitHub Educationin talteen ja pasteamalla sen palveluun.  
+Hyvin piilotetusta näkymästä paljastui, että domainini TTL(Time To Live)-aika oli aika pitkä.  
   
-
+Seuraavaksi oli aika pystyttää pilvipalvelin. Digital Oceanille sai etukoodin klikkaamalla GitHub Educationin talteen ja pasteamalla sen palveluun.  
+  
 ![Kuva 7.](pics/harjoitus_4/7.png)  
 *Palvelu vaatii rekisteröitymisen jälkeen luottokortin tai PayPalin. Valitsin luottokortin.*  
   
-Palvelu veloitti kortilta henkilöllisyyden tarkistamiseksi yhden dollarin. Ymmärrykseni mukaan summa hyvitetään asiakkaalle takaisin.  
+Digital Ocean veloitti kortilta henkilöllisyyden tarkistamiseksi yhden dollarin. Ymmärrykseni mukaan summa hyvitetään asiakkaalle takaisin.  
 
-Klikkasin My Teamia, josta pääsin tililleni ja sieltä pystyin valitsemaan "Go to My Team"-valinnan.  
-  
 ![Kuva 8.](pics/harjoitus_4/8.png)  
 *Sisäänkirjautumisnäyttö oli sekavahko*  
   
-Klikkailin itseni Billing-alasivulla ja rullasin näkymän alas asti, jotta pääsin syöttämään etukoodin.  
+Klikkasin My Teamia, josta pääsin tililleni ja sieltä pystyin valitsemaan "Go to My Team"-valinnan. Klikkailin itseni Billing-alasivulla ja rullasin näkymän alas asti, jotta pääsin syöttämään etukoodin.  
   
 ![Kuva 9.](pics/harjoitus_4/9.png)  
 *Etukoodi GitHub Educationista syötettiin tänne*  
+  
+Siirryin Droplets-valintaan vasemmassa reunassa.  
   
 ![Kuva 10.](pics/harjoitus_4/10.png)  
 *Droplets -> Create a Droplet*  
@@ -138,7 +139,7 @@ Testasin vielä sudo-oikeudet ajamalla järjestelmään uusimmat päivitykset ko
 *sudo apt-get dist-upgrade*  
 
 ![Kuva 15](pics/harjoitus_4/15.png)  
-'Käyttäjällä oli oikeudet ajaa järjestelmäpäivitykset*  
+*Käyttäjällä oli oikeudet ajaa järjestelmäpäivitykset*  
 
 Tämän jälkeen lukitsin root-käyttäjän komennolla:  
 *sudo usermod --lock root*  
@@ -152,7 +153,7 @@ Asensin Apachen komennolla:
 ![Kuva 17](pics/harjoitus_4/17.png)  
 *Apache2 asentui nikottelematta*  
   
-Käyynistin daemonin ja tarkistin sen käynistymisen:  
+Käynnistin daemonin ja tarkistin sen käynistymisen:  
 *sudo systemctl start apache2.service*  
 *sudo systemctl status apache2.service*  
   
@@ -175,9 +176,11 @@ Tein index.html tiedoston putkella:
 *echo moi |tee index.html*  
 
 ![Kuva 21](pics/harjoitus_4/21.png)  
-'Vastaluotu index.html iteroituna*  
+*Vastaluotu index.html iteroituna*  
   
-Seuraavaksi kerroin Apachelle, että haluan [käyttäjien hakemistot saataville palvelimelta](https://websiteforstudents.com/setup-apache2-userdir-module-on-ubuntu-16-04-lts-servers/).  
+Seuraavaksi kerroin Apachelle, että haluan [käyttäjien hakemistot saataville palvelimelta](https://websiteforstudents.com/setup-apache2-userdir-module-on-ubuntu-16-04-lts-servers/):  
+*sudo a2enmod enable*  
+*sudo systemctl restart apache2*  
   
 ![Kuva 22](pics/harjoitus_4/22.png)  
 *Lopputuloksena on julkisessa internetissä näkyvillä oleva kallet-hakemiston index.html*  
@@ -189,7 +192,7 @@ Päivitin palvelimeni kaikki ohjelmat komennoilla:
 *sudo apt-get dist-upgrade*  
   
 ![Kuva 23](pics/harjoitus_4/23.png)  
-'Palvelimeni oli ajan tasalla*  
+*Palvelimeni oli ajan tasalla*  
 
 Lopetin työt 17.48 ja latasin version GitHubiin.  
   
@@ -207,15 +210,15 @@ Avasin Apache2:n lokitiedoston komennolla:
 2. RFC 1413 identity of the client-tieto ei saatavilla
 3. Kyselyn tehneen käyttäjätunnus ei ole saatavilla
 4. Aikaleima  
-5. Palvelimelle lähetetyn kutsun tyyppi ja sisältö
+5. Palvelimelle lähetetyn kutsun tyyppi ja sisältö  
 -Arvioin, että palvelimelle on yritetty lähettää GET-kutsulla käskyä, joka lähettäisi löydöksensä wgetillä hyökkääjän haluamaan osoitteeseen  
-6. Kyselyyn tuotettu vastaus (400 pyyntöä ei voida käsitellä)
+6. Kyselyyn tuotettu vastaus (400 - pyyntöä ei voida käsitellä)
 7. Vastauksen koko
 8. Järjestelmän tietoja, jotka puuttuvat hyökkääjältä. Tässä olisi käytetty selain, käyttöjärjestelmä, prosessoriperhe ja selaimen versio 
 9. Selainytimen tyyppi ja versio  
   
 Avasin listasta vielä toisen pyynnön eritellyt rivin komennolla:  
-*sudo cat var/log/apache2/access.log*  |grep Gpon*  
+*sudo cat var/log/apache2/access.log  |grep Gpon*  
   
 ![Kuva 25](pics/harjoitus_4/25.png)  
 *Gponform-yrityksen lokirivi*  
@@ -224,9 +227,9 @@ Avasin listasta vielä toisen pyynnön eritellyt rivin komennolla:
 2. RFC 1413 identity of the client-tieto ei saatavilla
 3. Kyselyn tehneen käyttäjätunnus ei ole saatavilla
 4. Aikaleima  
-5. Palvelimelle lähetetyn kutsun tyyppi ja sisältö
+5. Palvelimelle lähetetyn kutsun tyyppi ja sisältö  
 -Arvioin, että palvelimelle on yritetty lähettää POST-kutsun avulla hyökkäys, jolla saataisiin Dasanin valmistamana reititin haltuun 
-6. Kyselyyn tuotettu vastaus (404 not found)
+6. Kyselyyn tuotettu vastaus (404 - not found)
 7. Vastauksen koko
 8. Järjestelmän tietoja, jotka puuttuvat hyökkääjältä. Tässä olisi käytetty selain, käyttöjärjestelmä, prosessoriperhe ja selaimen versio 
 9. Selainytimen tyyppi ja versio, tässä tapauksessa klassinen ohjelmointiprinttaus  
@@ -265,3 +268,61 @@ Lopuksi kirjauduin palvelimeltani ulos komennolla:
 Lopetin työt 15.00 ja latasin viimeisimmän version tehtävistä Git-repositoriooni.  
     
 ##  i) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
+  
+Aloitin työt n. 18.30.  
+  
+![Kuva 28](pics/harjoitus_4/28.png)  
+  
+Googletin vinkin hakusanoilla itseni EFF:n sivuille, josta löysin kätevän [työohjeen](https://certbot.eff.org/instructions?ws=apache&os=debianbuster). Ohje oli tosin Debianin versiolle 10 ja serverilläni pyöri versio 11, mutta ajattelin selviäväni tästä soveltamalla.  
+  
+Kirjauduin serverilleni Windowsin komentokehotteesta komennolla:  
+*ssh kallet@kalletolonen.me*  
+  
+Asensin snapd-työkalun (ja päivitin samalla järjestelmän):  
+*sudo apt-get update*  
+*sudo apt-get install -y snapd*  
+*sudo snap install core; sudo snap refresh core*  
+*sudo apt-get dist-upgrade*
+  
+![Kuva 29](pics/harjoitus_4/29.png)  
+*Snapin core päivitettiin*  
+  
+Seuraavaksi oli vuorossa Certbotin poistaminen järjestelmästä:  
+*sudo apt-get remove certbot*  
+  
+![Kuva 30](pics/harjoitus_4/30.png)  
+*Certbottia ei ollut asennettu*  
+  
+Asensin ohjeen mukaisesti Certbotin:  
+*sudo snap install --classic certbot*  
+  
+Loin linkin eri sijaintien välille:  
+*sudo ln -s /snap/bin/certbot /usr/bin/certbot*  
+  
+Valitsin oletusasetukset komennolla:  
+*sudo certbot --apache*  
+  
+![Kuva 32](pics/harjoitus_4/32.png)  
+*Sertifikaatti myönnettiin välittömästi!*  
+  
+Certbotissa oli sisäänrakennettu sertifikaatin uusiminen, joten testasin vielä sen toiminnan ja ajastimen olemassaolon:  
+*sudo certbot renew --dry-run*  
+*systemctl list-timers*  
+  
+![Kuva 31](pics/harjoitus_4/31.png)  
+*Ajastin oli pyörimässä sertifikaatin säännölliseen uusimiseen.*  
+  
+Käynnistin daemonin uudestaan:  
+*sudo systemctl restart apache2.service*  
+  
+Testasin osoitetta selaimessa ja en päässyt sinne, vaikka olin käynnistänyt Apache2-daemonin uudestaan.  
+
+![Kuva 32](pics/harjoitus_4/32.png)  
+*DNS-serveri ei ohjannut enää domainia ip-osoitteeseen, kun kokeilin https-alulla*  
+  
+En siis täysin onnistunut tehtävässäni, mutta onneksi asioista voi ottaa selvää ja päivitän tämän sitten kun minulle selviää missä meni vikaan.  
+
+  
+
+
+
