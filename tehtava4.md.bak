@@ -269,6 +269,8 @@ Lopetin työt 15.00 ja latasin viimeisimmän version tehtävistä Git-repositori
     
 ##  i) Vapaaehtoinen: Laita TLS-salakirjoitus (https) toimimaan Let's Encrypt avulla. Vinkki: certbot tai lego.  
   
+Aloitin työt n. 18.30.  
+  
 ![Kuva 28](pics/harjoitus_4/28.png)  
   
 Googletin vinkin hakusanoilla itseni EFF:n sivuille, josta löysin kätevän [työohjeen](https://certbot.eff.org/instructions?ws=apache&os=debianbuster). Ohje oli tosin Debianin versiolle 10 ja serverilläni pyöri versio 11, mutta ajattelin selviäväni tästä soveltamalla.  
@@ -308,6 +310,20 @@ Certbotissa oli sisäänrakennettu sertifikaatin uusiminen, joten testasin viel�
 *systemctl list-timers*  
   
 ![Kuva 31](pics/harjoitus_4/31.png)  
-
+*Ajastin oli pyörimässä sertifikaatin säännölliseen uusimiseen.*  
   
+Käynnistin daemonin uudestaan:  
+*sudo systemctl restart apache2.service*  
+  
+Testasin osoitetta selaimessa ja en päässyt sinne, vaikka olin käynnistänyt Apache2-daemonin uudestaan.  
+
+![Kuva 33](pics/harjoitus_4/33.png)  
+*DNS-serveri ei ohjannut enää domainia ip-osoitteeseen, kun kokeilin https-alulla*  
+  
+En siis täysin onnistunut tehtävässäni, mutta onneksi asioista voi ottaa selvää ja päivitän tämän sitten kun minulle selviää missä meni vikaan.  
+  
+Lopetin työt 19.34.
+  
+
+
 

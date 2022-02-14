@@ -317,11 +317,12 @@ Käynnistin daemonin uudestaan:
   
 Testasin osoitetta selaimessa ja en päässyt sinne, vaikka olin käynnistänyt Apache2-daemonin uudestaan.  
 
-![Kuva 32](pics/harjoitus_4/32.png)  
+![Kuva 33](pics/harjoitus_4/33.png)  
 *DNS-serveri ei ohjannut enää domainia ip-osoitteeseen, kun kokeilin https-alulla*  
   
 En siis täysin onnistunut tehtävässäni, mutta onneksi asioista voi ottaa selvää ja päivitän tämän sitten kun minulle selviää missä meni vikaan.  
-
+  
+Lopetin työt 19.38.
   
 
 
