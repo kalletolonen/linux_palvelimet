@@ -322,8 +322,10 @@ Testasin osoitetta selaimessa ja en päässyt sinne, vaikka olin käynnistänyt 
   
 En siis täysin onnistunut tehtävässäni, mutta onneksi asioista voi ottaa selvää ja päivitän tämän sitten kun minulle selviää missä meni vikaan.  
   
-Lopetin työt 19.34.
+Lopetin työt 19.38.
   
-
+**Päivitys:**  
+Onnistuin saamaan sertifikaattini toimimaan puhkaisemalla 443-porttiin reiän palomuuriin:  
+*sudo ufw allow 443/tcp*  
 
 

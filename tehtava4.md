@@ -328,4 +328,6 @@ Lopetin työt 19.38.
 Onnistuin saamaan sertifikaattini toimimaan puhkaisemalla 443-porttiin reiän palomuuriin:  
 *sudo ufw allow 443/tcp*  
 
+![Kuva 34](pics/harjoitus_4/34.png)  
+*HTTPS toimii*  
 
