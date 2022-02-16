@@ -324,6 +324,8 @@ En siis täysin onnistunut tehtävässäni, mutta onneksi asioista voi ottaa sel
   
 Lopetin työt 19.38.
   
-
+**Päivitys:**  
+Onnistuin saamaan sertifikaattini toimimaan puhkaisemalla 443-porttiin reiän palomuuriin:  
+*sudo ufw allow 443/tcp*  
 
 
