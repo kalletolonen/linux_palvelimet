@@ -55,13 +55,42 @@ Seuraavaksi oli aika saa virtuaaliympäristö päälle komennoilla:
 *source env/bin/activate*  
   
   
-Ensimmäinen komento luo kansion env, jossa on saatavilla tuoreimmat paketit kansiosta lib/sitepackages/. Jälkimmäinen komento käynnistää virtuaaliympäristön.  
+Ensimmäinen komento loi kansion env, jossa on saatavilla tuoreimmat paketit kansiosta lib/sitepackages/. Jälkimmäinen komento käynnisti virtuaaliympäristön.  
+  
+![Kuva 7.](pics/harjoitus_5/7.png)  
+*Lopputulos*  
   
 Tarkistin, että olin virtuaaliympäristön sisällä, jotta en vahingossa tee asennuksia jonnekin aivan toisaalle:  
 *which pip*  
   
-![Kuva 6.](pics/harjoitus_5/6.png)  
+![Kuva 8.](pics/harjoitus_5/8.png)  
 *Olin oikeassa paikassa*  
+  
+Editoin Microlla tiedostoon vaatimukseksi Djangon:
+*micro requirements.txt*  
+
+![Kuva 9.](pics/harjoitus_5/9.png)  
+*Django lisättiin vaatimuslistaan ainoaksi merkinnäksi*  
+
+Seuraaavaksi laittiin pip asentamaan django requirements.txt-tiedostosta ja tarkistettiin Djangon versionumero:  
+*pip install -r requirements.txt*  
+*django-admin --version*  
+  
+![Kuva 10.](pics/harjoitus_5/10.png)  
+*Versio oli sama kuin ohjeessa*    
+  
+Loin projektin komennolla:  
+*django admin startproject splitlyze*  
+  
+Sen jälkeen siirryin projektikansioon ja laitoin kehitysserverin päälle:  
+*cd splitlyze*  
+*./manage.py runserver*  
+  
+![Kuva 11.](pics/harjoitus_5/11.png)  
+*Great success!*  
+  
+  
+
   
 
 
