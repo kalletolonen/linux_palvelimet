@@ -1,0 +1,69 @@
+# **Harjoitus 5**
+
+Aloitin työt 12.10.
+
+
+Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h4-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h5)
+
+**Harjoituksen laitekokoonpano**  
+*Järjestelmänä Win 11 + VirtualBox 6.0 + Debian 11*  
+  
+*Koneen perustiedot:*  
+*Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti*  
+*Muisti: 16 Gt LPDDR4X*  
+*Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
+*Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
+
+## a) CRUD. Make a simple web program, that allows multiple users modify the same data. Have user accounts and logins. You can use Django development server and admin interface here. Single table is enough. We already did a Customer (CRM) database, so it might be interesting to do something as simple, but slightly different.
+
+Tehtävän lähteenä käytin tuntimuistiinpanojani ja Karvisen (artikkelia)[https://terokarvinen.com/2022/django-instant-crm-tutorial/].  
+  
+Ensin poistin virtualenvin, jotta pääsin asentamaan ohjelmat alusta pitäen:  
+*sudo apt-get purge virtualenv*  
+  
+![Kuva 1.](pics/harjoitus_5/1.png)  
+*Virtualenv poistettiin onnistuneesti, pl. gitwebiä koskeva virheilmoitus*  
+  
+Järjestelmä kehotti poistamaan myös muita paketteja, joita ei enää tarvita, joten ajoin sen ehdottaman komennon:  
+*sudo apt autoremove*  
+  
+![Kuva 2.](pics/harjoitus_5/2.png)  
+*gitweb-paketista jäi edelleen virheilmoitus*  
+  
+Päätin kokeilla gitwebin poistamista:  
+*sudo apt-get purge gitweb*  
+  
+![Kuva 3.](pics/harjoitus_5/3.png)  
+*Käsky kommentoi jotain Apacheen liittyvää, joten tarkistin, että palvelin oli edelleen päällä*  
+  
+![Kuva 4.](pics/harjoitus_5/4.png)  
+*Palvelin pystyi edelleen ajamaan pythonia*  
+  
+![Kuva 5.](pics/harjoitus_5/5.png)  
+*Poistin tuntiharjoituskessa luomani tiedoston ja hakemistot sisältöineen*  
+  
+Aloitin asennustyöt komennolla:  
+*sudo apt-get install -y virtualenv*  
+
+Komento hakee ja asentaa koneelle virtaulenvin, jonka avulla voidaan luoda eristettyjä Python-ympäristöjä.  
+  
+![Kuva 6.](pics/harjoitus_5/6.png)  
+*Asennus sujui ilman virheilmoituksia*  
+  
+Seuraavaksi oli aika saa virtuaaliympäristö päälle komennoilla:  
+*virtualenv --system-site-packages -p python env/*  
+*source env/bin/activate*  
+  
+  
+Ensimmäinen komento luo kansion env, jossa on saatavilla tuoreimmat paketit kansiosta lib/sitepackages/. Jälkimmäinen komento käynnistää virtuaaliympäristön.  
+  
+Tarkistin, että olin virtuaaliympäristön sisällä, jotta en vahingossa tee asennuksia jonnekin aivan toisaalle:  
+*which pip*  
+  
+![Kuva 6.](pics/harjoitus_5/6.png)  
+*Olin oikeassa paikassa*  
+  
+
+
+
+## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.
