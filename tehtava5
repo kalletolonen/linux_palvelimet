@@ -93,18 +93,21 @@ Seuraavaksi oli aika laittaa Djangon admin-konsoli toimimaan:
 *./manage.py makemigrations*  
 *./manage.py migrate*  
   
-![Kuva 11.](pics/harjoitus_5/11.png)  
+![Kuva 12.](pics/harjoitus_5/12.png)  
 *Komennot päivittivät projektin tietokannat*  
 
 **superuserin luominen**  
 *sudo apt-get install pwgen*  
 *pwgen -s 30 1*  
 *./manage.py createsuperuser*  
-  
+   
+![Kuva 13.](pics/harjoitus_5/13.png)  
+*Käyttäjän luominen onnistui*  
+   
 Asensin pwgen-salasanageneraattorin ja loin sen avulla superuserilleni tietoturvallisen salasanan.  Tämän jälkeen käynnistin testiserverin:  
 *./manage.py runserve*  
 
-![Kuva 12.](pics/harjoitus_5/12.png)  
+![Kuva 14.](pics/harjoitus_5/14.png)  
 *Pääsin kirjautumaan sisälle konsoliin*  
 
 Päätin myös avata toisen terminaalin ja antaa serverin pyöriä toisessa, jotta sitä ei tarvitsi jatkuvasti käynnistellä. Siirryin kotihakemistoon ja kirjoitin komennon:  
@@ -112,5 +115,9 @@ Päätin myös avata toisen terminaalin ja antaa serverin pyöriä toisessa, jot
 *source env/bin/activate*
   
 Tein saman which pip-varmistuksen kuin ylempänä, jotta pystyin olemaan varma siitä, että olin virtuaaliympäristön sisällä.  
+  
+Lopetin työt 13.33.  
+
+
 
 ## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.
