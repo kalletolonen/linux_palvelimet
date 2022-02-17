@@ -116,5 +116,121 @@ Päätin myös avata toisen terminaalin ja antaa serverin pyöriä toisessa, jot
   
 Tein saman which pip-varmistuksen kuin ylempänä, jotta pystyin olemaan varma siitä, että olin virtuaaliympäristön sisällä.  
   
+Lopetin työt 13.33.  
+
+Aloitin työt 14.32.  
+
+Loin weppikäyttöliittymästä toisen käyttäjän ja annoin tälle kaikki oikeudet.  
+
+![Kuva 15.](pics/harjoitus_5/15.png)  
+*testikayttaja-käyttäjälle annettiin Staff- ja Superuser status*  
+  
+![Kuva 16.](pics/harjoitus_5/16.png)  
+*En päässyt kirjautumaan, epäilin syyksi vääriä tunnistetietoja*  
+  
+Tein testikayttaja-userin uudestaan ja kirjauduin onnistuneesti.  
+  
+![Kuva 17.](pics/harjoitus_5/17.png)  
+*Sisäänkirjautuminen onnistui toisella kerralla*  
+  
+![Kuva 18.](pics/harjoitus_5/18.png)  
+*testikayttaja-tunnuksella oli nyt staff- ja superuser-oikeudet*  
+  
+Palasin komentokehotteeseen ja lisäsin projetiini ensimmäisen app:n, sekä merkinnän siitä asetustiedostoon:  
+*./manage.py startapp settle*  
+*micro splitlyze/settings.py*  
+  
+![Kuva 19.](pics/harjoitus_5/19.png)  
+*Näkymä Micron editoidusta kohdasta, johon lisäsin oman appini*  
+  
+Tämän jälkeen oli aika lisätä malleja:  
+*micro /settle/models.py*  
+    
+![Kuva 20.](pics/harjoitus_5/20.png)  
+*Kirjoittamani python-koodi*  
+  
+Ensin tiedostoon tuodaan models django.db:stä ja sitten luodaan luokka Receipt, joka perii models.Modelin ominaisuudet. Tarkoituksenani on pitkässä juoksussa luoda maksujen jakamiseen ja talouden seuraamiseen ja analysointiin sopiva työkalu. Muutin myös Micron oletusasetuksen tabulaattorien automaattisesta muuttamisesta välilyönneiksi. Pythonissa ohjelmalohkojen hierarkiaa ilmaistaa vain sisennyksillä ja siten on äärimmäisen tärkeää, että sisennykset ovat oikein.  
+
+**Tabulaattorin toiminnan muuttaminen tapahtui seuraavasti:**  
+*ctrl + e*  
+*set tabtospaces false*  
+  
+Tallensin kirjoittamani koodin ja tein tietokantamigraatiot komentokehotteesta:  
+*./manage.py makemigrations*  
+  
+![Kuva 21.](pics/harjoitus_5/21.png)  
+*Virheilmoituksen perusteella päättelin, että olin tehtyt kirjoitusvirheen parametrissä "max_lenght"*  
+  
+![Kuva 22.](pics/harjoitus_5/22.png)  
+*Korjattu kirjoitusasu*  
+  
+![Kuva 23.](pics/harjoitus_5/23.png)  
+*Seuraava virheilmoitus vihjasi, että DecimalFields kaipasi myös uutta parametriä max_digits*  
+  
+![Kuva 24.](pics/harjoitus_5/24.png)  
+*Arvelin, että parametrit voitaisiin erotella toisistaan pilkulla*  
+  
+![Kuva 25.](pics/harjoitus_5/25.png)  
+*Tällä kertaa ./manage.py makemigrations teki tehtävänsä mukisematta*  
+  
+Makemigrationsin onnistuttua annoin komennon:  
+*./manage.py migrate*  
+
+Makemigration luo migraatiot ja migrate suorittaa tietokantamigraatiot.  
+  
+Jäljellä oli vielä rekisteröinnin tekeminen admin.py-tiedostoon:  
+*micro settle/admin.py*  
+  
+![Kuva 26.](pics/harjoitus_5/26.png)  
+*Admin.py:n uusi sisältö*  
+  
+Tässä kerrottiin, että admin.siteen rekisteröidään Receipt-malli, joka perii models-luokan ominaisuudet.  
+  
+![Kuva 27.](pics/harjoitus_5/27.png)  
+*testikayttaja pystyi lisäämään objekteja*  
+  
+Selkeämpää objektien nimeämistä varten lisäsin models.py-tiedostoon päivämäärän:  
+*micro settle/models.py*  
+  
+![Kuva 28.](pics/harjoitus_5/28.png)  
+*Muokattu models.py*  
+  
+![Kuva 29.](pics/harjoitus_5/29.png)  
+*Kehitysserveri kertoi virheeestä sisennyksessä*  
+   
+![Kuva 31.](pics/harjoitus_5/31.png)  
+*Debuggaaminen etenee, päättelin fiksuista virheilmoituksista, että minun täytyy löytää oikea tapa ilmaista mitä parametristä haluan*  
+  
+![Kuva 32.](pics/harjoitus_5/32.png)  
+*Kokeilin formsin tuomista epäonnistuneesti*  
+  
+![Kuva 33.](pics/harjoitus_5/33.png)  
+*Yritin myös periyttää luokkaan kahdesta eri luokasta*  
+  
+![Kuva 34.](pics/harjoitus_5/34.png)  
+*Lopulta päädyin vain käyttämään modelsin DateFieldiä*  
+  
+![Kuva 35.](pics/harjoitus_5/35.png)  
+Ajoin makemigrationin ja mpääsin päättämään mitä lomakkeeseen syötetään oletusarvona.  
+
+![Kuva 36.](pics/harjoitus_5/36.png)  
+*Lopputuloksena objekteillani oli nyt kolme ominaisuutta (shopName, date & amount)*  
+  
+Lopuksi muokkasin models.py:tä siten, että objektilistaus näyttäisi mukavammalta admin-konsolissa:  
+*micro settle/models.py*  
+  
+![Kuva 37.](pics/harjoitus_5/37.png)  
+*Muokattu models.py*  
+  
+Yritin saada riville tulostumaan myös päivämäärän ja hinnan, mutta sitten objektin muokkausta yrittäessä sain virheilmoituksen tuplesta (shopName, amount ja date ovat tuple-muotoon tallennettuja) ja siten kutsuun tuli joku vika.  
+  
+
+  
+
+
+  
+
+
+
 
 ## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.
