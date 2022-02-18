@@ -385,14 +385,14 @@ Käynnistin virtuaaliympäristön ja tarkistin, että olen ympäristön sisäll�
 Syötin requirements.txt-tiedostoon djangon:  
 *micro requirements.txt*  
 
-[Kuva 59.](pics/harjoitus_5/59).png)  
+[Kuva 59.](pics/harjoitus_5/59.png)  
 *requirements.txt:n sisältö*  
   
 Asennus käynnistettiin ja todennettiin komennoilla:  
 *pip install -r requirements.txt*  
 *django-admin --version*  
   
-[Kuva 60.](pics/harjoitus_5/60).png)  
+[Kuva 60.](pics/harjoitus_5/60.png)  
 *Django oli nyt todennetusti asennettu*  
   
 **Projektin perustaminen**  
@@ -400,7 +400,7 @@ Asennus käynnistettiin ja todennettiin komennoilla:
 Perustin projektin Djangolla komennolla:  
 *django-admin startproject splitlyze*  
   
-[Kuva 61.](pics/harjoitus_5/61).png)  
+[Kuva 61.](pics/harjoitus_5/61.png)  
 *hakemistopolku oli jo olemassa, kun orjallisesti loin sen tehtävän alussa static-sivustoa varten*  
   
 Poistin hakemiston sisältöineen komennolla:  
@@ -409,7 +409,7 @@ Poistin hakemiston sisältöineen komennolla:
 Seuraavaksi editoin konfiguraatiotiedostoa:  
 *sudoedit /etc/apache2/sites-available/splitlyze.conf*  
   
-[Kuva 62.](pics/harjoitus_5/62).png)  
+[Kuva 62.](pics/harjoitus_5/62.png)  
 *Muokkasin [Karvisen pohjaan](https://terokarvinen.com/2022/deploy-django/) muuttujiin omat tietoni*  
   
 Sitten asennettiin wsgi-modi Apacheen:  
@@ -422,7 +422,7 @@ Tein tuhoamani static-hakemiston ja index.html-tiedoston uudestaan:
 Ajoin testin konfiguraatiooni:  
 */sbin/apache2ctl configtest*  
   
-[Kuva 63.](pics/harjoitus_5/63).png)  
+[Kuva 63.](pics/harjoitus_5/63.png)  
 *Konfiguraatio toimi niin kuin ylläkin, sama ssl-virheilmoitus oli edelleen olemassa*  
   
 Käynnistin demonin uudestaan:  
@@ -430,7 +430,7 @@ Käynnistin demonin uudestaan:
   
 Huomasin, että olin sössinyt jossain, sillä debugatessa muutin splitlyze.conf-hosteja takaisin aiemmin toimineisiin ja sain Apachen vakiosivun näkyviin.  
 
-[Kuva 64.](pics/harjoitus_5/64).png)  
+[Kuva 64.](pics/harjoitus_5/64.png)  
 *Ei mennyt niin kuin piti*  
   
 Päättelin, että jostain tuo sivu loihditann esiin ja se löytyikin /var/www/html -hakemistosta. Sitten päätin konfiguroida apachea uudestaan käyttämään oikeaa tiedostoa:  
@@ -441,7 +441,7 @@ Päättelin, että jostain tuo sivu loihditann esiin ja se löytyikin /var/www/h
   
 *sudo systemctl restart apache2*  
   
-[Kuva 65.](pics/harjoitus_5/65).png)  
+[Kuva 65.](pics/harjoitus_5/65.png)  
 *Edelleen apache2:n vakiosivu kummitteli*  
   
 Päätin selvittää mitä konffitiedostoja Apache2 käytti ja totesin että helpoimmalla pääsen, kun asennan koko Apachen, virtualenvin ja sertifikaatit uudestaan.  
@@ -457,7 +457,7 @@ Aloitin poistamalla publicwsgi-kansion alihakemistoineen kotihakemistostani ja a
   
 Poistin kaikki apacheen viittaavat hakemistot ja tiedostot, jotka whereis löysi.  
   
-[Kuva 66.](pics/harjoitus_5/66).png)  
+[Kuva 66.](pics/harjoitus_5/66.png)  
 *Demoni oli poistettu*  
   
 Poistin myös virtualenvin komennolla:  
@@ -477,18 +477,95 @@ Komento ilmoitti, että apache on edelleen asennettu, joten ajoin komennot:
 *sudo apt-get purge -y apache2*  
 *sudo apt autoremove*  
   
-[Kuva 66.](pics/harjoitus_5/66).png)  
+[Kuva 67.](pics/harjoitus_5/67).png)  
 *Viimein demoni oli oikeasti poistettu*  
   
 Uusi asennus:  
 *sudo apt-get install apache2*  
+*sudo apt-get install virtualenv*  
   
 Oletussivun korvaaminen oli seuraava askel:  
 *echo "Tämä tuhosi oletussivun" |sudo tee /var/www/html/index.html*  
   
 Lopetin työt n. 17.30 ja päätin palata aiheen pariin myöhemmin.  
   
+Aloitin työt 18.44.  
 
+Asensin virtualenvin, tein publicwsgi-kansion ja siirryin sinne:  
+*sudo apt-get install -y virtualenv*  
+*mkdir publicwsgi*  
+*cd publicwsgi*  
+  
+Loin virtuaaliympäristön ja tarkistin sijainnin:  
+*virtualenv -p python3 --system-site-packages env*  
+*which pip*  
+  
+[Kuva 68.](pics/harjoitus_5/68.png)  
+*Virtuaaliympäristö oli nyt luotu ja käytössä*  
+  
+Tein vaatimuslistan requirements.txt-tiedostoon:  
+*micro requirements.txt*  
+-vaatimukseksi syötettiin vain django  
+  
+Django asennettiin pip:llä:  
+*pip install -r requirements.txt*  
+  
+Aloitin projektin:  
+*django-admin startproject splitlyze*  
+  
+Kävin luomassa kansion staattiselle sisällölle ja sinne tiedoston:  
+*mkdir splitlyze/static/*  
+*echo "Tämä on staattinen sivu" |tee splitlyze/static/index.html*  
+[Kuva 69.](pics/harjoitus_5/69.png)  
+*Testisivu luotiin*  
 
-
-
+Loin virtualhost-tiedoston ja aktivoin sen:  
+*sudo micro /etc/apache2/sites-available/splitlyze.conf*  
+  
+````
+	<VirtualHost *:80>
+		Alias /static/ /home/tero/publicwsgi/teroco/static/
+		<Directory /home/tero/publicwsgi/teroco/static/>
+			Require all granted
+		</Directory>
+	</VirtualHost>
+````  
+  
+*sudo a2ensite splitlyze.conf*  
+*sudo a2dissite 000-default.conf*  
+*/sbin/apache2ctl configtest*  
+  
+[Kuva 70.](pics/harjoitus_5/70.png)  
+*Viimeinen komento aiheutti virheilmoituksen*  
+  
+Googlauksen perusteella ajoin komennon:  
+*sudo apt install --reinstall apache2-bin*  
+  
+Epäilen että olin poistanut apache-demonin jotenkin väärin ja nyt järjestelmä ei ollut osannut asentaa sitä oikein.  
+  
+[Kuva 71.](pics/harjoitus_5/71.png)  
+*Tällä kertaa configtest meni onnistuneesti läpi*  
+  
+Laitoin käyttäjähakemistot päälle:  
+*sudo a2enmod userdir*  
+  
+[Kuva 73.](pics/harjoitus_5/73.png)  
+*Pääsin julkisesta netistä selaamaan käyttäjän kotihakemistoa*  
+  
+Minut valtasi syvä epäusko ja päätin ajaa koko dropletin maantasalle ja tehdä uudestaan, sillä ongelmani johtuivat mahdollisesti väärin poistetuista tai asennetuista paketeista.  
+  
+**Sisyphos**  
+  
+Tuhosin serverin Digital Oceanissa ja tein sen uudestaan kuvaavalla hostnamella.  
+  
+[Tehtävässä 4](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava4.md) on tarkemmin kuvattuna tämä luomis- ja yhdistämisprosessi, joten en kuvaile sitä tämän enempää.  
+  
+[Kuva 74.](pics/harjoitus_5/74.png)  
+*Jatkoin töitä tabula rasa -tilanteesta, jossa minulla oli tyhjä droplet pilvessä ja vain ssh-yhteydet päällä palomuurista*  
+  
+````
+$ sudo apt-get -y install micro bash-completion
+$ export EDITOR=micro
+````
+  
+Lopetin työt 19.59.
