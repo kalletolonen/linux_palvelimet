@@ -226,7 +226,7 @@ Lopuksi muokkasin models.py:tä siten, että objektilistaus näyttäisi mukavamm
   
 Yritin saada riville tulostumaan myös päivämäärän ja hinnan, mutta sitten objektin muokkausta yrittäessä sain virheilmoituksen tuplesta (shopName, amount ja date ovat tuple-muotoon tallennettuja) ja siten kutsuun tuli joku vika.  
   
-![Kuva 38.](pics/harjoitus_5/38.png)  
+![Kuva 37.](pics/harjoitus_5/37.png)  
 *Päivitetty admin-näkymä*  
   
 
