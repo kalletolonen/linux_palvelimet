@@ -232,13 +232,13 @@ Yritin saada riville tulostumaan myös hinnan, mutta sitten objektin muokkausta 
 ![Kuva 39.](pics/harjoitus_5/39.png)  
 *Tähän asti sain returnilla palautettua objektista haluamani tiedot*  
   
-Lopetin työt n. 22.15 taukojen jälkeen.  
-  
-Aloitin työt n. 10.00.  
-  
 ![Kuva 40.](pics/harjoitus_5/40.png)  
 *Pyysin objektia palvelimelta ja tuloksena oli virheilmoitus*  
   
+Lopetin työt n. 22.15 taukojen jälkeen.  
+    
+Aloitin työt n. 10.00.  
+    
 Päätin testata toimiiko ominaisuuksien iterointi, jos kaikki attribuutit ovat samaa datatyyppiä ja loin Testing-luokan muokkaamalla models.py-tiedostoa.  
   
 ![Kuva 41.](pics/harjoitus_5/41.png)  
@@ -251,8 +251,6 @@ Rekisteröin muutokset tietokantaan ja suoritin ne komennoilla:
 Tämän lisäksi piti vielä muokata admin.py-tiedostoa komennolla:  
 *micro settle/admin.py*  
   
-*Seuraavaksi päätin muokata models.py:n __str__ arvon tilalle __init__*  
-  
 ![Kuva 42.](pics/harjoitus_5/42.png)  
 *admin.py:n uusi sisältö*  
   
@@ -262,6 +260,8 @@ Tämän lisäksi piti vielä muokata admin.py-tiedostoa komennolla:
 ![Kuva 44.](pics/harjoitus_5/44.png)  
 *Koin saman virheilmoituksen myös samantyyppisiä ominaisuuksia sisältävällä objektilla*  
   
+Kokeilin vielä __str__:n vaihtamista __init__:iin.  
+  
 ![Kuva 45.](pics/harjoitus_5/45.png)  
 *models.py:n uusi sisältö*  
   
@@ -269,18 +269,224 @@ Tämän lisäksi piti vielä muokata admin.py-tiedostoa komennolla:
 *En ollut yhtään lähempänä ongelmani ratkaisua*  
   
 Ymmärräkseni Pythonista ei riittänyt ongelman ratkaisuun, joten poistin Testing-luokan ja viittaukset siihen admin.py:stä ja tein tietokantamigraation uudestaan palatakseni alkutilanteeseen.  
-
-
-
-
+  
 Päivitän artikkelia, kun saan ongelman ratkaistua.  
   
+## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.  
+  
+Aloitin tuotantotyyppisen asennuksen tekemisen käyttämällä työohjeenani [Karvisen artikkelia](https://terokarvinen.com/2022/deploy-django/) ja tuntimuistiinpanojani.  
+  
+Päätin testata taitojani suoraan julkiseen nettiin tapahtuvalla asennuksella, joten aloitin työt ottamalla ssh-yhteyden palvelimeeni komennolla:  
+*ssh kayttajatunnus@domain*  
+  
+Asensin Microon bash-completion -lisäosan ja määritin sen vakioeditoriksi:  
+*sudo apt-get install -y micro bash-completion*  
+*export EDITOR=micro*  
+  
+![Kuva 47.](pics/harjoitus_5/47.png)  
+*Edellisen tehtävän jäljiltä minulla oli käyttäjänä tehty kotisivu*  
+  
+Poistin nykyisen public_html-kansion, joka sijaitsi kotihakemistossani:  
+*rm  -r public_html*  
+  
+Tämän jälkeen tein kotihakemistoon uuden kansion:  
+*mkdir -p publicwsgi/splitlyze/static/*  
+  
+mkdir-komennon p-parametri luo alikansiot samalla kerralla.  
+  
+Tämän jälkeen tein index.html tiedoston sisältöineen:  
+*echo "Static test page" |tee publicwsgi/splitlyze/static/index.html*  
+  
+Seuraavaksi määrittelin VirtualHostin sijainnit http- ja https-liikenteelle:  
+*sudoedit /etc/apache2/sites-available/splitlyze.conf*  
+  
+![Kuva 48.](pics/harjoitus_5/48.png)  
+*splitlyze.conf-tiedoston sisältö*  
+  
+Kytkin konfiguraatiotestiä varten edellisen konfiguraation pois päältä ja uuden päälle:  
+*sudo a2ensite splitlyze.conf*  
+*sudo a2dissite 000-defaul.conf*  
+  
+Konfiguraatio testattiin komennolla:  
+*/sbin/apache2ctl configtest*  
 
+![Kuva 49.](pics/harjoitus_5/49.png)  
+*Tuloksena oli virheilmoitus ssl-sertifikaatista ja muista asioista*  
+  
+Päätin ensin avata ssl-konfiguraatiotiedoston:  
+*sudoedit /etc/apache2/sites-enabled/000-default-le-ssl.conf*  
+  
+Tämä tuotti tulokseksi virheilmoituksen:  
+	sudoedit: /etc/apache2/sites-enabled/000-default-le-ssl.conf: editing symbolic links is not permitted  
+  
+Seuraavaksi otin kokeilun alle documentrootin korjaamisen splitlyzy.conf-tiedostoon:  
+*sudoedit /etc/apache2/sites-available/splitlyze.conf* 
+  
+[Kuva 50.](pics/harjoitus_5/50.png)  
+*splitlyze.conf-tiedoston uusi sisältö*  
+  
+Uusi yritys:  
+*/sbin/apache2ctl configtest*   
+  
+Virheilmoitukset pysyivät samoina, enkä tiennyt miksi, joten päätin kokeilla mitä käy, jos käynnistän serverin uudestaan, sillä voin aina palata edelliseen tehtävään ja tehdä kaikki toimenpiteet uudestaan päästäkseni takaisin alkupisteeseen.  
+  
+Annoin komennon:  
+*sudo systemctl restart apache2**  
+  
+[Kuva 51.](pics/harjoitus_5/51.png)  
+*Demoni käynnistyi uudestaan mukisematta*  
+  
+[Kuva 52.](pics/harjoitus_5/52.png)  
+*Domainin juurihakemistossa tuli ilmoitus puutteellisista oikeuksista*    
 
+[Kuva 53.](pics/harjoitus_5/53.png)  
+*käyttäjän kansiossa todettiin samaa*  
+  
+Sudoedit ei toiminut yllä ssl-konfiguraatiotiedoston muokkaamiseen, mutta microlla sne muokkaus onnistui:  
+*sudo micro /etc/apache2/sites-enabled/000-default-le-ssl.conf*  
+  
+[Kuva 54.](pics/harjoitus_5/54.png)  
+*Uusittu DocumentRoot-parametri*  
+  
+[Kuva 55.](pics/harjoitus_5/55.png)  
+*Tällä kertaa konfiguraatiotesti lopetti herjaamisen DocumentRootista*  
+  
+Jäljelle jäänyt virheilmoitus liittynee ssl-sertifikaattiin ja sen korjaaminen ei ole oleellista tätä tehtävää varten. Päätin kuitenkin kokeilla CertBotin ajamista manuaalisesti sertifikaatin uudistamiseksi:  
+*sudo certbot renew --dry-run*  
+  
+[Kuva 56.](pics/harjoitus_5/56.png)  
+*Kaikki on ok*  
+  
+Uskon, että viimeinen virheilmoitus korjaantuu itsestään, kun sertifikaatti seuraavan kerran uudistaa itsensä automaattisesti.  
+  
+[Kuva 57.](pics/harjoitus_5/57.png)  
+*Julkisessa netissä ssl-suojaamaton staattinen testisivu toimi oikein*  
+  
+**Virtuaaliympäristön asentaminen**  
+  
+Seuraavaksi oli aika asentaa virtuaaliympäristö:  
+*sudo apt-get install -y virtualenv*  
+  
+Siirryin haluamaani kansioon:  
+*cd publicwsgi/*  
+  
+Loin virtuaaliympäristön env-kansioon:  
+*virtualenv -p python3 --system-site-packages env*  
+  
+	--system-site-packages sallii Python-pakettien käyttämisen virtuaaliympäristön ulkopuolelta.  
+	-p python3 varmistaa, että käytössä on Pythonin oikea versio.  
+Käynnistin virtuaaliympäristön ja tarkistin, että olen ympäristön sisällä:  
+*source env/bin/activate*  
+*which pip*  
+  
+[Kuva 58.](pics/harjoitus_5/58.png)  
+*Olin oikeassa paikassa*  
+  
+Syötin requirements.txt-tiedostoon djangon:  
+*micro requirements.txt*  
 
+[Kuva 59.](pics/harjoitus_5/59).png)  
+*requirements.txt:n sisältö*  
+  
+Asennus käynnistettiin ja todennettiin komennoilla:  
+*pip install -r requirements.txt*  
+*django-admin --version*  
+  
+[Kuva 60.](pics/harjoitus_5/60).png)  
+*Django oli nyt todennetusti asennettu*  
+  
+**Projektin perustaminen**  
+
+Perustin projektin Djangolla komennolla:  
+*django-admin startproject splitlyze*  
+  
+[Kuva 61.](pics/harjoitus_5/61).png)  
+*hakemistopolku oli jo olemassa, kun orjallisesti loin sen tehtävän alussa static-sivustoa varten*  
+  
+Poistin hakemiston sisältöineen komennolla:  
+*rm -r splitlyze*  
+  
+Seuraavaksi editoin konfiguraatiotiedostoa:  
+*sudoedit /etc/apache2/sites-available/splitlyze.conf*  
+  
+[Kuva 62.](pics/harjoitus_5/62).png)  
+*Muokkasin [Karvisen pohjaan](https://terokarvinen.com/2022/deploy-django/) muuttujiin omat tietoni*  
+  
+Sitten asennettiin wsgi-modi Apacheen:  
+*sudo apt-get install -y libapache2-mod-wsgi-py3*  
+  
+Tein tuhoamani static-hakemiston ja index.html-tiedoston uudestaan:  
+*mkdir -p /home/kallet/publicwsgi/splitlyze/static*  
+*echo "Static test page 2" |tee /home/kallet/publicwsgi/splitlyze/static/index.html*  
+  
+Ajoin testin konfiguraatiooni:  
+*/sbin/apache2ctl configtest*  
+  
+[Kuva 63.](pics/harjoitus_5/63).png)  
+*Konfiguraatio toimi niin kuin ylläkin, sama ssl-virheilmoitus oli edelleen olemassa*  
+  
+Käynnistin demonin uudestaan:  
+*sudo systemctl restart apache2*  
+  
+Huomasin, että olin sössinyt jossain, sillä debugatessa muutin splitlyze.conf-hosteja takaisin aiemmin toimineisiin ja sain Apachen vakiosivun näkyviin.  
+
+[Kuva 64.](pics/harjoitus_5/64).png)  
+*Ei mennyt niin kuin piti*  
+  
+Päättelin, että jostain tuo sivu loihditann esiin ja se löytyikin /var/www/html -hakemistosta. Sitten päätin konfiguroida apachea uudestaan käyttämään oikeaa tiedostoa:  
+*sudo a2dissite splitlyze.conf*  
+*sudo a2dissite 000-default.conf*  
+*sudo a2dissite 000-default-le-ssl.conf*  
+*sudo a2ensite splitlyze.conf*  
+  
+*sudo systemctl restart apache2*  
+  
+[Kuva 65.](pics/harjoitus_5/65).png)  
+*Edelleen apache2:n vakiosivu kummitteli*  
+  
+Päätin selvittää mitä konffitiedostoja Apache2 käytti ja totesin että helpoimmalla pääsen, kun asennan koko Apachen, virtualenvin ja sertifikaatit uudestaan.  
+
+**Uusi alku**  
+  
+Aloitin poistamalla publicwsgi-kansion alihakemistoineen kotihakemistostani ja apachen [tehtävän 3](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava3.md) ohjeiden mukaan:  
+*rm -r publicwsgi*  
+*sudo service apache2 stop*  
+*sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common*  
+*sudo apt-get autoremove*  
+*whereis apache2*  
+  
+Poistin kaikki apacheen viittaavat hakemistot ja tiedostot, jotka whereis löysi.  
+  
+[Kuva 66.](pics/harjoitus_5/66).png)  
+*Demoni oli poistettu*  
+  
+Poistin myös virtualenvin komennolla:  
+*sudo apt-get purge virtualenv*  
+*whereis virtualenv*  
+*sudo rm -r whereisin tarjoamat sijainnit*  
+  
+Hain päivitykset pakettilistaan:  
+*sudo apt-get update*  
+  
+Asensin apache2-demonin:  
+*sudo apt-get install -y apache2*  
+  
+Komento ilmoitti, että apache on edelleen asennettu, joten ajoin komennot:  
+*sudo apt-get remove -y virtualenv*  
+*sudo apt-get remove -y apache2*  
+*sudo apt-get purge -y apache2*  
+*sudo apt autoremove*  
+  
+[Kuva 66.](pics/harjoitus_5/66).png)  
+*Viimein demoni oli oikeasti poistettu*  
+  
+Uusi asennus:  
+*sudo apt-get install apache2*  
+  
+Oletussivun korvaaminen oli seuraava askel:  
+*echo "Tämä tuhosi oletussivun" |sudo tee /var/www/html/index.html*  
   
 
 
 
 
-## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.
