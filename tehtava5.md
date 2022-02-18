@@ -224,11 +224,56 @@ Lopuksi muokkasin models.py:tä siten, että objektilistaus näyttäisi mukavamm
 ![Kuva 37.](pics/harjoitus_5/37.png)  
 *Muokattu models.py*  
   
-Yritin saada riville tulostumaan myös päivämäärän ja hinnan, mutta sitten objektin muokkausta yrittäessä sain virheilmoituksen tuplesta (shopName, amount ja date ovat tuple-muotoon tallennettuja) ja siten kutsuun tuli joku vika.  
-  
 ![Kuva 38.](pics/harjoitus_5/38.png)  
 *Päivitetty admin-näkymä*  
   
+Yritin saada riville tulostumaan myös hinnan, mutta sitten objektin muokkausta yrittäessä sain virheilmoituksen tuplesta (shopName, amount ja date lienevät tuple-muotoon tallennettuja) ja objektia kutsuttaessa saatiin aikaiseksi virheilmoitus.  
+  
+![Kuva 39.](pics/harjoitus_5/39.png)  
+*Tähän asti sain returnilla palautettua objektista haluamani tiedot*  
+  
+Lopetin työt n. 22.15 taukojen jälkeen.  
+  
+Aloitin työt n. 10.00.  
+  
+![Kuva 40.](pics/harjoitus_5/40.png)  
+*Pyysin objektia palvelimelta ja tuloksena oli virheilmoitus*  
+  
+Päätin testata toimiiko ominaisuuksien iterointi, jos kaikki attribuutit ovat samaa datatyyppiä ja loin Testing-luokan muokkaamalla models.py-tiedostoa.  
+  
+![Kuva 41.](pics/harjoitus_5/41.png)  
+*Uusi models.py:n sisältö*  
+  
+Rekisteröin muutokset tietokantaan ja suoritin ne komennoilla:  
+*./manage.py makemigrations*  
+*./manage.py migrate*  
+  
+Tämän lisäksi piti vielä muokata admin.py-tiedostoa komennolla:  
+*micro settle/admin.py*  
+  
+![Kuva 42.](pics/harjoitus_5/42.png)  
+*admin.py:n uusi sisältö*  
+  
+![Kuva 43.](pics/harjoitus_5/43.png)  
+*admin-konsolin näkymässä pyytämäni tiedot tulostuivat*  
+  
+![Kuva 44.](pics/harjoitus_5/44.png)  
+*Koin saman virheilmoituksen myös samantyyppisiä ominaisuuksia sisältävällä objektilla*  
+  
+![Kuva 45.](pics/harjoitus_5/45.png)  
+*models.py:n uusi sisältö*  
+  
+![Kuva 46.](pics/harjoitus_5/46.png)  
+*En ollut yhtään lähempänä ongelmani ratkaisua*  
+  
+Ymmärräkseni Pythonista ei riittänyt ongelman ratkaisuun, joten poistin Testing-luokan ja viittaukset siihen admin.py:stä ja tein tietokantamigraation uudestaan palatakseni alkutilanteeseen.  
+
+
+
+
+Päivitän artikkelia, kun saan ongelman ratkaistua.  
+  
+
 
 
   
