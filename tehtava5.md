@@ -563,9 +563,96 @@ Tuhosin serverin Digital Oceanissa ja tein sen uudestaan kuvaavalla hostnamella.
 [Kuva 74.](pics/harjoitus_5/74.png)  
 *Jatkoin töitä tabula rasa -tilanteesta, jossa minulla oli tyhjä droplet pilvessä ja vain ssh-yhteydet päällä palomuurista*  
   
+Ensin asensin micron:  
+  
 ````
 $ sudo apt-get -y install micro bash-completion
 $ export EDITOR=micro
 ````
   
 Lopetin työt 19.59.
+  
+Aloitin työt seuraavana päivänä 12.41.  
+  
+Sitten oli vuorossa Apache2-asennus:  
+*sudo apt-get install -y apache2*  
+  
+[Kuva 75.](pics/harjoitus_5/75.png)  
+*Varmensin asennuksen onnistumisen: "curl localhost"-komennolla*  
+  
+Korvasin oletussivun:  
+*echo "Tämä on uusi oletussivu"|sudo tee /var/www/html/index.html*  
+  
+[Kuva 76.](pics/harjoitus_5/76.png)  
+*Oletussivun korvaantumisen testasin curlilla*  
+  
+Tein saattisille sivuille hakemiston ja index.html-tiedoston:  
+*mkdir -p publicwsgi/splitlyze/static/*  
+*echo "Tämä on staattinen sivu" |tee publicwsgi/splitlyze/static/index.hmtl*  
+  
+[Kuva 77.](pics/harjoitus_5/77.png)  
+*Tiedoston sisältö tulostettuna*  
+  
+Tämän jälkeen tein virtualhost-tiedoston:  
+*sudo nano /etc/apache2/sites-available/splitlyze.conf*  
+-Käytin nanoa, sillä windowsin leikepöydästä ei voi liittää microon.  
+  
+**Tiedoston sisältö**
+````
+<VirtualHost *:80>
+        Alias /static/ /home/kallet/publicwsgi/splitlyze/static/
+        <Directory /home/kallet/publicwsgi/splitlyze/static/>
+                Require all granted
+        </Directory>
+</VirtualHost>
+````
+  
+Vaihdoin apachen käyttöön tekemäni asetustiedoston:  
+*sudo a2ensite splitlyze.conf*  
+*sudo a2dissite 000-default.conf*  
+  
+Testasin asetusten kelvolllisuuden:  
+*/sbin/apache2ctl configtest*  
+  
+[Kuva 78.](pics/harjoitus_5/78.png)  
+*Asetuksista tuli odotetun kaltainen virheilmoitus*  
+  
+Käynnistin demonin uudestaan:  
+*sudo systemctl restart apache2*  
+  
+Kokeiltuani monia epäloogisia asioita muistin että olin jättänyt palomuuriin avaamatta aukon, joten tein sen:  
+*sudo ufw allow 80/tcp*  
+  
+Tämä ei auttanut, mutta huomasin, että olin nimennyt staattisen hakemistoni tiedoston hmtl-tiedostopäättellä, joten muutin sen ja käynnistin demonin uudestaan:  
+*mv index.hmtl index.html*  
+  
+Ainoa virheilmoitus, joka kertoi että jokin ei toimi oli:  
+[Kuva 79.](pics/harjoitus_5/79.png)  
+  
+Päätin katsoa vielä logit, jos niistä olisi jotain iloa:  
+[Kuva 80.](pics/harjoitus_5/80.png)  
+  
+[Googlaamalla selvisi](https://cwiki.apache.org/confluence/display/httpd/ClientDeniedByServerConfiguration), että kyseessä on Require all granted -parametriin liittyvä virhe, joten tarkistin mitä conf-tiedostoa demoni käytti:  
+*sudo a2query -s*  
+  
+[Kuva 81.](pics/harjoitus_5/81.png)  
+*000-default oli käytössä*  
+  
+Otin sen pois käytöstä ja käynnistin demonin uudella tiedostolla komennoilla:  
+*sudo a2dissite konfiguraatiotiedosto*  
+*sudo a2ensite konfiguraatiotiedosto*  
+*sudo systemctl restart apache2*  
+  
+Muokkasin vielä kerran splitlyze.conf tiedostoa:  
+*sudo micro /etc/apache2/sites-available/splitlyze.conf*  
+  
+[Kuva 81.](pics/harjoitus_5/81.png)  
+*Uusi sisältö*  
+  
+Minulla oli luultavasti ajatusvirhe ja testasin aivan väärää osoitetta ylempänä, mutta tulipahan tehtyä serverin pystyttäminen uudemman kerran. Oikea testiosoite curl:lle olisi ollut "localhost/static", ei "localhost" tai "localhost/tunnus".  
+  
+[Kuva 82.](pics/harjoitus_5/82.png)  
+*Toimiva curl-testi*  
+
+Lopetin työt 20.35 ja päätin tehdä tehtävän loppuun seuraavana päivänä, nyt kun olin ratkaissut yhden ongelman.  
+  
