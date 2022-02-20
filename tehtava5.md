@@ -646,13 +646,272 @@ Otin sen pois käytöstä ja käynnistin demonin uudella tiedostolla komennoilla
 Muokkasin vielä kerran splitlyze.conf tiedostoa:  
 *sudo micro /etc/apache2/sites-available/splitlyze.conf*  
   
-[Kuva 81.](pics/harjoitus_5/81.png)  
+[Kuva 82.](pics/harjoitus_5/82.png)  
 *Uusi sisältö*  
   
 Minulla oli luultavasti ajatusvirhe ja testasin aivan väärää osoitetta ylempänä, mutta tulipahan tehtyä serverin pystyttäminen uudemman kerran. Oikea testiosoite curl:lle olisi ollut "localhost/static", ei "localhost" tai "localhost/tunnus".  
   
-[Kuva 82.](pics/harjoitus_5/82.png)  
+[Kuva 83.](pics/harjoitus_5/83.png)  
 *Toimiva curl-testi*  
 
 Lopetin työt 20.35 ja päätin tehdä tehtävän loppuun seuraavana päivänä, nyt kun olin ratkaissut yhden ongelman.  
   
+Aloitin työt 15.29.  
+  
+**Djangon asennus VirtaulEnviin - uusi yritys**  
+  
+Aloitin asentamalla virtualenvin:  
+*sudo apt-get update*  
+*sudo apt-get install -y virtualenv*  
+  
+Seraavaksi siirryin aiemmin luomaani publicwsgi-kansioon ja loins sinne virtuaaliympäristön Pythonille env-kansioon:  
+*cd  publicwsgi*  
+*virtualenv -p python3 --system-site-packages env*  
+  
+**Django**  
+  
+Aktivoin virtuaaliympäristön ja tarkistin missä olen:  
+*source env/bin/activate*  
+*which pip*  
+  
+[Kuva 84.](pics/harjoitus_5/84.png)  
+*Olin jälleen oikeassa sijainnissa*  
+    
+Tein requirements.txt-tiedoston vaadittuja ohjelmia varten, syötin sinne djangon ja asensin tiedoston sisältämät ohjelmat:  
+*echo "django" |tee requirements.txt*  
+*pip install -r requirements.txt*  
+  
+[Kuva 85.](pics/harjoitus_5/85.png)  
+*Asennus onnistui*  
+  
+Tarkistin vielä Djangon version:  
+*django-admin --version*  
+  
+[Kuva 86.](pics/harjoitus_5/86.png)  
+*Versio oli oikea*  
+  
+**Uuden projektin perustaminen**  
+  
+Django ei sellaisenaan suostu aloittamaan uutta projektia jo olemassaolevaan hakemistoon, joten [etsin ohjeet](https://automationpanda.com/2018/02/06/starting-a-django-project-in-an-existing-directory/) miten se tehdään ja toimin niiden mukaisesti:  
+*django-admin startproject splitlyze .*  
+  
+[Kuva 87.](pics/harjoitus_5/87.png)  
+*Näin luotiin projekti jo olemassaolevaan kansioon*  
+  
+**Pythonin ja Apachen yhdistäminen mod_wsgi:llä**  
+  
+Tätä varten tarvittiin kolme hakemistopolkua:  
+1. Projektin pääkansio: **/home/kallet/publicwsgi/splitlyze**  
+2. wsgi.py-tiedoston sijainti: **/home/kallet/publicwsgi/splitlyze/wsgi.py**  
+3. Virtualenvin site-packages -hakemisto:  **/home/kallet/publicwsgi/env/lib/python3.9/site-packages/**  
+  
+Lisäksi tein sudo-ryhmään kuulumattoman käyttäjän ajamaan python-koodia:  
+*sudo adduser djangousr*  
+  
+Tämän jälkeen editoin ylläolevat hakemistopolut splitlyze.conf-tiedostoon [Karvisen ohjeen](https://terokarvinen.com/2022/deploy-django/) mukaisesti:  
+*sudo nano /etc/apache2/sites-available/splitlyze.conf*  
+  
+[Kuva 88.](pics/harjoitus_5/88.png)  
+*Osa splitlyze.conf-tiedoston uudesta sisällöstä*  
+  
+Seuraavaksi asensin wsgi-moduulin Apacheen ja tarkistin conf-tiedoston oikeellisuuden:  
+*sudo apt-get install -y libapache2-mod-wsgi-py3*  
+*/sbin/apache2ctl configtest*  
+  
+[Kuva 89.](pics/harjoitus_5/89.png)  
+*Testi ok*  
+  
+Käynnistin demonin uudestaan ja tarkistin toimivuuden:  
+*/sbin/apache2ctl configtest*  
+*sudo systemctl restart apache2*  
+  
+[Kuva 90.](pics/harjoitus_5/90.png)  
+*Ei onnistunut*  
+  
+Päätin kokeilla kallet-käyttäjän syöttämistä conf-tiedostoon, testiä ja uudelleenkäynnistämistä:  
+*sudo nano /etc/apache2/sites-available/splitlyze.conf*  
+*/sbin/apache2ctl configtest*  
+*sudo systemctl restart apache2*  
+  
+[Kuva 91.](pics/harjoitus_5/91.png)  
+*Uusi sisältö splitlyze.conf-tiedostossa*  
+  
+Tämä ei auttanut, joten tutkin lokitiedostoja:  
+*sudo cat /var/log/apache2/error.log*  
+  
+[Kuva 92.](pics/harjoitus_5/92.png)  
+*Tästä päättelin, että jokin on mennyt pieleen moduulia luodessa, joten päätin poistaa projektin ja sen kansiot, sekä tehdä ensin projektin ja vasta sen jälkeen static-kansion sisältöineen*  
+  
+Etsin tietoa ja [sen perusteella](https://stackoverflow.com/questions/11391424/how-to-delete-project-in-django) päättelin, että pelkkä projektikansion poistaminen on riittävä toimenpide, kun käytössä on Djangon vakioasetuksena oleva SQLite-tietokanta (muistikuva Karvisen tuntiluennolta):  
+*sudo rm -r splitlyze*  
+  
+[Kuva 93.](pics/harjoitus_5/93.png)  
+*Poistin projektikansion*  
+  
+Loin projektin uudestaan ja tein static-kansion, sekä sinne index.htmk-tiedoston:  
+*django-admin startproject splitlyze*  
+*mkdir /splitlyze/static/*  
+*echo "moi" |tee splitlyze/static/index.html*  
+  
+[Kuva 94.](pics/harjoitus_5/94.png)  
+*Luomistyön lopputulos*  
+  
+Edellisestä yrityksestä oli luonnollisesti vielä jäljellä conf-tiedosto, jota editoin hieman palauttamalla djangousr-käyttäjän käyttäjäksi ja korjaamalla wsgi-hakemistopolun:  
+*sudo nano /etc/apache2/sites-available/splitlyze.conf*  
+  
+[Kuva 95.](pics/harjoitus_5/95.png)  
+*Uusi sisältö splitlyze.conf-tiedostossa*  
+  
+Testasin muutokseni:  
+*/sbin/apache2ctl configtest*  
+*sudo systemctl restart apache2*  
+*curl localhost*  
+  
+Varmistin vielä lupaavan tulokseni:  
+*curl localhost |grep title*  
+*curl localhost -sI*  
+  
+[Kuva 96.](pics/harjoitus_5/96.png)  
+*sI-parametri kertoi serverinfon.*  
+  
+Lopetin työt 16.50.  
+  
+Aloitin työt 18.52.  
+  
+[Kuva 97.](pics/harjoitus_5/97.png)  
+*Julkisessa netissä palvelin tuotti edelleen virheilmoituksen*  
+  
+Tarkistin virhelokin:  
+*sudo cat /var/log/apache2/error.log*  
+
+[Kuva 98.](pics/harjoitus_5/98.png)  
+*Lokitiedoston virhe*  
+  
+	Jatkoin kuitenkin ensin Karvisen artikkelin loppukohtien mukaan, jos virhe vaikka korjaantuisi niillä. Artikkeli ei varsinaisesti käsittele julkisessa netissä olevaa palvelinta, joten sellaisenaan se vaatinee soveltamista.  
+  
+**DEBUG pois käytöstä**  
+  
+Serverin DEBUG-toiminnon irtikytkentä oli seuraavana vuorossa:  
+*micro splitlyze/settings.py*  
+  
+[Kuva 99.](pics/harjoitus_5/99.png)  
+*DEBUG-parametriin tehtiin muutos*  
+  
+Samalla muokkasin myös samaan tiedostoon ALLOWED_HOSTS-parametriin oman domainini ja localhostin.  
+  
+[Kuva 100.](pics/harjoitus_5/100.png)  
+*Muokattu parametri*  
+  
+Toin muutokset voimaan päivittämällä wsgi.py-tiedoston, testaamalla ja käynnistämällä serverin uudestaan:  
+*touch wsgi.py*  
+*/sbin/apache2ctl configtest*  
+*sudo systemctl restart apache2*  
+  
+[Kuva 101.](pics/harjoitus_5/101.png)  
+*Configtest ei ilmoittanut uusia virheilmoituksia*  
+  
+Testasin localhostin:  
+*curl localhost*  
+  
+[Kuva 102.](pics/harjoitus_5/102.png)  
+*Localhost palautti odotetun kaltaisen sivun*  
+  
+Muokkasin settings.py:n ALLOWED_HOSTS-parametriin uudestaan serverini ip:n [löytämäni artikkelin](https://www.howtoforge.com/how-to-install-and-configure-django-on-debian-10/) perusteella, päivitin wsgi.py:n ja käynnistin demonin uudestaan samalla tavalla kuin yllä.  
+  
+[Kuva 103.](pics/harjoitus_5/103.png)  
+*Muokattu ALLOWED_HOSTS-parametri*  
+  
+[Kuva 104.](pics/harjoitus_5/104.png)  
+*Julkisessa netissä oli admin-konsolin login näkyvissä*   
+  
+Lisäsin settings.py-tiedostoon vielä domainini, jotta en tarvitsisi ip-osoitetta admin-konsoliin kirjautuessani. Päivitin wsgi.py:n ja käynnistin demonin uudestaan kuten yllä.
+  
+[Kuva 105.](pics/harjoitus_5/105.png)  
+*Muokattu ALLOWED_HOSTS-parametri*  
+  
+[Kuva 106.](pics/harjoitus_5/106.png)  
+*Nyt kirjautumisikkuna oli myös domainin kautta saatavilla*  
+  
+**Superuserin tekeminen ja tyylisivujen asentaminen**  
+  
+Käynnistin virtuaaliympäristön publicwsgi-kansiosta ja loin superkäyttäjän konsolia varten:  
+*source env/bin/activate*  
+*./manage.py createsuperuser*  
+  
+[Kuva 107.](pics/harjoitus_5/107.png)  
+*Virheilmoitus valitti puuttuvasta settings.tiedostosta*  
+  
+Tutkin asiaa tarkemmin ja minulla oli 2 eri manage.py-tiedostoa, joten päätin kokeilla komennon ajamista uudestaan toisesta kansiosta ja katsoa mitä saisin lopputulokseksi.  
+  
+[Kuva 108).](pics/harjoitus_5/108.png)  
+*Kaksi erillistä manage.py-tiedostoa*  
+  
+	Sain kuintenkin kasan virheilmoituksia ja päättelin ruutukaappauksistani, että en ollut tehnyt kaikkia toimiani virtuaaliympäristön sisällä ja siten olin ehkä tullut tietämättäni sössineeksi jotain. Poistin siis jälleen koko projektini ja kotihakemistoni publicwsgi-kansiossa olleen manage.py-tiedoston.  
+	  
+[Kuva 109.](pics/harjoitus_5/109.png)  
+*Kaikki on jälleen poistettu*  
+  
+Perustin projektin uudestaan:  
+*source env/bin/activate*  
+*django-admin startproject splitlyze*  
+  
+Conf-tiedostot olivat edelleen samat kuin yllä, joten testasin localhostin suoraan:  
+*curl localhost |grep title*  
+*curl -sI localhost |grep Server*  
+  
+[Kuva 110.](pics/harjoitus_5/110.png)  
+*Toimi kuten pitikin*  
+  
+Muokkasin DEBUG- ja ALLOWED_HOSTS-parametrejä:  
+* micro splitlyze/splitlyze/settings.py*  
+  
+[Kuva 111.](pics/harjoitus_5/111.png)  
+*Muokatun tiedoston muokatut kohdat*  
+  
+Kokeilin ajaa createsuperuser -komentoa ja sain virheilmoituksen:  
+*return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: auth_user*  
+  
+Virheilmoitus oli erilainen kuin edellisellä kerralla, joten päättelin siitä, että tietokantamigraatiot olivat tekemättä ja ne tekemällä pääsisin eteenpäin.  
+  
+Ajoin komennot:  
+*./manage.py makemigrations*  
+*./manage.py migrate*  
+*./manage.py createsuperuser*  
+  
+[Kuva 113.](pics/harjoitus_5/113.png)  
+*Lopputuloksena oli onnistunut superuserin luominen!*  
+  
+Tein taas wsgi.py:n päivittämisen ja demonin uudelleenkäynnistämisen, jonka jälkeen sain selaimesta virheilmoituksen.  
+  
+[Kuva 112.](pics/harjoitus_5/112.png)  
+*So close, but no cigar*  
+  
+Tutkin virhelokia:  
+*sudo cat /var/log/apache2/error.log*  
+  
+Viimeisenä merkintänä oli paljon kuvaava virhe, joka muistutti minua, että en ollut tehnyt static-kansiota, vaikka sellainen oli asetuksissa määriteltynä:  
+*30: client denied by server configuration: /home/kallet/publicwsgi/splitlyze/static, referer: http://kalletolonen.me/admin/login/?next=/admin/*  
+  
+[Kuva 114.](pics/harjoitus_5/114.png)  
+*Tein static-kansion ja sinne index.html-tiedoston*  
+  
+En päässyt puusta pitkään ja selasin Karvisen artikkelin Debug-kohtaan, jossa oli maininta juuri tästä spesifistä virheestäni:  
+*AH01630: client denied by server configuration*
+  
+Tarkistin hakemistopolun splitlyze.conf-tiedostosta ja se oli oikein.  
+  
+Seuraavaksi tarkastin käyttöoikeudet kansioihin ja tiedostoihin:  
+	ls -ld /home/kallet/ /home/kallet/publicwsgi/ /home/kallet/publicwsgi/static/ /home/kallet/publicwsgi/static/index.html
+  
+[Kuva 115.](pics/harjoitus_5/115.png)  
+*Käyttöoikeudet näyttivät tältä*  
+
+Käyttöoikeudet lienivät syynä epäonnistumiseeni, sillä asetuksissa olin määrittänyt djangousr-käyttäjän käyttämään serveriä, eikä sillä välttämättä ollut oikeuksia näihin hakemistoihin ja tiedostoihin.  
+  
+Lopetin työt 21.22.  
+  
+Aloitin työt  
+  
+Perehdyin chmodin manuaaliin:  
+*chmod manual*  
