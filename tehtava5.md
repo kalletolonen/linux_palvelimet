@@ -911,7 +911,96 @@ Käyttöoikeudet lienivät syynä epäonnistumiseeni, sillä asetuksissa olin m�
   
 Lopetin työt 21.22.  
   
-Aloitin työt  
+Aloitin työt 11.13.  
   
 Perehdyin chmodin manuaaliin:  
-*chmod manual*  
+*man chmod*  
+  
+Hakemistoihin täytyy [Karvisen artikkelin](https://terokarvinen.com/2022/deploy-django/) mukaan antaa x-oikeudet (execute) käyttäjälle ja tiedostoon (index.html) lukuoikeus.  
+  
+[Kuva 116.](pics/harjoitus_5/116.png)  
+*Käyttöoikeuden muuttamisen parametri oli manuaalin mukaan "-c"*  
+  
+Manuaali oli hieman kryptinen. Päättelin että komento voisi olla muotoa:  
+*chmod o+c jotain*  
+  
+[Kuva 117.](pics/harjoitus_5/117.png)  
+*Manuaali ei ollut avulias - todennäköisesti kyseessä on  [PEBCAK](https://en.wiktionary.org/wiki/PEBCAK)*  
+  
+Totesin, että on parempi etsiä soveltava esimerkki, jossa komentoa oikeasti käytetetään ja syntaksin näkee todellisuudessa. [Löysin esimerkin](https://programwithus.com/learn/django/deploying-django-web-app), jossa komentoa käytetään Djangon kontekstissa ja tutustuin siihen.  
+  
+**Suora lainaus lähteestä**
+````
+Add User Permissions
+
+Add User Permissions (to modify sqlite3 Database). sudo chown is a command to change the ownership of a file/folder at a time to a specified user. CHOWN stands for CHange file OWNer. sudo chmod 755 filename command - you allow everyone to read and execute the file, and the file owner is allowed to write to the file as well. sudo chmod 777 means making the file readable, writable and executable by everyone.
+
+sudo adduser $USER www-data
+
+sudo chown www-data:www-data
+/var/www/env/your_folder_from_github/your_project/
+
+sudo chown www-data:www-data
+/var/www/env/your_folder_from_github/your_project/db.sqlite3
+
+sudo chmod -R 775
+/var/www/env/your_folder_from_github/your_project
+
+sudo chmod 777
+/var/www/env/your_folder_from_github/your_project/media/your_folder_for_images/ 
+````
+
+Tämäkään lähde ei kertonut mitään ls-tulosteesta, jonka ymmärtäminen oli mielestäi käyttöoikeuksien ytimessä - en voi muuttaa jotain, jos en tiedä mitä teen.  
+  
+Seuraava lähde oli [ls-komennosta](https://detailed.wordpress.com/2017/10/28/understanding-ls-command-output/).  
+  
+[Kuva 118.](pics/harjoitus_5/118.png)  
+*Tämä sivu oli mielestäni selkeämpi lähde oikeuksiin, koska se selitti tulostetta*  
+  
+Ensimmäiset yhdeksän merkkiä rivistä kertovat siis omistajan, ryhmän ja muiden käyttöoikeudet (read, write, execute). Ylläolevaan, toiseen [käyttöoikeuslähteeseen](https://docs.nersc.gov/filesystems/unix-file-permissions/) ja kolmanteen [lähteeseen](https://www.thegeekstuff.com/2010/06/chmod-command-examples/)  peilattuna pystyin Karvisen ohjeiden mukaan tekemään chmod-asetukset:  
+````
+sudo adduser djangousr www-data #lisää djangousr-käyttäjän www-data-ryhmään
+sudo chown kallet:www-data /home/kallet/ #vaihtaa kallet-kotihakemiston ryhmäksi www-datan
+sudo chmod g+x /home/kallet/ #antaa www-data-ryhmälle execute-oikeudet ko. hakemistoon 
+
+#Hakemistoissa oli jo kaikissa ryhmällä oikeudet "oikein", joten en muuttanut niitä enempää. Lisäsin djangousr-käyttäjän myös muiden tiedostojen ryhmään komennoilla:  
+  
+sudo chown kallet:www-data /home/kallet/publicwsgi/
+sudo chown kallet:www-data /home/kallet/publicwsgi/static/  
+sudo chown kallet:www-data /home/kallet/publicwsgi/static/index.html
+
+````
+  
+Tarkistin käyttöoikeudet komennolla:  
+*ls -ld /home/kallet/ /home/kallet/publicwsgi/ /home/kallet/publicwsgi/static/ /home/kallet/publicwsgi/static/index.html*  
+  
+[Kuva 119.](pics/harjoitus_5/119.png)  
+*Käyttöoikeuksien uusi muoto*  
+  
+Sitten päivitin wsgi.py:n ja käynnistin demonin uudelleen:  
+*touch splitlyze/splitlyze/wsgi.py*  
+*sudo systemctl restart apache2*  
+  
+[Kuva 120.](pics/harjoitus_5/120.png)  
+Lopputuloksena oli se, että en enää pystynyt edes lukemaan static-kansiota.  
+  
+Totesin olevani hukassa ja lähdin googlaamaan.  
+  
+Puoli tuntia etsittyäni en ollut yhtään viisaampi ja päätin pyrkiä takaisin alkutilanteeseen, jossa sain edes konsolin sisäänkirjautumisikkunan ja staattisen sivun latautumaan.  
+  
+Muutin käyttöoikeudet takaisin kallet-käyttäjälle ja poistin djangousr-käyttäjän www-data-ryhmästä:  
+*sudo chown kallet:kallet -R /home/kallet/*  
+*sudo gpasswd -d djangousr www-data*  
+  
+En saanut enää avattua access.logia Apachesta, vaikka error.log avautui. Access.log oli tyhjä jostain syystä. 
+  
+[Kuva 120.](pics/harjoitus_5/120.png)  
+*Kirjoitin access.logiin jotain, jotta selviäisi voiko edes sudolla sinne kirjoittaa*  
+  
+Päätin jälleen kerran laittaa koko serverin sileäksi ja aloittaa alusta, sillä vianetsintään oli käytetty jumalaton määrä aikaa.  
+  
+Lopetin työt 13.58.  
+    
+**Fenix**  
+  
+
