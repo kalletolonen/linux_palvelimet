@@ -1107,4 +1107,156 @@ Testin tuloksena tulostui: Server: Apache/2.4.52 (Debian)
 [Kuva 130.](pics/harjoitus_5/130.png)  
 *Pääsin julkisesta netistä lukemaan index.html:n static-kansiosta ja Djangon konsolin kirjautumisnäkymään*  
   
-Lopetin työt 16.04.
+Lopetin työt 16.04.  
+  
+**Käyttäjän muuttaminen**  
+  
+Aloitin työt 17.57.  
+  
+Kokeilin seuraavaksi mitä tapahtuisi, jos vaihtaisin splitting.conf-tiedostoon käyttäjäksi djusr-käyttäjän.  
+  
+[Kuva 131.](pics/harjoitus_5/131.png)  
+*Tiedoston uusi sisältö (osa puuttuu lopusta)*  
+  
+[Kuva 132.](pics/harjoitus_5/132.png)  
+*Päivitin wsgi-tiedoston*  
+  
+Lopuksi tarkistin asetusten paikkansapitävyyden ja käynnistin serverin uudestaan:  
+*/sbin/apache2ctl configtest*  
+*sudo systemctl restart apache2*  
+  
+[Kuva 133.](pics/harjoitus_5/133.png)  
+*Admin-konsoli tuli näkyviin, samoin static-kansion index.html*  
+  
+**Uuden Django-käyttäjän luominen**  
+  
+Seuraavaksi oli vuorossa superuserin luominen, jotta konsolia olisi mahdolista käyttää.  
+  
+1. *cd ..* #Siirryin publicwsgi-kansioon  
+2. *source env/bin/activate* #Komento otti virtuaaliympäristön käyttöön  
+3. *cd splitting* #Siirryin ohjelmani alakansioon  
+4. *./manage.py makemigrations* #Käsky teki tietokantamuutokset
+5. *./manage.py migrate* #Käsky toteutti tietokantamuutokset  
+6. *./manage.py createsuperuser* #Loi superuserin  
+  
+[Kuva 134.](pics/harjoitus_5/134.png)  
+*Superuserin luominen onnistui*  
+  
+[Kuva 135.](pics/harjoitus_5/135.png)  
+*Tuloksena oli kuitenkin virhe kirjautuessa*  
+  
+Päätin tutkia error.log-tiedoston:  
+*sudo tail -10 /var/log/apache2/error.log*  
+  
+Käynnistin myös demonin uudestaan, mutta virheilmoitus oli edelleen sama.  
+  
+[Kuva 136.](pics/harjoitus_5/136.png)  
+*Lokitiedostoihin ei kertynyt julkisesta netistä tulevia pyyntöjä, vaikka sivut tuotettiin selaimeen*  
+  
+[Kuva 137.](pics/harjoitus_5/137.png)    
+*Kokeilin splitlyze.conf-tiedostoon käyttäjän vaihtamista kalle-käyttäjäksi, sen jälkeen pääsin kirjautumaan konsoliin!*  
+  
+[Kuva 138.](pics/harjoitus_5/138.png)  
+*Nyt onnistuin myös luomaan konsolista uuden käyttäjän*  
+  
+Tästä päättelin että minulla on 2 ongelmaa: Apachen logien puuttuminen ja djangousr-käyttäjän käyttöoikeudet projektihakemistoihin.  
+  
+[Kuva 139.](pics/harjoitus_5/139.png)  
+*Myös logout-toiminto toimi kuten pitikin*  
+  
+**djangousr-ongelma**  
+  
+1. *ls -ld /home/kalle/ /home/kalle/publicwsgi/ home/kalle/publicwsgi/splitting/static/ /home/kalle/publicwsgi/splitting/static/index.html* #Komento listasi hakemistojen ja tiedoston käyttöoikeudet  
+  
+[Kuva 140.](pics/harjoitus_5/140.png)  
+*Listaus käyttöoikeuksista*  
+  
+Kokeilin muuttaa kaikki listauksen kansiot Apachen ryhmään, jossa se [suorittaa toimintaansa](https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-debian-8) (www-data):  
+*sudo chown -R tiedostot ja hakemistot*  
+  
+[Kuva 141.](pics/harjoitus_5/141.png)  
+*Uudet käyttöoikeudet näyttivät tältä*  
+  
+Tein välikokeilun päivittämällä wsgi.py:n ja käynnistämällä demonin uudestaan.  
+  
+Tuloksena oli Server Error 500, jota en päässyt katsomaan lokeista, koska Apache ei niitä tehnyt.  
+  
+Päätin vielä kokeilla djusr-käyttäjän siirtämistä www-data -ryhmään:  
+*sudo usermod -a -G www-data djusr*  
+  
+Seuraavaksi oli vuorossa sama uudelleenkäynnistysrutiini ja uusi yritys selaimessa, jonka tuloksena oli edelleen sama Server Error 500.  
+  
+Poistin käyttäjän ryhmästä ja muutin kansioideni ryhmäasetukset:  
+ *sudo gpasswd -d djusr www-data*  
+  
+Tarkistin vielä konsolin toimivuuden, kun vaihdoin kalle-käyttäjän takaisin splitlyze.cong-tiedostoon. Se toimi edelleen, joten olin onnistunut korjaamaan tekemäni tuhot.  
+  
+**Apachen lokiongelma**  
+  
+Sain pythonin logittamaan jotain, kun lisäsin settings.py-tiedostoon [seuraavan koodinpätkän](https://stackoverflow.com/questions/51991428/not-seeing-my-log-messages-django-apache-mod-wsgi):  
+  
+````
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/kalle/debug.log',
+        },
+        'your_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/kalle/debug2.log'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'your_logger': {
+            'handlers': ['your_handler'],
+            'level': 'DEBUG',
+            'propagate': True
+        }
+    },
+}
+````  
+  
+Oli siis aika vaihtaa käyttäjä taas toiseen ja kokeilla saisinko virheestä serverin puolelta informatiivisemman lokimerkinnän. Käynnistin demonin uudestaan vaihdettuani splitting.conf-tiedostoon djurs-käyttäjän parametriksi.  
+  
+[Kuva 142.](pics/harjoitus_5/142.png)  
+*Virheloki ei kertonut ymmärrykseni mukaan mitään serverin asioista, vaan ainoastaan pythonista*  
+  
+Vaihdoin käyttäjän takaisin kalle-käyttäjään ja testasin, että kirjautuminen toimii sillä.  
+  
+Googlaamalla ja onnella löysin lokitiedoston:  
+*sudo cat /var/log/apache2/other_vhosts_access.log*  
+  
+[Kuva 143.](pics/harjoitus_5/143.png)  
+*Tästäkään lokitiedostosta en tullut juuri viisaammaksi*  
+  
+Päätin muuttaa djusr-käyttäjän user-käyttäjäksi kaikkiin hakemistoihin, joilla oli merkitystä projektille. 
+````
+sudo chown djusr:kalle /home/kalle/ /home/kalle/publicwsgi/ /home/kalle/publicwsgi/splitting/static/ /home/
+kalle/publicwsgi/splitting/static/index.html
+````
+  
+[Kuva 144.](pics/harjoitus_5/144.png)  
+*Uudet käyttöoikeudet*  
+  
+Buuttasin demonin ja kokeilin selaimessa lopputulosta - virheilmoitukset eivät muuttuneet.  
+  
+Vaihdoin käyttäjän takaisin splitting.conf-tiedostoon ja kokeilin toimiiko se edelleen. Tämä toimi edelleen, joten muutin käyttöoikeudet takaisin alkupisteeseensä ja päätin tiedustella asiaa tunnilla.  
+  
+Lopetin työt 19.59.
+  
+
+  
+
+
+
