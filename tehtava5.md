@@ -994,7 +994,7 @@ Muutin käyttöoikeudet takaisin kallet-käyttäjälle ja poistin djangousr-käy
   
 En saanut enää avattua access.logia Apachesta, vaikka error.log avautui. Access.log oli tyhjä jostain syystä. 
   
-[Kuva 120.](pics/harjoitus_5/120.png)  
+[Kuva 121.](pics/harjoitus_5/121.png)  
 *Kirjoitin access.logiin jotain, jotta selviäisi voiko edes sudolla sinne kirjoittaa*  
   
 Päätin jälleen kerran laittaa koko serverin sileäksi ja aloittaa alusta, sillä vianetsintään oli käytetty jumalaton määrä aikaa.  
@@ -1003,4 +1003,108 @@ Lopetin työt 13.58.
     
 **Fenix**  
   
-
+Aloitin työt 14.31.  
+  
+1. Tuhosin dropletin Digital Oceanissa  
+2. Loin uuden dropletin halvimmilla asetuksilla ja Debianilla  
+3. Kirjauduin sisään ssh:lla  
+4. Laitoin palomuurin päälle ja jätin vain portin 22/ssh auki  
+5. Loin uuden käyttäjän sudo-oikeuksilla ja lisäsin sudo-ryhmään
+6. Kirjauduin ulos root-käyttäjän tunnuksilta  
+7. Kirjauduin sisään uudella käyttäjällä  
+8. Disabloin root-tunnukset  
+9. Tein publicwsgi-kansion kotihakemistooni
+  
+**Apachen asennus**  
+  
+1. sudo apt-get -y install apache2 #demonin asennus  
+2. curl localhost |grep title #asennuksen onnistumisen tarkistaminen  
+  
+[Kuva 122.](pics/harjoitus_5/122.png)  
+*Oletussivu pyöri localhostissa*  
+  
+3. echo "Korvattu oletussivu." |sudo tee /var/www/html/index.html #vakiosivun korvaaminen  
+4. sudoedit /etc/apache2/sites-available/splitting.conf  #uusi konffitiedosto Apachelle  
+  
+````
+<VirtualHost *:80>
+	Alias /static/ /home/kalle/publicwsgi/splitting/static/
+	<Directory /home/kallet/publicwsgi/splitting/static/>
+		Require all granted
+	</Directory>
+</VirtualHost>
+````  
+  
+[Kuva 123.](pics/harjoitus_5/123.png)  
+*splitting.conf sisältö*  
+  
+5. sudo a2ensite splitting.conf #enabloidaan juuri tehty conf-tiedosto Apachelle   
+6. sudo a2dissite 000-default.conf #Disabloidaan vakiotiedosto  
+7. /sbin/apache2ctl configtest #Testataan asetukset  
+  
+[Kuva 124.](pics/harjoitus_5/124.png)  
+*Testistä saatiin toivotun kaltaiset tulokset*  
+  
+8. sudo systemctl restart apache2 #Uudelleenkäynnistetään demoni  
+9. mkdir -p publicwsgi/splitting/static/ #Testihakemisto
+10. echo "Statically relevant data"|tee publicwsgi/splitting/static/index.html #Testitiedosto  
+  
+[Kuva 125.](pics/harjoitus_5/125.png)  
+*curl toimitti halutun testituloksen*  
+  
+11. rm -r /home/kalle/publicwsgi/splitting/ #testihakemiston poisto. En halunnut sekoittaa kansiorakennetta.  
+  
+**Django + VirtualEnv**  
+  
+1. sudo apt-get -y install virtualenv #Asensin paketit  
+2. cd publicwsgi/ #Kotihakemistosta publicwsgi-hakemistoon  
+3. virtualenv -p python3 --system-site-packages env #env-hakemistoon luotiin uusi virtuaaliympäristö, jossa oli system-site-packages -sisältö käytössä  
+4. source env/bin/activate #Aktivoin virtuaaliympäristön  
+5. which pip #Tarkistetaan, että ollaan env-hakemistossa  
+6. echo "django" |tee requirements.txt #Kirjasin vaatimuksiin django:n  
+7. pip install -r requirements.txt #Tein asennuksen vaatimusten mukaan  
+8. django-admin --version #Testasin asennuksen  
+  
+[Kuva 126.](pics/harjoitus_5/126.png)  
+*Testi osoitti, että Django saatiin asennettua*  
+  
+**Uusi Django-projekti**  
+  
+1. django-admin startproject splitting #Loin uuden projekti  
+2. mkdir -p splitting/static/ #Luodaan staattisille sivuille kansio
+3. echo "Statically relevant data"|tee splitting/static/index.html
+Statically relevant data #Loin staattisen sivun
+4. sudo adduser djusr #Loin uuden käyttäjän Djangolle  
+5. sudoedit /etc/apache2/sites-available/splitting.conf #Editoin tiedostoon uuden sisällön. Jätin toistaiseksi kalle-käyttäjän, jotta pääsisin debuggaamaan johtuivatko ongelmani käyttäjästä vai jostain muusta  
+  
+[Kuva 127.](pics/harjoitus_5/127.png)  
+*Osa tiedoston sisällöstä*  
+  
+6. sudo apt-get -y install libapache2-mod-wsgi-py3 #Asensin Apacheen mod-wsgi:n  
+7. /sbin/apache2ctl configtest #Testasin configin oikeellisuuden  
+8. sudo systemctl restart apache2 #Käynnistin serverin uudestaan  
+9. curl localhost |grep title #Testasin asennukseni  
+9. Tuloksena oli internal server error 500 -> tarkistin konffitiedoston ja sinne oli jäänyt mallista yksi väärä tero-käyttäjä.  
+  
+[Kuva 128.](pics/harjoitus_5/128.png)  
+*Testistä tuli toivottu tulos toisella kerralla*  
+  
+10. curl -sI localhost|grep Server #Toinen testi  
+Testin tuloksena tulostui: Server: Apache/2.4.52 (Debian)  
+  
+**DEBUG pois**  
+  
+1. cd splitting/ #Siirryin alihakemistoon  
+2. micro splitting/settings.py #Editoin asetuksia  
+  
+[Kuva 129.](pics/harjoitus_5/129.png)  
+*Muokatut asetukset*  
+  
+3. touch splitting/wsgi.py #Päivitetään wsgi.py  
+4. sudo systemctl restart apache2 #demonin uudelleenkäynnistys  
+5. sudo ufw allow 80/tcp  #Tein palomuuriin reiän, jotta palvelin olisi saatavilla julkissa netissä  
+  
+[Kuva 130.](pics/harjoitus_5/130.png)  
+*Pääsin julkisesta netistä lukemaan index.html:n static-kansiosta ja Djangon konsolin kirjautumisnäkymään*  
+  
+Lopetin työt 16.04.
