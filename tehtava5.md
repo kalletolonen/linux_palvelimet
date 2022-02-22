@@ -1253,7 +1253,81 @@ Buuttasin demonin ja kokeilin selaimessa lopputulosta - virheilmoitukset eivät 
   
 Vaihdoin käyttäjän takaisin splitting.conf-tiedostoon ja kokeilin toimiiko se edelleen. Tämä toimi edelleen, joten muutin käyttöoikeudet takaisin alkupisteeseensä ja päätin tiedustella asiaa tunnilla.  
   
-Lopetin työt 19.59.
+Lopetin työt 19.59.  
+  
+Aloitin työt 18.55.  
+  
+Päätin kokeilla kalle-käyttäjän muokkaamista sudo-oikeudettomaksi käyttäjäksi ja uuden sudo-käyttäjän tekemistä, jos se vaikka ratkaisi ongelmani.  
+  
+1. Tein uuden käyttäjän ja liitin sudo-ryhmään:  
+*sudo adduser sukalle*  
+*sudo adduser sukalle sudo*  
+*sudo groups sukalle* #Tarkistin, että lisäys onnistui  
+*sudo deluser kalle sudo*  
+*groups kalle*  #Tarkistin, että käyttäjän poisto sudo-ryhmästä onnistui  
+  
+2. Kirjauduin ulos palvelimelta:  
+*exit*  
+  
+3. Kirjauduin sisään:  
+*ssh sukalle@ip-osoite*  
+  
+4. Tarkistin, että käyttöoikeudet ovat edelleen kalle-käyttäjällä, joka ei enää kuulu sudo-ryhmään:  
+*ls -ld /home/kalle /home/kalle/publicwsgi/ /home/kalle/publicwsgi/splitting/static/ /home/kalle/publicwsgi/splitting/static/index.html*  
+  
+[Kuva 145.](pics/harjoitus_5/145.png)  
+*Oikeudet olivat edelleen oikealla käyttäjällä*  
+  
+5. Tarkistin selaimesta sisäänkirjautumisen:  
+  
+[Kuva 146.](pics/harjoitus_5/146.png)  
+*Onnistuin kirjautumaan ja muuttamaan käyttäjän roolin admin-konsolissa*  
+  
+**Kauniimmaksi CSS:llä**  
+  
+1. Editoin setiings.py-tiedostoa:  
+*sudo micro kalle/publicwsgi/splitting/splitting/settings.py*  
+  
+````
+Lisäsin rivit:  
+import os  
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+````
+  
+[Kuva 147.](pics/harjoitus_5/147.png)  
+*Editoitu tiedosto*  
+  
+2. Laitoin virtuaaliympäristön päälle (/publicwsgi/-kansiossa):  
+*source env/bin/activate*  
+  
+3. Ajoin testikomennot sudolla ja ilman:  
+*./manage.py makemigrations*  
+*sudo ./manage.py makemigrations*  
+  
+[Kuva 148.](pics/harjoitus_5/148.png)  
+*Sain virheilmoituksen*  
+  
+Arvailin, että ilmoitus voisi johtua siitä, että ajoin tiedostoja vääränä käyttäjänä.  
+  
+4. Kirjauduin ulos ja palasin ajamaan testikomennon ja collecstaticin kalle-käyttäjänä (/home/kalle/publicwsgi/splitting/-hakemistossa):  
+*./manage.py makemigrations*  
+*./manage.py collectstatic*  
+  
+[Kuva 149.](pics/harjoitus_5/149.png)  
+*collectstatic saatiin ajettua*  
+  
+[Kuva 149.](pics/harjoitus_5/149.png)  
+*Konsolin ulkoasu parani välittömästi*  
+  
+Lopetin työt 19.40.  
+  
+
+
+
+  
+
+
   
 
   
