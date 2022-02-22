@@ -1317,10 +1317,101 @@ Arvailin, että ilmoitus voisi johtua siitä, että ajoin tiedostoja vääränä
 [Kuva 149.](pics/harjoitus_5/149.png)  
 *collectstatic saatiin ajettua*  
   
-[Kuva 149.](pics/harjoitus_5/149.png)  
+[Kuva 150.](pics/harjoitus_5/150.png)  
 *Konsolin ulkoasu parani välittömästi*  
   
 Lopetin työt 19.40.  
+  
+**Splitting-applikaation aloittaminen**  
+  
+1. Tein settings.py-tiedostoon merkinnän splitting-applikaatiosta:  
+*micro home/kalle/publicwsgi/splitting/splitting/settings.py*  
+  
+[Kuva 151.](pics/harjoitus_5/151.png)  
+*Muokattu kohta tiedostossa*  
+  
+2. Tein models.py-tiedoston:  
+*micro splitting/models.py*  
+  
+````
+from django.db import models
+
+class Receipt(models.Model):
+    shopName = models.CharField(max_length=160)
+    receiptDate = models.DateField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+````
+  
+3. Tein admin.py-tiedoston:  
+*micro splitting/admin.py*  
+  
+````
+from djangocontrib import admin
+from . import models
+
+admin.site.register(models.Receipt)
+````
+
+4. Päivitin wsgi.py:n touchilla:  
+*touch /splitting/wsgi.py*  
+  
+Sain tulokseksi Internal Server Errorin, joten kirjauduin sudo-käyttäjälläni sisään katsoakseni lokeja:  
+*sudo tail -10 /var/log/apache2/other_vhosts_access.log*  
+  
+[Kuva 152.](pics/harjoitus_5/152.png)  
+*Lokitiedoston pätkä apachen virtuaalihostien logista*  
+  
+En tullut juuri viisaammaksi lokeista, joten päätin poistaa datefieldin koodista, koska se oli pyytänyt kehitysserverin kautta parametrinsä aiemmassa iteraatiokierroksessa:  
+*micro hakemisto/models.py*  
+  
+Kirjauduin ulos sudo-käyttäjälläni ja sisään normikäyttäjälläni.  
+  
+Kokeilin models.py:n muokkauksen jälkeen tehdä tietokantamigraatiot ja sain hyödyllisen virheilmoituksen:  
+*./manage.py makemigrations*  
+  
+[Kuva 153.](pics/harjoitus_5/153.png)  
+*Minulla oli kirjoitusvirhe admin.py:ssä*  
+  
+Korjasin admin.py:n muotoon:  
+  
+````  
+from django.contrib import admin
+from . import models
+
+admin.site.register(models.Receipt)
+````  
+  
+Käynnistin virtuaaliympäristön ja ajoin tietokantamigraatiot:  
+*source env/bin/activate*  
+*./manage.py makemigrations*  
+  
+Internal Server Error 500 oli edelleen tuloksena, joten palasin sudo-käyttäjälläni sisään.  
+  
+Buuttasin demonin ja sain näkyviin tekemäni tietokantamuutokset admin-konsolissa.  
+  
+[Kuva 154.](pics/harjoitus_5/154.png)  
+*Receipts näkyi*  
+
+[Kuva 155.](pics/harjoitus_5/155.png)  
+*Olion avaaminen tuotti edelleen saman virheen, joten virheen oli todennäköisesti sijaittava models.py-tiedostossa*  
+  
+Avasin tiedoston:  
+*micro hakemisto/models.py*  
+  
+[Kuva 156.](pics/harjoitus_5/15&.png)  
+*Kommentoin pois kaiken paitsi yksinkertaisemman koodin*
+  
+Kirjauduin ulos sudo-käyttäjällä, sisään normikäyttäjjä ja tein migraatiot.  
+
+Kirjauduin sisään sudo-käyttäjällä ja käynnistin serverin uudestaan.  
+  
+Tuloksena oli edelleen Server Error 500. Päätin jatkaa huomenna. Lopetin työt 22.00.  
+  
+
+  
+
+
+  
   
 
 
