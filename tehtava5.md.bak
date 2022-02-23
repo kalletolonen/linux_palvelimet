@@ -107,7 +107,7 @@ Asensin pwgen-salasanageneraattorin ja loin sen avulla superuserilleni tietoturv
 *Käyttäjän luominen onnistui*  
    
   Tämän jälkeen käynnistin testiserverin:  
-*./manage.py runserve*  
+*./manage.py runserver*  
 
 ![Kuva 14.](pics/harjoitus_5/14.png)  
 *Pääsin kirjautumaan sisälle konsoliin*  
@@ -274,6 +274,12 @@ Päivitän artikkelia, kun saan ongelman ratkaistua.
   
 ## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.  
   
+**Harjoituksen laitekokoonpano**  
+*Järjestelmänä Debian 11*  
+  
+*Koneen perustiedot:*  
+*Vuokrattu VPS*  
+
 Aloitin tuotantotyyppisen asennuksen tekemisen käyttämällä työohjeenani [Karvisen artikkelia](https://terokarvinen.com/2022/deploy-django/) ja tuntimuistiinpanojani.  
   
 Päätin testata taitojani suoraan julkiseen nettiin tapahtuvalla asennuksella, joten aloitin työt ottamalla ssh-yhteyden palvelimeeni komennolla:  
@@ -1537,6 +1543,7 @@ Lähteessäkään ei ole tietoa siitä mitä komento tekee, saati miksi se korja
 [Kuva 167.](pics/harjoitus_5/167.png)  
 *Väärin korjattu, mutta korjattu kumminkin*  
   
+Lopetin työt 14.33 ja päätin siistiä raportin illemmalla.  
 
  
 
