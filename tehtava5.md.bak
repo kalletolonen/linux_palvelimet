@@ -328,7 +328,7 @@ Tämä tuotti tulokseksi virheilmoituksen:
 Seuraavaksi otin kokeilun alle documentrootin korjaamisen splitlyzy.conf-tiedostoon:  
 *sudoedit /etc/apache2/sites-available/splitlyze.conf* 
   
-[Kuva 50.](pics/harjoitus_5/50.png)  
+![Kuva 50.](pics/harjoitus_5/50.png)  
 *splitlyze.conf-tiedoston uusi sisältö*  
   
 Uusi yritys:  
@@ -337,35 +337,33 @@ Uusi yritys:
 Virheilmoitukset pysyivät samoina, enkä tiennyt miksi, joten päätin kokeilla mitä käy, jos käynnistän serverin uudestaan, sillä voin aina palata edelliseen tehtävään ja tehdä kaikki toimenpiteet uudestaan päästäkseni takaisin alkupisteeseen.  
   
 Annoin komennon:  
-*sudo systemctl restart apache2**  
+*sudo systemctl restart apache2*  
   
-[Kuva 51.](pics/harjoitus_5/51.png)  
+![Kuva 51.](pics/harjoitus_5/51.png)  
 *Demoni käynnistyi uudestaan mukisematta*  
   
-[Kuva 52.](pics/harjoitus_5/52.png)  
+![Kuva 52.](pics/harjoitus_5/52.png)  
 *Domainin juurihakemistossa tuli ilmoitus puutteellisista oikeuksista*    
 
-[Kuva 53.](pics/harjoitus_5/53.png)  
+![Kuva 53.](pics/harjoitus_5/53.png)  
 *käyttäjän kansiossa todettiin samaa*  
   
 Sudoedit ei toiminut yllä ssl-konfiguraatiotiedoston muokkaamiseen, mutta microlla sne muokkaus onnistui:  
 *sudo micro /etc/apache2/sites-enabled/000-default-le-ssl.conf*  
   
-[Kuva 54.](pics/harjoitus_5/54.png)  
+![Kuva 54.](pics/harjoitus_5/54.png)  
 *Uusittu DocumentRoot-parametri*  
   
-[Kuva 55.](pics/harjoitus_5/55.png)  
+![Kuva 55.](pics/harjoitus_5/55.png)  
 *Tällä kertaa konfiguraatiotesti lopetti herjaamisen DocumentRootista*  
   
 Jäljelle jäänyt virheilmoitus liittynee ssl-sertifikaattiin ja sen korjaaminen ei ole oleellista tätä tehtävää varten. Päätin kuitenkin kokeilla CertBotin ajamista manuaalisesti sertifikaatin uudistamiseksi:  
 *sudo certbot renew --dry-run*  
   
-[Kuva 56.](pics/harjoitus_5/56.png)  
-*Kaikki on ok*  
+![Kuva 56.](pics/harjoitus_5/56.png)  
+*Kaikki on ok - ehkä ongelma korjaantuisi seuraavalla uusintakierroksella?*  
   
-Uskon, että viimeinen virheilmoitus korjaantuu itsestään, kun sertifikaatti seuraavan kerran uudistaa itsensä automaattisesti.  
-  
-[Kuva 57.](pics/harjoitus_5/57.png)  
+![Kuva 57.](pics/harjoitus_5/57.png)  
 *Julkisessa netissä ssl-suojaamaton staattinen testisivu toimi oikein*  
   
 **Virtuaaliympäristön asentaminen**  
@@ -385,20 +383,20 @@ Käynnistin virtuaaliympäristön ja tarkistin, että olen ympäristön sisäll�
 *source env/bin/activate*  
 *which pip*  
   
-[Kuva 58.](pics/harjoitus_5/58.png)  
+![Kuva 58.](pics/harjoitus_5/58.png)  
 *Olin oikeassa paikassa*  
   
 Syötin requirements.txt-tiedostoon djangon:  
 *micro requirements.txt*  
 
-[Kuva 59.](pics/harjoitus_5/59.png)  
+![Kuva 59.](pics/harjoitus_5/59.png)  
 *requirements.txt:n sisältö*  
   
 Asennus käynnistettiin ja todennettiin komennoilla:  
 *pip install -r requirements.txt*  
 *django-admin --version*  
   
-[Kuva 60.](pics/harjoitus_5/60.png)  
+![Kuva 60.](pics/harjoitus_5/60.png)  
 *Django oli nyt todennetusti asennettu*  
   
 **Projektin perustaminen**  
@@ -406,7 +404,7 @@ Asennus käynnistettiin ja todennettiin komennoilla:
 Perustin projektin Djangolla komennolla:  
 *django-admin startproject splitlyze*  
   
-[Kuva 61.](pics/harjoitus_5/61.png)  
+![Kuva 61.](pics/harjoitus_5/61.png)  
 *hakemistopolku oli jo olemassa, kun orjallisesti loin sen tehtävän alussa static-sivustoa varten*  
   
 Poistin hakemiston sisältöineen komennolla:  
@@ -415,7 +413,7 @@ Poistin hakemiston sisältöineen komennolla:
 Seuraavaksi editoin konfiguraatiotiedostoa:  
 *sudoedit /etc/apache2/sites-available/splitlyze.conf*  
   
-[Kuva 62.](pics/harjoitus_5/62.png)  
+![Kuva 62.](pics/harjoitus_5/62.png)  
 *Muokkasin [Karvisen pohjaan](https://terokarvinen.com/2022/deploy-django/) muuttujiin omat tietoni*  
   
 Sitten asennettiin wsgi-modi Apacheen:  
@@ -428,7 +426,7 @@ Tein tuhoamani static-hakemiston ja index.html-tiedoston uudestaan:
 Ajoin testin konfiguraatiooni:  
 */sbin/apache2ctl configtest*  
   
-[Kuva 63.](pics/harjoitus_5/63.png)  
+![Kuva 63.](pics/harjoitus_5/63.png)  
 *Konfiguraatio toimi niin kuin ylläkin, sama ssl-virheilmoitus oli edelleen olemassa*  
   
 Käynnistin demonin uudestaan:  
@@ -436,10 +434,10 @@ Käynnistin demonin uudestaan:
   
 Huomasin, että olin sössinyt jossain, sillä debugatessa muutin splitlyze.conf-hosteja takaisin aiemmin toimineisiin ja sain Apachen vakiosivun näkyviin.  
 
-[Kuva 64.](pics/harjoitus_5/64.png)  
+![Kuva 64.](pics/harjoitus_5/64.png)  
 *Ei mennyt niin kuin piti*  
   
-Päättelin, että jostain tuo sivu loihditann esiin ja se löytyikin /var/www/html -hakemistosta. Sitten päätin konfiguroida apachea uudestaan käyttämään oikeaa tiedostoa:  
+Päättelin, että jostain tuo sivu loihditaan esiin ja se löytyikin /var/www/html -hakemistosta. Sitten päätin konfiguroida apachea uudestaan käyttämään oikeaa tiedostoa:  
 *sudo a2dissite splitlyze.conf*  
 *sudo a2dissite 000-default.conf*  
 *sudo a2dissite 000-default-le-ssl.conf*  
@@ -447,7 +445,7 @@ Päättelin, että jostain tuo sivu loihditann esiin ja se löytyikin /var/www/h
   
 *sudo systemctl restart apache2*  
   
-[Kuva 65.](pics/harjoitus_5/65.png)  
+![Kuva 65.](pics/harjoitus_5/65.png)  
 *Edelleen apache2:n vakiosivu kummitteli*  
   
 Päätin selvittää mitä konffitiedostoja Apache2 käytti ja totesin että helpoimmalla pääsen, kun asennan koko Apachen, virtualenvin ja sertifikaatit uudestaan.  
@@ -463,7 +461,7 @@ Aloitin poistamalla publicwsgi-kansion alihakemistoineen kotihakemistostani ja a
   
 Poistin kaikki apacheen viittaavat hakemistot ja tiedostot, jotka whereis löysi.  
   
-[Kuva 66.](pics/harjoitus_5/66.png)  
+![Kuva 66.](pics/harjoitus_5/66.png)  
 *Demoni oli poistettu*  
   
 Poistin myös virtualenvin komennolla:  
@@ -483,7 +481,7 @@ Komento ilmoitti, että apache on edelleen asennettu, joten ajoin komennot:
 *sudo apt-get purge -y apache2*  
 *sudo apt autoremove*  
   
-[Kuva 67.](pics/harjoitus_5/67).png)  
+![Kuva 67.](pics/harjoitus_5/67.png)  
 *Viimein demoni oli oikeasti poistettu*  
   
 Uusi asennus:  
@@ -506,7 +504,7 @@ Loin virtuaaliympäristön ja tarkistin sijainnin:
 *virtualenv -p python3 --system-site-packages env*  
 *which pip*  
   
-[Kuva 68.](pics/harjoitus_5/68.png)  
+![Kuva 68.](pics/harjoitus_5/68.png)  
 *Virtuaaliympäristö oli nyt luotu ja käytössä*  
   
 Tein vaatimuslistan requirements.txt-tiedostoon:  
@@ -522,7 +520,7 @@ Aloitin projektin:
 Kävin luomassa kansion staattiselle sisällölle ja sinne tiedoston:  
 *mkdir splitlyze/static/*  
 *echo "Tämä on staattinen sivu" |tee splitlyze/static/index.html*  
-[Kuva 69.](pics/harjoitus_5/69.png)  
+![Kuva 69.](pics/harjoitus_5/69.png)  
 *Testisivu luotiin*  
 
 Loin virtualhost-tiedoston ja aktivoin sen:  
@@ -541,32 +539,32 @@ Loin virtualhost-tiedoston ja aktivoin sen:
 *sudo a2dissite 000-default.conf*  
 */sbin/apache2ctl configtest*  
   
-[Kuva 70.](pics/harjoitus_5/70.png)  
+![Kuva 70.](pics/harjoitus_5/70.png)  
 *Viimeinen komento aiheutti virheilmoituksen*  
   
 Googlauksen perusteella ajoin komennon:  
 *sudo apt install --reinstall apache2-bin*  
   
-Epäilen että olin poistanut apache-demonin jotenkin väärin ja nyt järjestelmä ei ollut osannut asentaa sitä oikein.  
+Epäilen että olin poistanut apache-demonin jotenkin väärin ja nyt järjestelmä ei ollut osannut asentaa sitä oikein. **Oikolukiessa raporttia huomasin, että olin mahdollisesti jättänyt liittämäni hakemistopolut sellaisenaan conf-tiedostoon.**
   
-[Kuva 71.](pics/harjoitus_5/71.png)  
+![Kuva 71.](pics/harjoitus_5/71.png)  
 *Tällä kertaa configtest meni onnistuneesti läpi*  
   
 Laitoin käyttäjähakemistot päälle:  
 *sudo a2enmod userdir*  
   
-[Kuva 73.](pics/harjoitus_5/73.png)  
+![Kuva 73.](pics/harjoitus_5/73.png)  
 *Pääsin julkisesta netistä selaamaan käyttäjän kotihakemistoa*  
   
 Minut valtasi syvä epäusko ja päätin ajaa koko dropletin maantasalle ja tehdä uudestaan, sillä ongelmani johtuivat mahdollisesti väärin poistetuista tai asennetuista paketeista.  
   
-**Sisyphos**  
+# Sisyphos  
   
 Tuhosin serverin Digital Oceanissa ja tein sen uudestaan kuvaavalla hostnamella.  
   
 [Tehtävässä 4](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava4.md) on tarkemmin kuvattuna tämä luomis- ja yhdistämisprosessi, joten en kuvaile sitä tämän enempää.  
   
-[Kuva 74.](pics/harjoitus_5/74.png)  
+![Kuva 74.](pics/harjoitus_5/74.png)  
 *Jatkoin töitä tabula rasa -tilanteesta, jossa minulla oli tyhjä droplet pilvessä ja vain ssh-yhteydet päällä palomuurista*  
   
 Ensin asensin micron:  
@@ -583,25 +581,25 @@ Aloitin työt seuraavana päivänä 12.41.
 Sitten oli vuorossa Apache2-asennus:  
 *sudo apt-get install -y apache2*  
   
-[Kuva 75.](pics/harjoitus_5/75.png)  
+![Kuva 75.](pics/harjoitus_5/75.png)  
 *Varmensin asennuksen onnistumisen: "curl localhost"-komennolla*  
   
 Korvasin oletussivun:  
 *echo "Tämä on uusi oletussivu"|sudo tee /var/www/html/index.html*  
   
-[Kuva 76.](pics/harjoitus_5/76.png)  
+![Kuva 76.](pics/harjoitus_5/76.png)  
 *Oletussivun korvaantumisen testasin curlilla*  
   
 Tein saattisille sivuille hakemiston ja index.html-tiedoston:  
 *mkdir -p publicwsgi/splitlyze/static/*  
 *echo "Tämä on staattinen sivu" |tee publicwsgi/splitlyze/static/index.hmtl*  
   
-[Kuva 77.](pics/harjoitus_5/77.png)  
+![Kuva 77.](pics/harjoitus_5/77.png)  
 *Tiedoston sisältö tulostettuna*  
   
 Tämän jälkeen tein virtualhost-tiedoston:  
 *sudo nano /etc/apache2/sites-available/splitlyze.conf*  
--Käytin nanoa, sillä windowsin leikepöydästä ei voi liittää microon.  
+-Käytin nanoa, sillä windowsin leikepöydästä ei voi liittää microon  
   
 **Tiedoston sisältö**
 ````
@@ -620,28 +618,28 @@ Vaihdoin apachen käyttöön tekemäni asetustiedoston:
 Testasin asetusten kelvolllisuuden:  
 */sbin/apache2ctl configtest*  
   
-[Kuva 78.](pics/harjoitus_5/78.png)  
+![Kuva 78.](pics/harjoitus_5/78.png)  
 *Asetuksista tuli odotetun kaltainen virheilmoitus*  
   
 Käynnistin demonin uudestaan:  
 *sudo systemctl restart apache2*  
   
-Kokeiltuani monia epäloogisia asioita muistin että olin jättänyt palomuuriin avaamatta aukon, joten tein sen:  
+Kokeiltuani monia epäloogisia asioita muistin, että olin jättänyt palomuuriin avaamatta aukon, joten tein sen:  
 *sudo ufw allow 80/tcp*  
   
 Tämä ei auttanut, mutta huomasin, että olin nimennyt staattisen hakemistoni tiedoston hmtl-tiedostopäättellä, joten muutin sen ja käynnistin demonin uudestaan:  
 *mv index.hmtl index.html*  
   
 Ainoa virheilmoitus, joka kertoi että jokin ei toimi oli:  
-[Kuva 79.](pics/harjoitus_5/79.png)  
+![Kuva 79.](pics/harjoitus_5/79.png)  
   
 Päätin katsoa vielä logit, jos niistä olisi jotain iloa:  
-[Kuva 80.](pics/harjoitus_5/80.png)  
+![Kuva 80.](pics/harjoitus_5/80.png)  
   
 [Googlaamalla selvisi](https://cwiki.apache.org/confluence/display/httpd/ClientDeniedByServerConfiguration), että kyseessä on Require all granted -parametriin liittyvä virhe, joten tarkistin mitä conf-tiedostoa demoni käytti:  
 *sudo a2query -s*  
   
-[Kuva 81.](pics/harjoitus_5/81.png)  
+![Kuva 81.](pics/harjoitus_5/81.png)  
 *000-default oli käytössä*  
   
 Otin sen pois käytöstä ja käynnistin demonin uudella tiedostolla komennoilla:  
@@ -652,12 +650,12 @@ Otin sen pois käytöstä ja käynnistin demonin uudella tiedostolla komennoilla
 Muokkasin vielä kerran splitlyze.conf tiedostoa:  
 *sudo micro /etc/apache2/sites-available/splitlyze.conf*  
   
-[Kuva 82.](pics/harjoitus_5/82.png)  
+![Kuva 82.](pics/harjoitus_5/82.png)  
 *Uusi sisältö*  
   
-Minulla oli luultavasti ajatusvirhe ja testasin aivan väärää osoitetta ylempänä, mutta tulipahan tehtyä serverin pystyttäminen uudemman kerran. Oikea testiosoite curl:lle olisi ollut "localhost/static", ei "localhost" tai "localhost/tunnus".  
+Minulla oli luultavasti ajatusvirhe ja testasin aivan väärää osoitetta ylempänä, mutta tulipahan tehtyä serverin pystyttäminen uudemman kerran. Oikea testiosoite curl:lle olisi ollut "localhost/static/", ei "localhost" tai "localhost/tunnus".  
   
-[Kuva 83.](pics/harjoitus_5/83.png)  
+![Kuva 83.](pics/harjoitus_5/83.png)  
 *Toimiva curl-testi*  
 
 Lopetin työt 20.35 ja päätin tehdä tehtävän loppuun seuraavana päivänä, nyt kun olin ratkaissut yhden ongelman.  
@@ -680,20 +678,20 @@ Aktivoin virtuaaliympäristön ja tarkistin missä olen:
 *source env/bin/activate*  
 *which pip*  
   
-[Kuva 84.](pics/harjoitus_5/84.png)  
+![Kuva 84.](pics/harjoitus_5/84.png)  
 *Olin jälleen oikeassa sijainnissa*  
     
 Tein requirements.txt-tiedoston vaadittuja ohjelmia varten, syötin sinne djangon ja asensin tiedoston sisältämät ohjelmat:  
 *echo "django" |tee requirements.txt*  
 *pip install -r requirements.txt*  
   
-[Kuva 85.](pics/harjoitus_5/85.png)  
+![Kuva 85.](pics/harjoitus_5/85.png)  
 *Asennus onnistui*  
   
 Tarkistin vielä Djangon version:  
 *django-admin --version*  
   
-[Kuva 86.](pics/harjoitus_5/86.png)  
+![Kuva 86.](pics/harjoitus_5/86.png)  
 *Versio oli oikea*  
   
 **Uuden projektin perustaminen**  
@@ -701,7 +699,7 @@ Tarkistin vielä Djangon version:
 Django ei sellaisenaan suostu aloittamaan uutta projektia jo olemassaolevaan hakemistoon, joten [etsin ohjeet](https://automationpanda.com/2018/02/06/starting-a-django-project-in-an-existing-directory/) miten se tehdään ja toimin niiden mukaisesti:  
 *django-admin startproject splitlyze .*  
   
-[Kuva 87.](pics/harjoitus_5/87.png)  
+![Kuva 87.](pics/harjoitus_5/87.png)  
 *Näin luotiin projekti jo olemassaolevaan kansioon*  
   
 **Pythonin ja Apachen yhdistäminen mod_wsgi:llä**  
@@ -717,21 +715,21 @@ Lisäksi tein sudo-ryhmään kuulumattoman käyttäjän ajamaan python-koodia:
 Tämän jälkeen editoin ylläolevat hakemistopolut splitlyze.conf-tiedostoon [Karvisen ohjeen](https://terokarvinen.com/2022/deploy-django/) mukaisesti:  
 *sudo nano /etc/apache2/sites-available/splitlyze.conf*  
   
-[Kuva 88.](pics/harjoitus_5/88.png)  
+![Kuva 88.](pics/harjoitus_5/88.png)  
 *Osa splitlyze.conf-tiedoston uudesta sisällöstä*  
   
 Seuraavaksi asensin wsgi-moduulin Apacheen ja tarkistin conf-tiedoston oikeellisuuden:  
 *sudo apt-get install -y libapache2-mod-wsgi-py3*  
 */sbin/apache2ctl configtest*  
   
-[Kuva 89.](pics/harjoitus_5/89.png)  
+![Kuva 89.](pics/harjoitus_5/89.png)  
 *Testi ok*  
   
 Käynnistin demonin uudestaan ja tarkistin toimivuuden:  
 */sbin/apache2ctl configtest*  
 *sudo systemctl restart apache2*  
   
-[Kuva 90.](pics/harjoitus_5/90.png)  
+![Kuva 90.](pics/harjoitus_5/90.png)  
 *Ei onnistunut*  
   
 Päätin kokeilla kallet-käyttäjän syöttämistä conf-tiedostoon, testiä ja uudelleenkäynnistämistä:  
@@ -739,33 +737,33 @@ Päätin kokeilla kallet-käyttäjän syöttämistä conf-tiedostoon, testiä ja
 */sbin/apache2ctl configtest*  
 *sudo systemctl restart apache2*  
   
-[Kuva 91.](pics/harjoitus_5/91.png)  
+![Kuva 91.](pics/harjoitus_5/91.png)  
 *Uusi sisältö splitlyze.conf-tiedostossa*  
   
 Tämä ei auttanut, joten tutkin lokitiedostoja:  
 *sudo cat /var/log/apache2/error.log*  
   
-[Kuva 92.](pics/harjoitus_5/92.png)  
+![Kuva 92.](pics/harjoitus_5/92.png)  
 *Tästä päättelin, että jokin on mennyt pieleen moduulia luodessa, joten päätin poistaa projektin ja sen kansiot, sekä tehdä ensin projektin ja vasta sen jälkeen static-kansion sisältöineen*  
   
 Etsin tietoa ja [sen perusteella](https://stackoverflow.com/questions/11391424/how-to-delete-project-in-django) päättelin, että pelkkä projektikansion poistaminen on riittävä toimenpide, kun käytössä on Djangon vakioasetuksena oleva SQLite-tietokanta (muistikuva Karvisen tuntiluennolta):  
 *sudo rm -r splitlyze*  
   
-[Kuva 93.](pics/harjoitus_5/93.png)  
+![Kuva 93.](pics/harjoitus_5/93.png)  
 *Poistin projektikansion*  
   
-Loin projektin uudestaan ja tein static-kansion, sekä sinne index.htmk-tiedoston:  
+Loin projektin uudestaan ja tein static-kansion, sekä sinne index.html-tiedoston:  
 *django-admin startproject splitlyze*  
 *mkdir /splitlyze/static/*  
 *echo "moi" |tee splitlyze/static/index.html*  
   
-[Kuva 94.](pics/harjoitus_5/94.png)  
+![Kuva 94.](pics/harjoitus_5/94.png)  
 *Luomistyön lopputulos*  
   
 Edellisestä yrityksestä oli luonnollisesti vielä jäljellä conf-tiedosto, jota editoin hieman palauttamalla djangousr-käyttäjän käyttäjäksi ja korjaamalla wsgi-hakemistopolun:  
 *sudo nano /etc/apache2/sites-available/splitlyze.conf*  
   
-[Kuva 95.](pics/harjoitus_5/95.png)  
+![Kuva 95.](pics/harjoitus_5/95.png)  
 *Uusi sisältö splitlyze.conf-tiedostossa*  
   
 Testasin muutokseni:  
@@ -777,35 +775,37 @@ Varmistin vielä lupaavan tulokseni:
 *curl localhost |grep title*  
 *curl localhost -sI*  
   
-[Kuva 96.](pics/harjoitus_5/96.png)  
+![Kuva 96.](pics/harjoitus_5/96.png)  
 *sI-parametri kertoi serverinfon.*  
   
 Lopetin työt 16.50.  
   
 Aloitin työt 18.52.  
   
-[Kuva 97.](pics/harjoitus_5/97.png)  
+![Kuva 97.](pics/harjoitus_5/97.png)  
 *Julkisessa netissä palvelin tuotti edelleen virheilmoituksen*  
   
 Tarkistin virhelokin:  
 *sudo cat /var/log/apache2/error.log*  
 
-[Kuva 98.](pics/harjoitus_5/98.png)  
+![Kuva 98.](pics/harjoitus_5/98.png)  
 *Lokitiedoston virhe*  
   
-	Jatkoin kuitenkin ensin Karvisen artikkelin loppukohtien mukaan, jos virhe vaikka korjaantuisi niillä. Artikkeli ei varsinaisesti käsittele julkisessa netissä olevaa palvelinta, joten sellaisenaan se vaatinee soveltamista.  
+````
+Jatkoin kuitenkin ensin Karvisen artikkelin loppukohtien mukaan, jos virhe vaikka korjaantuisi niillä. Artikkeli ei varsinaisesti käsittele julkisessa netissä olevaa palvelinta, joten sellaisenaan se vaatinee soveltamista.  
+````  
   
 **DEBUG pois käytöstä**  
   
 Serverin DEBUG-toiminnon irtikytkentä oli seuraavana vuorossa:  
 *micro splitlyze/settings.py*  
   
-[Kuva 99.](pics/harjoitus_5/99.png)  
+![Kuva 99.](pics/harjoitus_5/99.png)  
 *DEBUG-parametriin tehtiin muutos*  
   
 Samalla muokkasin myös samaan tiedostoon ALLOWED_HOSTS-parametriin oman domainini ja localhostin.  
   
-[Kuva 100.](pics/harjoitus_5/100.png)  
+![Kuva 100.](pics/harjoitus_5/100.png)  
 *Muokattu parametri*  
   
 Toin muutokset voimaan päivittämällä wsgi.py-tiedoston, testaamalla ja käynnistämällä serverin uudestaan:  
@@ -813,29 +813,29 @@ Toin muutokset voimaan päivittämällä wsgi.py-tiedoston, testaamalla ja käyn
 */sbin/apache2ctl configtest*  
 *sudo systemctl restart apache2*  
   
-[Kuva 101.](pics/harjoitus_5/101.png)  
+![Kuva 101.](pics/harjoitus_5/101.png)  
 *Configtest ei ilmoittanut uusia virheilmoituksia*  
   
 Testasin localhostin:  
 *curl localhost*  
   
-[Kuva 102.](pics/harjoitus_5/102.png)  
+![Kuva 102.](pics/harjoitus_5/102.png)  
 *Localhost palautti odotetun kaltaisen sivun*  
   
 Muokkasin settings.py:n ALLOWED_HOSTS-parametriin uudestaan serverini ip:n [löytämäni artikkelin](https://www.howtoforge.com/how-to-install-and-configure-django-on-debian-10/) perusteella, päivitin wsgi.py:n ja käynnistin demonin uudestaan samalla tavalla kuin yllä.  
   
-[Kuva 103.](pics/harjoitus_5/103.png)  
+![Kuva 103.](pics/harjoitus_5/103.png)  
 *Muokattu ALLOWED_HOSTS-parametri*  
   
-[Kuva 104.](pics/harjoitus_5/104.png)  
+![Kuva 104.](pics/harjoitus_5/104.png)  
 *Julkisessa netissä oli admin-konsolin login näkyvissä*   
   
 Lisäsin settings.py-tiedostoon vielä domainini, jotta en tarvitsisi ip-osoitetta admin-konsoliin kirjautuessani. Päivitin wsgi.py:n ja käynnistin demonin uudestaan kuten yllä.
   
-[Kuva 105.](pics/harjoitus_5/105.png)  
+![Kuva 105.](pics/harjoitus_5/105.png)  
 *Muokattu ALLOWED_HOSTS-parametri*  
   
-[Kuva 106.](pics/harjoitus_5/106.png)  
+![Kuva 106.](pics/harjoitus_5/106.png)  
 *Nyt kirjautumisikkuna oli myös domainin kautta saatavilla*  
   
 **Superuserin tekeminen ja tyylisivujen asentaminen**  
@@ -844,17 +844,19 @@ Käynnistin virtuaaliympäristön publicwsgi-kansiosta ja loin superkäyttäjän
 *source env/bin/activate*  
 *./manage.py createsuperuser*  
   
-[Kuva 107.](pics/harjoitus_5/107.png)  
+![Kuva 107.](pics/harjoitus_5/107.png)  
 *Virheilmoitus valitti puuttuvasta settings.tiedostosta*  
   
 Tutkin asiaa tarkemmin ja minulla oli 2 eri manage.py-tiedostoa, joten päätin kokeilla komennon ajamista uudestaan toisesta kansiosta ja katsoa mitä saisin lopputulokseksi.  
   
-[Kuva 108).](pics/harjoitus_5/108.png)  
+![Kuva 108).](pics/harjoitus_5/108.png)  
 *Kaksi erillistä manage.py-tiedostoa*  
   
-	Sain kuintenkin kasan virheilmoituksia ja päättelin ruutukaappauksistani, että en ollut tehnyt kaikkia toimiani virtuaaliympäristön sisällä ja siten olin ehkä tullut tietämättäni sössineeksi jotain. Poistin siis jälleen koko projektini ja kotihakemistoni publicwsgi-kansiossa olleen manage.py-tiedoston.  
+````
+`Sain kuintenkin kasan virheilmoituksia ja päättelin ruutukaappauksistani, että en ollut tehnyt kaikkia toimiani virtuaaliympäristön sisällä ja siten olin ehkä tullut tietämättäni sössineeksi jotain. Poistin siis jälleen koko projektini ja kotihakemistoni publicwsgi-kansiossa olleen manage.py-tiedoston.  
+````
 	  
-[Kuva 109.](pics/harjoitus_5/109.png)  
+![Kuva 109.](pics/harjoitus_5/109.png)  
 *Kaikki on jälleen poistettu*  
   
 Perustin projektin uudestaan:  
@@ -865,13 +867,13 @@ Conf-tiedostot olivat edelleen samat kuin yllä, joten testasin localhostin suor
 *curl localhost |grep title*  
 *curl -sI localhost |grep Server*  
   
-[Kuva 110.](pics/harjoitus_5/110.png)  
+![Kuva 110.](pics/harjoitus_5/110.png)  
 *Toimi kuten pitikin*  
   
 Muokkasin DEBUG- ja ALLOWED_HOSTS-parametrejä:  
 * micro splitlyze/splitlyze/settings.py*  
   
-[Kuva 111.](pics/harjoitus_5/111.png)  
+![Kuva 111.](pics/harjoitus_5/111.png)  
 *Muokatun tiedoston muokatut kohdat*  
   
 Kokeilin ajaa createsuperuser -komentoa ja sain virheilmoituksen:  
@@ -885,21 +887,21 @@ Ajoin komennot:
 *./manage.py migrate*  
 *./manage.py createsuperuser*  
   
-[Kuva 113.](pics/harjoitus_5/113.png)  
+![Kuva 113.](pics/harjoitus_5/113.png)  
 *Lopputuloksena oli onnistunut superuserin luominen!*  
   
 Tein taas wsgi.py:n päivittämisen ja demonin uudelleenkäynnistämisen, jonka jälkeen sain selaimesta virheilmoituksen.  
   
-[Kuva 112.](pics/harjoitus_5/112.png)  
+![Kuva 112.](pics/harjoitus_5/112.png)  
 *So close, but no cigar*  
   
 Tutkin virhelokia:  
 *sudo cat /var/log/apache2/error.log*  
   
 Viimeisenä merkintänä oli paljon kuvaava virhe, joka muistutti minua, että en ollut tehnyt static-kansiota, vaikka sellainen oli asetuksissa määriteltynä:  
-*30: client denied by server configuration: /home/kallet/publicwsgi/splitlyze/static, referer: http://kalletolonen.me/admin/login/?next=/admin/*  
+*AH01630: client denied by server configuration: /home/kallet/publicwsgi/splitlyze/static, referer: http://kalletolonen.me/admin/login/?next=/admin/*  
   
-[Kuva 114.](pics/harjoitus_5/114.png)  
+![Kuva 114.](pics/harjoitus_5/114.png)  
 *Tein static-kansion ja sinne index.html-tiedoston*  
   
 En päässyt puusta pitkään ja selasin Karvisen artikkelin Debug-kohtaan, jossa oli maininta juuri tästä spesifistä virheestäni:  
@@ -910,7 +912,7 @@ Tarkistin hakemistopolun splitlyze.conf-tiedostosta ja se oli oikein.
 Seuraavaksi tarkastin käyttöoikeudet kansioihin ja tiedostoihin:  
 	ls -ld /home/kallet/ /home/kallet/publicwsgi/ /home/kallet/publicwsgi/static/ /home/kallet/publicwsgi/static/index.html
   
-[Kuva 115.](pics/harjoitus_5/115.png)  
+![Kuva 115.](pics/harjoitus_5/115.png)  
 *Käyttöoikeudet näyttivät tältä*  
 
 Käyttöoikeudet lienivät syynä epäonnistumiseeni, sillä asetuksissa olin määrittänyt djangousr-käyttäjän käyttämään serveriä, eikä sillä välttämättä ollut oikeuksia näihin hakemistoihin ja tiedostoihin.  
@@ -924,13 +926,13 @@ Perehdyin chmodin manuaaliin:
   
 Hakemistoihin täytyy [Karvisen artikkelin](https://terokarvinen.com/2022/deploy-django/) mukaan antaa x-oikeudet (execute) käyttäjälle ja tiedostoon (index.html) lukuoikeus.  
   
-[Kuva 116.](pics/harjoitus_5/116.png)  
+![Kuva 116.](pics/harjoitus_5/116.png)  
 *Käyttöoikeuden muuttamisen parametri oli manuaalin mukaan "-c"*  
   
 Manuaali oli hieman kryptinen. Päättelin että komento voisi olla muotoa:  
 *chmod o+c jotain*  
   
-[Kuva 117.](pics/harjoitus_5/117.png)  
+![Kuva 117.](pics/harjoitus_5/117.png)  
 *Manuaali ei ollut avulias - todennäköisesti kyseessä on  [PEBCAK](https://en.wiktionary.org/wiki/PEBCAK)*  
   
 Totesin, että on parempi etsiä soveltava esimerkki, jossa komentoa oikeasti käytetetään ja syntaksin näkee todellisuudessa. [Löysin esimerkin](https://programwithus.com/learn/django/deploying-django-web-app), jossa komentoa käytetään Djangon kontekstissa ja tutustuin siihen.  
@@ -956,11 +958,11 @@ sudo chmod 777
 /var/www/env/your_folder_from_github/your_project/media/your_folder_for_images/ 
 ````
 
-Tämäkään lähde ei kertonut mitään ls-tulosteesta, jonka ymmärtäminen oli mielestäi käyttöoikeuksien ytimessä - en voi muuttaa jotain, jos en tiedä mitä teen.  
+Tämäkään lähde ei kertonut mitään ls-tulosteesta, jonka ymmärtäminen oli mielestäni käyttöoikeuksien ytimessä - en voi muuttaa jotain, jos en tiedä mitä teen.  
   
 Seuraava lähde oli [ls-komennosta](https://detailed.wordpress.com/2017/10/28/understanding-ls-command-output/).  
   
-[Kuva 118.](pics/harjoitus_5/118.png)  
+![Kuva 118.](pics/harjoitus_5/118.png)  
 *Tämä sivu oli mielestäni selkeämpi lähde oikeuksiin, koska se selitti tulostetta*  
   
 Ensimmäiset yhdeksän merkkiä rivistä kertovat siis omistajan, ryhmän ja muiden käyttöoikeudet (read, write, execute). Ylläolevaan, toiseen [käyttöoikeuslähteeseen](https://docs.nersc.gov/filesystems/unix-file-permissions/) ja kolmanteen [lähteeseen](https://www.thegeekstuff.com/2010/06/chmod-command-examples/)  peilattuna pystyin Karvisen ohjeiden mukaan tekemään chmod-asetukset:  
@@ -980,14 +982,14 @@ sudo chown kallet:www-data /home/kallet/publicwsgi/static/index.html
 Tarkistin käyttöoikeudet komennolla:  
 *ls -ld /home/kallet/ /home/kallet/publicwsgi/ /home/kallet/publicwsgi/static/ /home/kallet/publicwsgi/static/index.html*  
   
-[Kuva 119.](pics/harjoitus_5/119.png)  
+![Kuva 119.](pics/harjoitus_5/119.png)  
 *Käyttöoikeuksien uusi muoto*  
   
 Sitten päivitin wsgi.py:n ja käynnistin demonin uudelleen:  
 *touch splitlyze/splitlyze/wsgi.py*  
 *sudo systemctl restart apache2*  
   
-[Kuva 120.](pics/harjoitus_5/120.png)  
+![Kuva 120.](pics/harjoitus_5/120.png)  
 Lopputuloksena oli se, että en enää pystynyt edes lukemaan static-kansiota.  
   
 Totesin olevani hukassa ja lähdin googlaamaan.  
@@ -1000,14 +1002,14 @@ Muutin käyttöoikeudet takaisin kallet-käyttäjälle ja poistin djangousr-käy
   
 En saanut enää avattua access.logia Apachesta, vaikka error.log avautui. Access.log oli tyhjä jostain syystä. 
   
-[Kuva 121.](pics/harjoitus_5/121.png)  
+![Kuva 121.](pics/harjoitus_5/121.png)  
 *Kirjoitin access.logiin jotain, jotta selviäisi voiko edes sudolla sinne kirjoittaa*  
   
 Päätin jälleen kerran laittaa koko serverin sileäksi ja aloittaa alusta, sillä vianetsintään oli käytetty jumalaton määrä aikaa.  
   
 Lopetin työt 13.58.  
     
-**Fenix**  
+#Fenix  
   
 Aloitin työt 14.31.  
   
@@ -1023,14 +1025,14 @@ Aloitin työt 14.31.
   
 **Apachen asennus**  
   
-1. sudo apt-get -y install apache2 #demonin asennus  
-2. curl localhost |grep title #asennuksen onnistumisen tarkistaminen  
+1. *sudo apt-get -y install apache2* #demonin asennus  
+2. *curl localhost |grep title* #asennuksen onnistumisen tarkistaminen  
   
-[Kuva 122.](pics/harjoitus_5/122.png)  
+![Kuva 122.](pics/harjoitus_5/122.png)  
 *Oletussivu pyöri localhostissa*  
   
-3. echo "Korvattu oletussivu." |sudo tee /var/www/html/index.html #vakiosivun korvaaminen  
-4. sudoedit /etc/apache2/sites-available/splitting.conf  #uusi konffitiedosto Apachelle  
+3. *echo "Korvattu oletussivu." |sudo tee /var/www/html/index.html* #vakiosivun korvaaminen  
+4. *sudoedit /etc/apache2/sites-available/splitting.conf*  #uusi konffitiedosto Apachelle  
   
 ````
 <VirtualHost *:80>
@@ -1041,76 +1043,75 @@ Aloitin työt 14.31.
 </VirtualHost>
 ````  
   
-[Kuva 123.](pics/harjoitus_5/123.png)  
+![Kuva 123.](pics/harjoitus_5/123.png)  
 *splitting.conf sisältö*  
   
-5. sudo a2ensite splitting.conf #enabloidaan juuri tehty conf-tiedosto Apachelle   
-6. sudo a2dissite 000-default.conf #Disabloidaan vakiotiedosto  
-7. /sbin/apache2ctl configtest #Testataan asetukset  
+5. *sudo a2ensite splitting.conf* #enabloidaan juuri tehty conf-tiedosto Apachelle   
+6. *sudo a2dissite 000-default.conf* #Disabloidaan vakiotiedosto  
+7. */sbin/apache2ctl configtest* #Testataan asetukset  
   
-[Kuva 124.](pics/harjoitus_5/124.png)  
+![Kuva 124.](pics/harjoitus_5/124.png)  
 *Testistä saatiin toivotun kaltaiset tulokset*  
   
-8. sudo systemctl restart apache2 #Uudelleenkäynnistetään demoni  
-9. mkdir -p publicwsgi/splitting/static/ #Testihakemisto
-10. echo "Statically relevant data"|tee publicwsgi/splitting/static/index.html #Testitiedosto  
+8. *sudo systemctl restart apache2* #Uudelleenkäynnistetään demoni  
+9. *mkdir -p publicwsgi/splitting/static/* #Testihakemisto
+10. *echo "Statically relevant data"|tee publicwsgi/splitting/static/index.html* #Testitiedosto  
   
-[Kuva 125.](pics/harjoitus_5/125.png)  
+![Kuva 125.](pics/harjoitus_5/125.png)  
 *curl toimitti halutun testituloksen*  
   
-11. rm -r /home/kalle/publicwsgi/splitting/ #testihakemiston poisto. En halunnut sekoittaa kansiorakennetta.  
+11. *rm -r /home/kalle/publicwsgi/splitting/* #testihakemiston poisto. En halunnut sekoittaa kansiorakennetta.  
   
 **Django + VirtualEnv**  
   
-1. sudo apt-get -y install virtualenv #Asensin paketit  
-2. cd publicwsgi/ #Kotihakemistosta publicwsgi-hakemistoon  
-3. virtualenv -p python3 --system-site-packages env #env-hakemistoon luotiin uusi virtuaaliympäristö, jossa oli system-site-packages -sisältö käytössä  
-4. source env/bin/activate #Aktivoin virtuaaliympäristön  
-5. which pip #Tarkistetaan, että ollaan env-hakemistossa  
-6. echo "django" |tee requirements.txt #Kirjasin vaatimuksiin django:n  
-7. pip install -r requirements.txt #Tein asennuksen vaatimusten mukaan  
-8. django-admin --version #Testasin asennuksen  
+1. *sudo apt-get -y install virtualenv* #Asensin paketit  
+2. *cd publicwsgi/* #Kotihakemistosta publicwsgi-hakemistoon  
+3. *virtualenv -p python3 --system-site-packages env* #env-hakemistoon luotiin uusi virtuaaliympäristö, jossa oli system-site-packages -sisältö käytössä  
+4. *source env/bin/activate* #Aktivoin virtuaaliympäristön  
+5. *which pip* #Tarkistetaan, että ollaan env-hakemistossa  
+6. *echo "django" |tee requirements.txt* #Kirjasin vaatimuksiin django:n  
+7. *pip install -r requirements.txt* #Tein asennuksen vaatimusten mukaan  
+8. *django-admin --version* #Testasin asennuksen  
   
-[Kuva 126.](pics/harjoitus_5/126.png)  
+![Kuva 126.](pics/harjoitus_5/126.png)  
 *Testi osoitti, että Django saatiin asennettua*  
   
 **Uusi Django-projekti**  
   
-1. django-admin startproject splitting #Loin uuden projekti  
-2. mkdir -p splitting/static/ #Luodaan staattisille sivuille kansio
-3. echo "Statically relevant data"|tee splitting/static/index.html
-Statically relevant data #Loin staattisen sivun
-4. sudo adduser djusr #Loin uuden käyttäjän Djangolle  
-5. sudoedit /etc/apache2/sites-available/splitting.conf #Editoin tiedostoon uuden sisällön. Jätin toistaiseksi kalle-käyttäjän, jotta pääsisin debuggaamaan johtuivatko ongelmani käyttäjästä vai jostain muusta  
+1. *django-admin startproject splitting* #Loin uuden projekti  
+2. *mkdir -p splitting/static/* #Luodaan staattisille sivuille kansio
+3. *echo "Statically relevant data"|tee splitting/static/index.html* #Loin staattisen sivun  
+4. *sudo adduser djusr* #Loin uuden käyttäjän Djangolle  
+5. *sudoedit /etc/apache2/sites-available/splitting.conf* #Editoin tiedostoon uuden sisällön. Jätin toistaiseksi kalle-käyttäjän, jotta pääsisin debuggaamaan johtuivatko ongelmani käyttäjästä vai jostain muusta  
   
-[Kuva 127.](pics/harjoitus_5/127.png)  
+![Kuva 127.](pics/harjoitus_5/127.png)  
 *Osa tiedoston sisällöstä*  
   
-6. sudo apt-get -y install libapache2-mod-wsgi-py3 #Asensin Apacheen mod-wsgi:n  
-7. /sbin/apache2ctl configtest #Testasin configin oikeellisuuden  
-8. sudo systemctl restart apache2 #Käynnistin serverin uudestaan  
-9. curl localhost |grep title #Testasin asennukseni  
-9. Tuloksena oli internal server error 500 -> tarkistin konffitiedoston ja sinne oli jäänyt mallista yksi väärä tero-käyttäjä.  
+6. *sudo apt-get -y install libapache2-mod-wsgi-py3* #Asensin Apacheen mod-wsgi:n  
+7. */sbin/apache2ctl configtest* #Testasin configin oikeellisuuden  
+8. *sudo systemctl restart apache2* #Käynnistin serverin uudestaan  
+9. *curl localhost |grep title* #Testasin asennukseni  
+-Tuloksena oli internal server error 500 -> tarkistin konffitiedoston ja sinne oli jäänyt mallista yksi väärä tero-käyttäjä.  
   
-[Kuva 128.](pics/harjoitus_5/128.png)  
+![Kuva 128.](pics/harjoitus_5/128.png)  
 *Testistä tuli toivottu tulos toisella kerralla*  
   
-10. curl -sI localhost|grep Server #Toinen testi  
+10. *curl -sI localhost|grep Server* #Toinen testi  
 Testin tuloksena tulostui: Server: Apache/2.4.52 (Debian)  
   
 **DEBUG pois**  
   
-1. cd splitting/ #Siirryin alihakemistoon  
-2. micro splitting/settings.py #Editoin asetuksia  
+1. *cd splitting/* #Siirryin alihakemistoon  
+2. *micro splitting/settings.py* #Editoin asetuksia  
   
-[Kuva 129.](pics/harjoitus_5/129.png)  
+![Kuva 129.](pics/harjoitus_5/129.png)  
 *Muokatut asetukset*  
   
-3. touch splitting/wsgi.py #Päivitetään wsgi.py  
-4. sudo systemctl restart apache2 #demonin uudelleenkäynnistys  
-5. sudo ufw allow 80/tcp  #Tein palomuuriin reiän, jotta palvelin olisi saatavilla julkissa netissä  
+3. *touch splitting/wsgi.py* #Päivitetään wsgi.py  
+4. *sudo systemctl restart apache2* #demonin uudelleenkäynnistys  
+5. *sudo ufw allow 80/tcp* #Tein palomuuriin reiän, jotta palvelin olisi saatavilla julkissa netissä  
   
-[Kuva 130.](pics/harjoitus_5/130.png)  
+![Kuva 130.](pics/harjoitus_5/130.png)  
 *Pääsin julkisesta netistä lukemaan index.html:n static-kansiosta ja Djangon konsolin kirjautumisnäkymään*  
   
 Lopetin työt 16.04.  
@@ -1121,17 +1122,17 @@ Aloitin työt 17.57.
   
 Kokeilin seuraavaksi mitä tapahtuisi, jos vaihtaisin splitting.conf-tiedostoon käyttäjäksi djusr-käyttäjän.  
   
-[Kuva 131.](pics/harjoitus_5/131.png)  
+![Kuva 131.](pics/harjoitus_5/131.png)  
 *Tiedoston uusi sisältö (osa puuttuu lopusta)*  
   
-[Kuva 132.](pics/harjoitus_5/132.png)  
+![Kuva 132.](pics/harjoitus_5/132.png)  
 *Päivitin wsgi-tiedoston*  
   
 Lopuksi tarkistin asetusten paikkansapitävyyden ja käynnistin serverin uudestaan:  
 */sbin/apache2ctl configtest*  
 *sudo systemctl restart apache2*  
   
-[Kuva 133.](pics/harjoitus_5/133.png)  
+![Kuva 133.](pics/harjoitus_5/133.png)  
 *Admin-konsoli tuli näkyviin, samoin static-kansion index.html*  
   
 **Uuden Django-käyttäjän luominen**  
@@ -1145,10 +1146,10 @@ Seuraavaksi oli vuorossa superuserin luominen, jotta konsolia olisi mahdolista k
 5. *./manage.py migrate* #Käsky toteutti tietokantamuutokset  
 6. *./manage.py createsuperuser* #Loi superuserin  
   
-[Kuva 134.](pics/harjoitus_5/134.png)  
+![Kuva 134.](pics/harjoitus_5/134.png)  
 *Superuserin luominen onnistui*  
   
-[Kuva 135.](pics/harjoitus_5/135.png)  
+![Kuva 135.](pics/harjoitus_5/135.png)  
 *Tuloksena oli kuitenkin virhe kirjautuessa*  
   
 Päätin tutkia error.log-tiedoston:  
@@ -1156,31 +1157,31 @@ Päätin tutkia error.log-tiedoston:
   
 Käynnistin myös demonin uudestaan, mutta virheilmoitus oli edelleen sama.  
   
-[Kuva 136.](pics/harjoitus_5/136.png)  
+![Kuva 136.](pics/harjoitus_5/136.png)  
 *Lokitiedostoihin ei kertynyt julkisesta netistä tulevia pyyntöjä, vaikka sivut tuotettiin selaimeen*  
   
-[Kuva 137.](pics/harjoitus_5/137.png)    
+![Kuva 137.](pics/harjoitus_5/137.png)    
 *Kokeilin splitlyze.conf-tiedostoon käyttäjän vaihtamista kalle-käyttäjäksi, sen jälkeen pääsin kirjautumaan konsoliin!*  
   
-[Kuva 138.](pics/harjoitus_5/138.png)  
+![Kuva 138.](pics/harjoitus_5/138.png)  
 *Nyt onnistuin myös luomaan konsolista uuden käyttäjän*  
   
 Tästä päättelin että minulla on 2 ongelmaa: Apachen logien puuttuminen ja djangousr-käyttäjän käyttöoikeudet projektihakemistoihin.  
   
-[Kuva 139.](pics/harjoitus_5/139.png)  
+![Kuva 139.](pics/harjoitus_5/139.png)  
 *Myös logout-toiminto toimi kuten pitikin*  
   
 **djangousr-ongelma**  
   
 1. *ls -ld /home/kalle/ /home/kalle/publicwsgi/ home/kalle/publicwsgi/splitting/static/ /home/kalle/publicwsgi/splitting/static/index.html* #Komento listasi hakemistojen ja tiedoston käyttöoikeudet  
   
-[Kuva 140.](pics/harjoitus_5/140.png)  
+![Kuva 140.](pics/harjoitus_5/140.png)  
 *Listaus käyttöoikeuksista*  
   
 Kokeilin muuttaa kaikki listauksen kansiot Apachen ryhmään, jossa se [suorittaa toimintaansa](https://www.digitalocean.com/community/tutorials/how-to-serve-django-applications-with-apache-and-mod_wsgi-on-debian-8) (www-data):  
 *sudo chown -R tiedostot ja hakemistot*  
   
-[Kuva 141.](pics/harjoitus_5/141.png)  
+![Kuva 141.](pics/harjoitus_5/141.png)  
 *Uudet käyttöoikeudet näyttivät tältä*  
   
 Tein välikokeilun päivittämällä wsgi.py:n ja käynnistämällä demonin uudestaan.  
@@ -1235,7 +1236,7 @@ LOGGING = {
   
 Oli siis aika vaihtaa käyttäjä taas toiseen ja kokeilla saisinko virheestä serverin puolelta informatiivisemman lokimerkinnän. Käynnistin demonin uudestaan vaihdettuani splitting.conf-tiedostoon djurs-käyttäjän parametriksi.  
   
-[Kuva 142.](pics/harjoitus_5/142.png)  
+![Kuva 142.](pics/harjoitus_5/142.png)  
 *Virheloki ei kertonut ymmärrykseni mukaan mitään serverin asioista, vaan ainoastaan pythonista*  
   
 Vaihdoin käyttäjän takaisin kalle-käyttäjään ja testasin, että kirjautuminen toimii sillä.  
@@ -1243,7 +1244,7 @@ Vaihdoin käyttäjän takaisin kalle-käyttäjään ja testasin, että kirjautum
 Googlaamalla ja onnella löysin lokitiedoston:  
 *sudo cat /var/log/apache2/other_vhosts_access.log*  
   
-[Kuva 143.](pics/harjoitus_5/143.png)  
+![Kuva 143.](pics/harjoitus_5/143.png)  
 *Tästäkään lokitiedostosta en tullut juuri viisaammaksi*  
   
 Päätin muuttaa djusr-käyttäjän user-käyttäjäksi kaikkiin hakemistoihin, joilla oli merkitystä projektille. 
@@ -1252,7 +1253,7 @@ sudo chown djusr:kalle /home/kalle/ /home/kalle/publicwsgi/ /home/kalle/publicws
 kalle/publicwsgi/splitting/static/index.html
 ````
   
-[Kuva 144.](pics/harjoitus_5/144.png)  
+![Kuva 144.](pics/harjoitus_5/144.png)  
 *Uudet käyttöoikeudet*  
   
 Buuttasin demonin ja kokeilin selaimessa lopputulosta - virheilmoitukset eivät muuttuneet.  
@@ -1281,12 +1282,12 @@ Päätin kokeilla kalle-käyttäjän muokkaamista sudo-oikeudettomaksi käyttäj
 4. Tarkistin, että käyttöoikeudet ovat edelleen kalle-käyttäjällä, joka ei enää kuulu sudo-ryhmään:  
 *ls -ld /home/kalle /home/kalle/publicwsgi/ /home/kalle/publicwsgi/splitting/static/ /home/kalle/publicwsgi/splitting/static/index.html*  
   
-[Kuva 145.](pics/harjoitus_5/145.png)  
+![Kuva 145.](pics/harjoitus_5/145.png)  
 *Oikeudet olivat edelleen oikealla käyttäjällä*  
   
 5. Tarkistin selaimesta sisäänkirjautumisen:  
   
-[Kuva 146.](pics/harjoitus_5/146.png)  
+![Kuva 146.](pics/harjoitus_5/146.png)  
 *Onnistuin kirjautumaan ja muuttamaan käyttäjän roolin admin-konsolissa*  
   
 **Kauniimmaksi CSS:llä**  
@@ -1301,7 +1302,7 @@ import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 ````
   
-[Kuva 147.](pics/harjoitus_5/147.png)  
+![Kuva 147.](pics/harjoitus_5/147.png)  
 *Editoitu tiedosto*  
   
 2. Laitoin virtuaaliympäristön päälle (/publicwsgi/-kansiossa):  
@@ -1311,7 +1312,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 *./manage.py makemigrations*  
 *sudo ./manage.py makemigrations*  
   
-[Kuva 148.](pics/harjoitus_5/148.png)  
+![Kuva 148.](pics/harjoitus_5/148.png)  
 *Sain virheilmoituksen*  
   
 Arvailin, että ilmoitus voisi johtua siitä, että ajoin tiedostoja vääränä käyttäjänä.  
@@ -1320,10 +1321,10 @@ Arvailin, että ilmoitus voisi johtua siitä, että ajoin tiedostoja vääränä
 *./manage.py makemigrations*  
 *./manage.py collectstatic*  
   
-[Kuva 149.](pics/harjoitus_5/149.png)  
+![Kuva 149.](pics/harjoitus_5/149.png)  
 *collectstatic saatiin ajettua*  
   
-[Kuva 150.](pics/harjoitus_5/150.png)  
+![Kuva 150.](pics/harjoitus_5/150.png)  
 *Konsolin ulkoasu parani välittömästi*  
   
 Lopetin työt 19.40.  
@@ -1333,7 +1334,7 @@ Lopetin työt 19.40.
 1. Tein settings.py-tiedostoon merkinnän splitting-applikaatiosta:  
 *micro home/kalle/publicwsgi/splitting/splitting/settings.py*  
   
-[Kuva 151.](pics/harjoitus_5/151.png)  
+![Kuva 151.](pics/harjoitus_5/151.png)  
 *Muokattu kohta tiedostossa*  
   
 2. Tein models.py-tiedoston:  
@@ -1364,7 +1365,7 @@ admin.site.register(models.Receipt)
 Sain tulokseksi Internal Server Errorin, joten kirjauduin sudo-käyttäjälläni sisään katsoakseni lokeja:  
 *sudo tail -10 /var/log/apache2/other_vhosts_access.log*  
   
-[Kuva 152.](pics/harjoitus_5/152.png)  
+![Kuva 152.](pics/harjoitus_5/152.png)  
 *Lokitiedoston pätkä apachen virtuaalihostien logista*  
   
 En tullut juuri viisaammaksi lokeista, joten päätin poistaa datefieldin koodista, koska se oli pyytänyt kehitysserverin kautta parametrinsä aiemmassa iteraatiokierroksessa:  
@@ -1375,7 +1376,7 @@ Kirjauduin ulos sudo-käyttäjälläni ja sisään normikäyttäjälläni.
 Kokeilin models.py:n muokkauksen jälkeen tehdä tietokantamigraatiot ja sain hyödyllisen virheilmoituksen:  
 *./manage.py makemigrations*  
   
-[Kuva 153.](pics/harjoitus_5/153.png)  
+![Kuva 153.](pics/harjoitus_5/153.png)  
 *Minulla oli kirjoitusvirhe admin.py:ssä*  
   
 Korjasin admin.py:n muotoon:  
@@ -1395,16 +1396,16 @@ Internal Server Error 500 oli edelleen tuloksena, joten palasin sudo-käyttäjä
   
 Buuttasin demonin ja sain näkyviin tekemäni tietokantamuutokset admin-konsolissa.  
   
-[Kuva 154.](pics/harjoitus_5/154.png)  
+![Kuva 154.](pics/harjoitus_5/154.png)  
 *Receipts näkyi*  
 
-[Kuva 155.](pics/harjoitus_5/155.png)  
+![Kuva 155.](pics/harjoitus_5/155.png)  
 *Olion avaaminen tuotti edelleen saman virheen, joten virheen oli todennäköisesti sijaittava models.py-tiedostossa*  
   
 Avasin tiedoston:  
 *micro hakemisto/models.py*  
   
-[Kuva 156.](pics/harjoitus_5/156.png)  
+![Kuva 156.](pics/harjoitus_5/156.png)  
 *Kommentoin pois kaiken paitsi yksinkertaisemman koodin*
   
 Kirjauduin ulos sudo-käyttäjällä, sisään normikäyttäjjä ja tein migraatiot.  
@@ -1419,14 +1420,14 @@ Päätin vertailla aiemmin harjoituksen ensimmäisessä kohdassa tekemäni vasta
   
 models.py oli tuotantokoneessani yhtä hakemistoa alempana, joten loin alempaan splitting-kansioon uuden settle-alikansion ja siirsin models.py:n sinne.  
   
-[Kuva 157.](pics/harjoitus_5/157.png)  
+![Kuva 157.](pics/harjoitus_5/157.png)  
 *Vasemmalla tuotantokone, oikealla aiemman harjoituksen virtuaalikone*  
   
 Annoin komennot:  
 *mkdir ../settle*  
 *mv models.py ../settle/*  
   
-[Kuva 158.](pics/harjoitus_5/158.png)  
+![Kuva 158.](pics/harjoitus_5/158.png)  
 *Muokkasin settings.py:t vastaamaan toisiaan*  
   
 Tässä vaiheessa havaitsin, että minulla oli virtuaalikoneessani ehkä kaksi erillistä projektia: settle ja splitlyze, sillä kansioissa oli samat tiedostot. Otin aikalisän ja perehdyin raporttini alkuosaan.  
@@ -1439,10 +1440,10 @@ Käynnistin virtuaaliympäristön ja perustin uuden applikaation:
 *source env/bin/activate*  
 *./manage.py startapp settle*  
 
-[Kuva 159.](pics/harjoitus_5/159.png)  
+![Kuva 159.](pics/harjoitus_5/159.png)  
 *Totesin, että en ymmärrä mitä teen.*  
   
-Päätin tuhota projektin ja tehdä sen alusta, noudattaen omia, todistettavasti toimineita, ohjeitani harjoituksen alusta. Siirryin publicwsgi:n juureen ja tuhosin splitting-kansion sisältöineen:  
+Päätin tuhota projektin ja tehdä sen alusta. Siirryin publicwsgi:n juureen ja tuhosin splitting-kansion sisältöineen:  
 *rm -r splitting*  
   
 **Djangon iltahuuto**  
@@ -1470,37 +1471,37 @@ ALLOWED_HOSTS = ['localhost','ip-osoite','domain']
 *./manage.py migrate*  
 9. Käynnistin demonin uudestaan admin-käyttäjällä  
   
-[Kuva 160.](pics/harjoitus_5/160.png)  
+![Kuva 160.](pics/harjoitus_5/160.png)  
 *Konsoli tuli näkyviin*  
   
 10. Loin superuserin:  
 *./manage.py createsuperuser*  
 11. Kirjauduin sisään konsoliin  
   
-[Kuva 161.](pics/harjoitus_5/161.png)  
+![Kuva 161.](pics/harjoitus_5/161.png)  
 *Pääsin sisään*  
   
 12. Loin models.py:n projektikansioon:  
 *nano splitting/models.py*  
   
-[Kuva 162.](pics/harjoitus_5/162.png)  
+![Kuva 162.](pics/harjoitus_5/162.png)  
 *Tiedoston sisältö*  
   
 13. Ajoin migraatiot  
 14. Tein admin.py:n:  
 *nano splitting/admin.py*  
   
-[Kuva 163.](pics/harjoitus_5/163.png)  
+![Kuva 163.](pics/harjoitus_5/163.png)  
 *Tiedoston sisältö*  
   
 15. Korjasin settings.py-tiedostoon applikaation  
   
-[Kuva 164.](pics/harjoitus_5/164.png)  
+![Kuva 164.](pics/harjoitus_5/164.png)  
 *Tiedoston sisältö*  
   
 15. Käynnistin demonin uudestaan admin-käyttäjällä  
   
-[Kuva 165.](pics/harjoitus_5/165.png)  
+![Kuva 165.](pics/harjoitus_5/165.png)  
 *Splitting-applikaatio näkyy*  
   
 Customers-olio ei edelleenkään suostunut aukeamaan, joten katsoin 500 server erroria other_vhosts_access.log-tiedostosta admin-käyttäjälläni:  
@@ -1526,7 +1527,7 @@ Päättelin, että olisi syytä tehdä aiemmin mainittu sivujen saattaminen kaun
 
 */manage.py collectstatic*  
   
-[Kuva 166.](pics/harjoitus_5/166.png)  
+![Kuva 166.](pics/harjoitus_5/166.png)  
 *setting.py:n uusi sisältö*  
   
 Pyörittelin asiaa aikani ja tein samoja kehäpäätelmiä, joten laitoin DEBUG-asetuksen tämän kerran päälle tuotannossa saadakseni jonkun vikailmoituksen, mistä lähteä asiaa selvittämään.  
@@ -1540,12 +1541,15 @@ Googlasin hakusanalla ja [löysin komennon](https://stackoverflow.com/questions/
   
 Lähteessäkään ei ole tietoa siitä mitä komento tekee, saati miksi se korjaa ongelman, mutta joka tapauksessa se oli nyt korjattu ja tietokanta toimi kuten pitikin. Muutin DEBUG-parametrin takaisin Falseksi tämän jälkeen. 
   
-[Kuva 167.](pics/harjoitus_5/167.png)  
+![Kuva 167.](pics/harjoitus_5/167.png)  
 *Väärin korjattu, mutta korjattu kumminkin*  
   
 Lopetin työt 14.33 ja päätin siistiä raportin illemmalla.  
 
+##Loppupohdinta
  
+Tein paljon virheitä, joista vähiten selkeä oli se, että en tehnyt ollenkaan applikaatiota projektiin tuotannossa testatessani. Tämä oli todennäköisesti tietokannan kanssa kokemieni ongelmien perimmäinen syy.  
+  
 
   
   

@@ -337,7 +337,7 @@ Uusi yritys:
 Virheilmoitukset pysyivät samoina, enkä tiennyt miksi, joten päätin kokeilla mitä käy, jos käynnistän serverin uudestaan, sillä voin aina palata edelliseen tehtävään ja tehdä kaikki toimenpiteet uudestaan päästäkseni takaisin alkupisteeseen.  
   
 Annoin komennon:  
-*sudo systemctl restart apache2**  
+*sudo systemctl restart apache2*  
   
 ![Kuva 51.](pics/harjoitus_5/51.png)  
 *Demoni käynnistyi uudestaan mukisematta*  
@@ -361,9 +361,7 @@ Jäljelle jäänyt virheilmoitus liittynee ssl-sertifikaattiin ja sen korjaamine
 *sudo certbot renew --dry-run*  
   
 ![Kuva 56.](pics/harjoitus_5/56.png)  
-*Kaikki on ok*  
-  
-Uskon, että viimeinen virheilmoitus korjaantuu itsestään, kun sertifikaatti seuraavan kerran uudistaa itsensä automaattisesti.  
+*Kaikki on ok - ehkä ongelma korjaantuisi seuraavalla uusintakierroksella?*  
   
 ![Kuva 57.](pics/harjoitus_5/57.png)  
 *Julkisessa netissä ssl-suojaamaton staattinen testisivu toimi oikein*  
@@ -439,7 +437,7 @@ Huomasin, että olin sössinyt jossain, sillä debugatessa muutin splitlyze.conf
 ![Kuva 64.](pics/harjoitus_5/64.png)  
 *Ei mennyt niin kuin piti*  
   
-Päättelin, että jostain tuo sivu loihditann esiin ja se löytyikin /var/www/html -hakemistosta. Sitten päätin konfiguroida apachea uudestaan käyttämään oikeaa tiedostoa:  
+Päättelin, että jostain tuo sivu loihditaan esiin ja se löytyikin /var/www/html -hakemistosta. Sitten päätin konfiguroida apachea uudestaan käyttämään oikeaa tiedostoa:  
 *sudo a2dissite splitlyze.conf*  
 *sudo a2dissite 000-default.conf*  
 *sudo a2dissite 000-default-le-ssl.conf*  
@@ -483,7 +481,7 @@ Komento ilmoitti, että apache on edelleen asennettu, joten ajoin komennot:
 *sudo apt-get purge -y apache2*  
 *sudo apt autoremove*  
   
-![Kuva 67.](pics/harjoitus_5/67).png)  
+![Kuva 67.](pics/harjoitus_5/67.png)  
 *Viimein demoni oli oikeasti poistettu*  
   
 Uusi asennus:  
@@ -547,7 +545,7 @@ Loin virtualhost-tiedoston ja aktivoin sen:
 Googlauksen perusteella ajoin komennon:  
 *sudo apt install --reinstall apache2-bin*  
   
-Epäilen että olin poistanut apache-demonin jotenkin väärin ja nyt järjestelmä ei ollut osannut asentaa sitä oikein.  
+Epäilen että olin poistanut apache-demonin jotenkin väärin ja nyt järjestelmä ei ollut osannut asentaa sitä oikein. **Oikolukiessa raporttia huomasin, että olin mahdollisesti jättänyt liittämäni hakemistopolut sellaisenaan conf-tiedostoon.**
   
 ![Kuva 71.](pics/harjoitus_5/71.png)  
 *Tällä kertaa configtest meni onnistuneesti läpi*  
@@ -560,7 +558,7 @@ Laitoin käyttäjähakemistot päälle:
   
 Minut valtasi syvä epäusko ja päätin ajaa koko dropletin maantasalle ja tehdä uudestaan, sillä ongelmani johtuivat mahdollisesti väärin poistetuista tai asennetuista paketeista.  
   
-**Sisyphos**  
+# Sisyphos  
   
 Tuhosin serverin Digital Oceanissa ja tein sen uudestaan kuvaavalla hostnamella.  
   
@@ -601,7 +599,7 @@ Tein saattisille sivuille hakemiston ja index.html-tiedoston:
   
 Tämän jälkeen tein virtualhost-tiedoston:  
 *sudo nano /etc/apache2/sites-available/splitlyze.conf*  
--Käytin nanoa, sillä windowsin leikepöydästä ei voi liittää microon.  
+-Käytin nanoa, sillä windowsin leikepöydästä ei voi liittää microon  
   
 **Tiedoston sisältö**
 ````
@@ -626,7 +624,7 @@ Testasin asetusten kelvolllisuuden:
 Käynnistin demonin uudestaan:  
 *sudo systemctl restart apache2*  
   
-Kokeiltuani monia epäloogisia asioita muistin että olin jättänyt palomuuriin avaamatta aukon, joten tein sen:  
+Kokeiltuani monia epäloogisia asioita muistin, että olin jättänyt palomuuriin avaamatta aukon, joten tein sen:  
 *sudo ufw allow 80/tcp*  
   
 Tämä ei auttanut, mutta huomasin, että olin nimennyt staattisen hakemistoni tiedoston hmtl-tiedostopäättellä, joten muutin sen ja käynnistin demonin uudestaan:  
@@ -655,7 +653,7 @@ Muokkasin vielä kerran splitlyze.conf tiedostoa:
 ![Kuva 82.](pics/harjoitus_5/82.png)  
 *Uusi sisältö*  
   
-Minulla oli luultavasti ajatusvirhe ja testasin aivan väärää osoitetta ylempänä, mutta tulipahan tehtyä serverin pystyttäminen uudemman kerran. Oikea testiosoite curl:lle olisi ollut "localhost/static", ei "localhost" tai "localhost/tunnus".  
+Minulla oli luultavasti ajatusvirhe ja testasin aivan väärää osoitetta ylempänä, mutta tulipahan tehtyä serverin pystyttäminen uudemman kerran. Oikea testiosoite curl:lle olisi ollut "localhost/static/", ei "localhost" tai "localhost/tunnus".  
   
 ![Kuva 83.](pics/harjoitus_5/83.png)  
 *Toimiva curl-testi*  
@@ -754,7 +752,7 @@ Etsin tietoa ja [sen perusteella](https://stackoverflow.com/questions/11391424/h
 ![Kuva 93.](pics/harjoitus_5/93.png)  
 *Poistin projektikansion*  
   
-Loin projektin uudestaan ja tein static-kansion, sekä sinne index.htmk-tiedoston:  
+Loin projektin uudestaan ja tein static-kansion, sekä sinne index.html-tiedoston:  
 *django-admin startproject splitlyze*  
 *mkdir /splitlyze/static/*  
 *echo "moi" |tee splitlyze/static/index.html*  
@@ -793,7 +791,9 @@ Tarkistin virhelokin:
 ![Kuva 98.](pics/harjoitus_5/98.png)  
 *Lokitiedoston virhe*  
   
-	Jatkoin kuitenkin ensin Karvisen artikkelin loppukohtien mukaan, jos virhe vaikka korjaantuisi niillä. Artikkeli ei varsinaisesti käsittele julkisessa netissä olevaa palvelinta, joten sellaisenaan se vaatinee soveltamista.  
+````
+Jatkoin kuitenkin ensin Karvisen artikkelin loppukohtien mukaan, jos virhe vaikka korjaantuisi niillä. Artikkeli ei varsinaisesti käsittele julkisessa netissä olevaa palvelinta, joten sellaisenaan se vaatinee soveltamista.  
+````  
   
 **DEBUG pois käytöstä**  
   
@@ -852,7 +852,9 @@ Tutkin asiaa tarkemmin ja minulla oli 2 eri manage.py-tiedostoa, joten päätin 
 ![Kuva 108).](pics/harjoitus_5/108.png)  
 *Kaksi erillistä manage.py-tiedostoa*  
   
-	Sain kuintenkin kasan virheilmoituksia ja päättelin ruutukaappauksistani, että en ollut tehnyt kaikkia toimiani virtuaaliympäristön sisällä ja siten olin ehkä tullut tietämättäni sössineeksi jotain. Poistin siis jälleen koko projektini ja kotihakemistoni publicwsgi-kansiossa olleen manage.py-tiedoston.  
+````
+`Sain kuintenkin kasan virheilmoituksia ja päättelin ruutukaappauksistani, että en ollut tehnyt kaikkia toimiani virtuaaliympäristön sisällä ja siten olin ehkä tullut tietämättäni sössineeksi jotain. Poistin siis jälleen koko projektini ja kotihakemistoni publicwsgi-kansiossa olleen manage.py-tiedoston.  
+````
 	  
 ![Kuva 109.](pics/harjoitus_5/109.png)  
 *Kaikki on jälleen poistettu*  
@@ -897,7 +899,7 @@ Tutkin virhelokia:
 *sudo cat /var/log/apache2/error.log*  
   
 Viimeisenä merkintänä oli paljon kuvaava virhe, joka muistutti minua, että en ollut tehnyt static-kansiota, vaikka sellainen oli asetuksissa määriteltynä:  
-*30: client denied by server configuration: /home/kallet/publicwsgi/splitlyze/static, referer: http://kalletolonen.me/admin/login/?next=/admin/*  
+*AH01630: client denied by server configuration: /home/kallet/publicwsgi/splitlyze/static, referer: http://kalletolonen.me/admin/login/?next=/admin/*  
   
 ![Kuva 114.](pics/harjoitus_5/114.png)  
 *Tein static-kansion ja sinne index.html-tiedoston*  
@@ -956,7 +958,7 @@ sudo chmod 777
 /var/www/env/your_folder_from_github/your_project/media/your_folder_for_images/ 
 ````
 
-Tämäkään lähde ei kertonut mitään ls-tulosteesta, jonka ymmärtäminen oli mielestäi käyttöoikeuksien ytimessä - en voi muuttaa jotain, jos en tiedä mitä teen.  
+Tämäkään lähde ei kertonut mitään ls-tulosteesta, jonka ymmärtäminen oli mielestäni käyttöoikeuksien ytimessä - en voi muuttaa jotain, jos en tiedä mitä teen.  
   
 Seuraava lähde oli [ls-komennosta](https://detailed.wordpress.com/2017/10/28/understanding-ls-command-output/).  
   
@@ -1007,7 +1009,7 @@ Päätin jälleen kerran laittaa koko serverin sileäksi ja aloittaa alusta, sil
   
 Lopetin työt 13.58.  
     
-**Fenix**  
+#Fenix  
   
 Aloitin työt 14.31.  
   
@@ -1023,14 +1025,14 @@ Aloitin työt 14.31.
   
 **Apachen asennus**  
   
-1. sudo apt-get -y install apache2 #demonin asennus  
-2. curl localhost |grep title #asennuksen onnistumisen tarkistaminen  
+1. *sudo apt-get -y install apache2* #demonin asennus  
+2. *curl localhost |grep title* #asennuksen onnistumisen tarkistaminen  
   
 ![Kuva 122.](pics/harjoitus_5/122.png)  
 *Oletussivu pyöri localhostissa*  
   
-3. echo "Korvattu oletussivu." |sudo tee /var/www/html/index.html #vakiosivun korvaaminen  
-4. sudoedit /etc/apache2/sites-available/splitting.conf  #uusi konffitiedosto Apachelle  
+3. *echo "Korvattu oletussivu." |sudo tee /var/www/html/index.html* #vakiosivun korvaaminen  
+4. *sudoedit /etc/apache2/sites-available/splitting.conf*  #uusi konffitiedosto Apachelle  
   
 ````
 <VirtualHost *:80>
@@ -1044,71 +1046,70 @@ Aloitin työt 14.31.
 ![Kuva 123.](pics/harjoitus_5/123.png)  
 *splitting.conf sisältö*  
   
-5. sudo a2ensite splitting.conf #enabloidaan juuri tehty conf-tiedosto Apachelle   
-6. sudo a2dissite 000-default.conf #Disabloidaan vakiotiedosto  
-7. /sbin/apache2ctl configtest #Testataan asetukset  
+5. *sudo a2ensite splitting.conf* #enabloidaan juuri tehty conf-tiedosto Apachelle   
+6. *sudo a2dissite 000-default.conf* #Disabloidaan vakiotiedosto  
+7. */sbin/apache2ctl configtest* #Testataan asetukset  
   
 ![Kuva 124.](pics/harjoitus_5/124.png)  
 *Testistä saatiin toivotun kaltaiset tulokset*  
   
-8. sudo systemctl restart apache2 #Uudelleenkäynnistetään demoni  
-9. mkdir -p publicwsgi/splitting/static/ #Testihakemisto
-10. echo "Statically relevant data"|tee publicwsgi/splitting/static/index.html #Testitiedosto  
+8. *sudo systemctl restart apache2* #Uudelleenkäynnistetään demoni  
+9. *mkdir -p publicwsgi/splitting/static/* #Testihakemisto
+10. *echo "Statically relevant data"|tee publicwsgi/splitting/static/index.html* #Testitiedosto  
   
 ![Kuva 125.](pics/harjoitus_5/125.png)  
 *curl toimitti halutun testituloksen*  
   
-11. rm -r /home/kalle/publicwsgi/splitting/ #testihakemiston poisto. En halunnut sekoittaa kansiorakennetta.  
+11. *rm -r /home/kalle/publicwsgi/splitting/* #testihakemiston poisto. En halunnut sekoittaa kansiorakennetta.  
   
 **Django + VirtualEnv**  
   
-1. sudo apt-get -y install virtualenv #Asensin paketit  
-2. cd publicwsgi/ #Kotihakemistosta publicwsgi-hakemistoon  
-3. virtualenv -p python3 --system-site-packages env #env-hakemistoon luotiin uusi virtuaaliympäristö, jossa oli system-site-packages -sisältö käytössä  
-4. source env/bin/activate #Aktivoin virtuaaliympäristön  
-5. which pip #Tarkistetaan, että ollaan env-hakemistossa  
-6. echo "django" |tee requirements.txt #Kirjasin vaatimuksiin django:n  
-7. pip install -r requirements.txt #Tein asennuksen vaatimusten mukaan  
-8. django-admin --version #Testasin asennuksen  
+1. *sudo apt-get -y install virtualenv* #Asensin paketit  
+2. *cd publicwsgi/* #Kotihakemistosta publicwsgi-hakemistoon  
+3. *virtualenv -p python3 --system-site-packages env* #env-hakemistoon luotiin uusi virtuaaliympäristö, jossa oli system-site-packages -sisältö käytössä  
+4. *source env/bin/activate* #Aktivoin virtuaaliympäristön  
+5. *which pip* #Tarkistetaan, että ollaan env-hakemistossa  
+6. *echo "django" |tee requirements.txt* #Kirjasin vaatimuksiin django:n  
+7. *pip install -r requirements.txt* #Tein asennuksen vaatimusten mukaan  
+8. *django-admin --version* #Testasin asennuksen  
   
 ![Kuva 126.](pics/harjoitus_5/126.png)  
 *Testi osoitti, että Django saatiin asennettua*  
   
 **Uusi Django-projekti**  
   
-1. django-admin startproject splitting #Loin uuden projekti  
-2. mkdir -p splitting/static/ #Luodaan staattisille sivuille kansio
-3. echo "Statically relevant data"|tee splitting/static/index.html
-Statically relevant data #Loin staattisen sivun
-4. sudo adduser djusr #Loin uuden käyttäjän Djangolle  
-5. sudoedit /etc/apache2/sites-available/splitting.conf #Editoin tiedostoon uuden sisällön. Jätin toistaiseksi kalle-käyttäjän, jotta pääsisin debuggaamaan johtuivatko ongelmani käyttäjästä vai jostain muusta  
+1. *django-admin startproject splitting* #Loin uuden projekti  
+2. *mkdir -p splitting/static/* #Luodaan staattisille sivuille kansio
+3. *echo "Statically relevant data"|tee splitting/static/index.html* #Loin staattisen sivun  
+4. *sudo adduser djusr* #Loin uuden käyttäjän Djangolle  
+5. *sudoedit /etc/apache2/sites-available/splitting.conf* #Editoin tiedostoon uuden sisällön. Jätin toistaiseksi kalle-käyttäjän, jotta pääsisin debuggaamaan johtuivatko ongelmani käyttäjästä vai jostain muusta  
   
 ![Kuva 127.](pics/harjoitus_5/127.png)  
 *Osa tiedoston sisällöstä*  
   
-6. sudo apt-get -y install libapache2-mod-wsgi-py3 #Asensin Apacheen mod-wsgi:n  
-7. /sbin/apache2ctl configtest #Testasin configin oikeellisuuden  
-8. sudo systemctl restart apache2 #Käynnistin serverin uudestaan  
-9. curl localhost |grep title #Testasin asennukseni  
-9. Tuloksena oli internal server error 500 -> tarkistin konffitiedoston ja sinne oli jäänyt mallista yksi väärä tero-käyttäjä.  
+6. *sudo apt-get -y install libapache2-mod-wsgi-py3* #Asensin Apacheen mod-wsgi:n  
+7. */sbin/apache2ctl configtest* #Testasin configin oikeellisuuden  
+8. *sudo systemctl restart apache2* #Käynnistin serverin uudestaan  
+9. *curl localhost |grep title* #Testasin asennukseni  
+-Tuloksena oli internal server error 500 -> tarkistin konffitiedoston ja sinne oli jäänyt mallista yksi väärä tero-käyttäjä.  
   
 ![Kuva 128.](pics/harjoitus_5/128.png)  
 *Testistä tuli toivottu tulos toisella kerralla*  
   
-10. curl -sI localhost|grep Server #Toinen testi  
+10. *curl -sI localhost|grep Server* #Toinen testi  
 Testin tuloksena tulostui: Server: Apache/2.4.52 (Debian)  
   
 **DEBUG pois**  
   
-1. cd splitting/ #Siirryin alihakemistoon  
-2. micro splitting/settings.py #Editoin asetuksia  
+1. *cd splitting/* #Siirryin alihakemistoon  
+2. *micro splitting/settings.py* #Editoin asetuksia  
   
 ![Kuva 129.](pics/harjoitus_5/129.png)  
 *Muokatut asetukset*  
   
-3. touch splitting/wsgi.py #Päivitetään wsgi.py  
-4. sudo systemctl restart apache2 #demonin uudelleenkäynnistys  
-5. sudo ufw allow 80/tcp  #Tein palomuuriin reiän, jotta palvelin olisi saatavilla julkissa netissä  
+3. *touch splitting/wsgi.py* #Päivitetään wsgi.py  
+4. *sudo systemctl restart apache2* #demonin uudelleenkäynnistys  
+5. *sudo ufw allow 80/tcp* #Tein palomuuriin reiän, jotta palvelin olisi saatavilla julkissa netissä  
   
 ![Kuva 130.](pics/harjoitus_5/130.png)  
 *Pääsin julkisesta netistä lukemaan index.html:n static-kansiosta ja Djangon konsolin kirjautumisnäkymään*  
@@ -1540,13 +1541,16 @@ Googlasin hakusanalla ja [löysin komennon](https://stackoverflow.com/questions/
   
 Lähteessäkään ei ole tietoa siitä mitä komento tekee, saati miksi se korjaa ongelman, mutta joka tapauksessa se oli nyt korjattu ja tietokanta toimi kuten pitikin. Muutin DEBUG-parametrin takaisin Falseksi tämän jälkeen. 
   
-[Kuva 167.](pics/harjoitus_5/167.png)  
-!*Väärin korjattu, mutta korjattu kumminkin*  
+![Kuva 167.](pics/harjoitus_5/167.png)  
+*Väärin korjattu, mutta korjattu kumminkin*  
   
 Lopetin työt 14.33 ja päätin siistiä raportin illemmalla.  
 
+##Loppupohdinta
  
-
+Tein paljon virheitä, joista vähiten selkeä oli se, että en tehnyt ollenkaan applikaatiota projektiin tuotannossa testatessani. Tämä oli todennäköisesti tietokannan kanssa kokemieni ongelmien perimmäinen syy.  
+  
+Opin kuitenkin paljon ja aion jälleen vetäistä serverin sileäksi tehtävien tarkistamisen jälkeen, jotta pääsen alustamaan uuden Django-projektin.  
   
   
 
