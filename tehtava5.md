@@ -1398,7 +1398,7 @@ Buuttasin demonin ja sain näkyviin tekemäni tietokantamuutokset admin-konsolis
 Avasin tiedoston:  
 *micro hakemisto/models.py*  
   
-[Kuva 156.](pics/harjoitus_5/15&.png)  
+[Kuva 156.](pics/harjoitus_5/156.png)  
 *Kommentoin pois kaiken paitsi yksinkertaisemman koodin*
   
 Kirjauduin ulos sudo-käyttäjällä, sisään normikäyttäjjä ja tein migraatiot.  
@@ -1407,9 +1407,139 @@ Kirjauduin sisään sudo-käyttäjällä ja käynnistin serverin uudestaan.
   
 Tuloksena oli edelleen Server Error 500. Päätin jatkaa huomenna. Lopetin työt 22.00.  
   
-
+Aloitin työt 12.23.  
   
+Päätin vertailla aiemmin harjoituksen ensimmäisessä kohdassa tekemäni vastaavan ohjelman tiedostoja ja hakemistopolkuja livetoteutukseeni, jotta virheen sijainti ja laatu selviäisi. Tällä kertaa kirjauduin sudo-käyttäjällä ja normaalikäyttäjällä eri ikkunoista samanaikaisesti palvelimelleni, jotta demonin uudelleenkäynnistäminen ja projektin operointi sujuisivat mahdollisimman sujuvasti.  
+  
+models.py oli tuotantokoneessani yhtä hakemistoa alempana, joten loin alempaan splitting-kansioon uuden settle-alikansion ja siirsin models.py:n sinne.  
+  
+[Kuva 157.](pics/harjoitus_5/157.png)  
+*Vasemmalla tuotantokone, oikealla aiemman harjoituksen virtuaalikone*  
+  
+Annoin komennot:  
+*mkdir ../settle*  
+*mv models.py ../settle/*  
+  
+[Kuva 158.](pics/harjoitus_5/158.png)  
+*Muokkasin settings.py:t vastaamaan toisiaan*  
+  
+Tässä vaiheessa havaitsin, että minulla oli virtuaalikoneessani ehkä kaksi erillistä projektia: settle ja splitlyze, sillä kansioissa oli samat tiedostot. Otin aikalisän ja perehdyin raporttini alkuosaan.  
+  
+Poistin luomani settle-kansion sisältöineen:  
+*rm -r settle*  
+  
+Käynnistin virtuaaliympäristön ja perustin uuden applikaation:  
+*cd ..*  
+*source env/bin/activate*  
+*./manage.py startapp settle*  
 
+[Kuva 159.](pics/harjoitus_5/159.png)  
+*Totesin, että en ymmärrä mitä teen.*  
+  
+Päätin tuhota projektin ja tehdä sen alusta, noudattaen omia, todistettavasti toimineita, ohjeitani harjoituksen alusta. Siirryin publicwsgi:n juureen ja tuhosin splitting-kansion sisältöineen:  
+*rm -r splitting*  
+  
+**Djangon iltahuuto**  
+  
+Tässä vaiheessa serveripuolen asetukset olivat siis mielestäni kunnossa ja vain projektipuolella oli jokin virhe. Päätin kopioida [Karvisen esimerkkiprojektin](https://terokarvinen.com/2022/django-instant-crm-tutorial/) tehtävänannosta sellaisenaan.  
+  
+1. *source env/bin/activate*  
+2. *django-admin --version* #tuotti tuloksen version 4.0.2  
+3. *django-admin startproject splitting*  
+4. Käynnistin admin-käyttäjällä demonin uudelleen toisessa terminaalissa: *sudo systemctl restart apache2*  
+5. Vaihdoin projektiasetukset: *micro splittig/splitting/settings.py*  
+  
+````
+DEBUG = False
+
+ALLOWED_HOSTS = ['localhost','ip-osoite','domain']
+````  
+  
+6. Käynnistin demonin uudestaan admin-käyttäjällä
+7. Tein static-kansion ja index.hmtl-tiedoston:  
+*mkdir splitting/static*  
+*echo "Staattinen sivu" |tee splitting/static/index.hmtl*  
+8. Ajoin migraatiot:  
+*./manage.py makemigrations*  
+*./manage.py migrate*  
+9. Käynnistin demonin uudestaan admin-käyttäjällä  
+  
+[Kuva 160.](pics/harjoitus_5/160.png)  
+*Konsoli tuli näkyviin*  
+  
+10. Loin superuserin:  
+*./manage.py createsuperuser*  
+11. Kirjauduin sisään konsoliin  
+  
+[Kuva 161.](pics/harjoitus_5/161.png)  
+*Pääsin sisään*  
+  
+12. Loin models.py:n projektikansioon:  
+*nano splitting/models.py*  
+  
+[Kuva 162.](pics/harjoitus_5/162.png)  
+*Tiedoston sisältö*  
+  
+13. Ajoin migraatiot  
+14. Tein admin.py:n:  
+*nano splitting/admin.py*  
+  
+[Kuva 163.](pics/harjoitus_5/163.png)  
+*Tiedoston sisältö*  
+  
+15. Korjasin settings.py-tiedostoon applikaation  
+  
+[Kuva 164.](pics/harjoitus_5/164.png)  
+*Tiedoston sisältö*  
+  
+15. Käynnistin demonin uudestaan admin-käyttäjällä  
+  
+[Kuva 165.](pics/harjoitus_5/165.png)  
+*Splitting-applikaatio näkyy*  
+  
+Customers-olio ei edelleenkään suostunut aukeamaan, joten katsoin 500 server erroria other_vhosts_access.log-tiedostosta admin-käyttäjälläni:  
+*sudo tail /var/log/apache2/other_vhosts_access.log*    
+  
+````
+127.0.1.1:80 80.222.153.176 - - [23/Feb/2022:11:25:49 +0000] "POST /admin/splitting/customer/add/ HTTP/1.1" 500 458 "http://164.92.210.228/admin/splitting/customer/add/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0"
+
+127.0.1.1:80 80.222.153.176 - - [23/Feb/2022:11:25:52 +0000] "GET /admin/splitting/customer/add/ HTTP/1.1" 200 2375 "http://164.92.210.228/admin/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0"
+````
+
+En tullut lokista viisaammaksi. Luin myös error-login:  
+*sudo tail /var/log/apache2/error.log*  
+
+````
+[Wed Feb 23 11:36:08.453538 2022] [core:info] [pid 52214:tid 140447741519616] [client 80.222.153.176:52704] AH00128: File does not exist: /home/kalle/publicwsgi/splitting/static/admin/fonts/Roboto-Bold-webfont.woff, referer: http://164.92.210.228/static/admin/css/fonts.css
+[Wed Feb 23 11:36:11.976175 2022] [core:info] [pid 52213:tid 140447645169408] [client 80.222.153.176:52702] AH00128: File does not exist: /home/kalle/publicwsgi/splitting/static/admin/fonts/Roboto-Regular-webfont.woff, referer: http://164.92.210.228/static/admin/css/fonts.css
+[Wed Feb 23 11:36:11.976973 2022] [core:info] [pid 52214:tid 140447733118720] [client 80.222.153.176:52704] AH00128: File does not exist: /home/kalle/publicwsgi/splitting/static/admin/fonts/Roboto-Light-webfont.woff, referer: http://164.92.210.228/static/admin/css/fonts.css
+[Wed Feb 23 11:36:11.986429 2022] [core:info] [pid 52214:tid 140447724717824] [client 80.222.153.176:52703] AH00128: File does not exist: /home/kalle/publicwsgi/splitting/static/admin/fonts/Roboto-Bold-webfont.woff, referer: http://164.92.210.228/static/admin/css/fonts.css
+````
+
+Päättelin, että olisi syytä tehdä aiemmin mainittu sivujen saattaminen kauniimmaksi CSS:llä kohta uudestaan, joten muokkasin settings.py:tä samoilla asetuksilla ja ajoin käskyn:  
+
+*/manage.py collectstatic*  
+  
+[Kuva 166.](pics/harjoitus_5/166.png)  
+*setting.py:n uusi sisältö*  
+  
+Pyörittelin asiaa aikani ja tein samoja kehäpäätelmiä, joten laitoin DEBUG-asetuksen tämän kerran päälle tuotannossa saadakseni jonkun vikailmoituksen, mistä lähteä asiaa selvittämään.  
+  
+Debug-näkymästä tuli auttava ilmoitus:  
+  
+	Exception Value:    no such table
+  
+Googlasin hakusanalla ja [löysin komennon](https://stackoverflow.com/questions/34548768/django-no-such-table-exception):  
+*manage.py migrate --run-syncdb*  
+  
+Lähteessäkään ei ole tietoa siitä mitä komento tekee, saati miksi se korjaa ongelman, mutta joka tapauksessa se oli nyt korjattu ja tietokanta toimi kuten pitikin. Muutin DEBUG-parametrin takaisin Falseksi tämän jälkeen. 
+  
+[Kuva 167.](pics/harjoitus_5/167.png)  
+*Väärin korjattu, mutta korjattu kumminkin*  
+  
+Lopetin työt 14.33 ja päätin siistiä raportin illemmalla.  
+
+ 
 
   
   
