@@ -558,7 +558,7 @@ Laitoin käyttäjähakemistot päälle:
   
 Minut valtasi syvä epäusko ja päätin ajaa koko dropletin maantasalle ja tehdä uudestaan, sillä ongelmani johtuivat mahdollisesti väärin poistetuista tai asennetuista paketeista.  
   
-# Sisyphos  
+## Sisyphos  
   
 Tuhosin serverin Digital Oceanissa ja tein sen uudestaan kuvaavalla hostnamella.  
   
@@ -1009,7 +1009,7 @@ Päätin jälleen kerran laittaa koko serverin sileäksi ja aloittaa alusta, sil
   
 Lopetin työt 13.58.  
     
-#Fenix  
+## Fenix  
   
 Aloitin työt 14.31.  
   
@@ -1546,13 +1546,15 @@ Lähteessäkään ei ole tietoa siitä mitä komento tekee, saati miksi se korja
   
 Lopetin työt 14.33 ja päätin siistiä raportin illemmalla.  
 
-##Loppupohdinta
+## Loppupohdinta
  
 Tein paljon virheitä, joista vähiten selkeä oli se, että en tehnyt ollenkaan applikaatiota projektiin tuotannossa testatessani. Tämä oli todennäköisesti tietokannan kanssa kokemieni ongelmien perimmäinen syy.  
   
-
+Opin kuitenkin paljon ja aion jälleen vetäistä serverin sileäksi tehtävien tarkistamisen jälkeen, jotta pääsen alustamaan uuden Django-projektin.  
   
-  
+Selvitettäviksi asioiksi jäi myös miten ohjelmistokehitystä käytännössä tehtäisiin:  
+-Paikallisella koneella omassa ympäristössä ja sitten aina tuotantoserverille vieden?  
+-Git:n versionhallinnan hyödyntäminen käytännössä ohjelmointityössä?    
 
 
 
