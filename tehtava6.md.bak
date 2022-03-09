@@ -1,6 +1,6 @@
 # **Harjoitus 6**
 
-Aloitin työt 12.10.
+Aloitin työt 13.00.
 
 
 Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h6-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h6)
@@ -137,6 +137,130 @@ Selvitin ongelmaa ja lopulta ratkaisin sen, sillä minulla oli virhe bmi-tiedost
 Lopetin työt 14.55.  
   
 ## e) Ratkaise valitsemasi vanha arvioitava laboratorioharjoitus tältä kurssilta. (Löytyy DuckDuckGolla, Googlella, linkeistä tältä sivulta tai hakemalla yläreunan hakutoiminnolla). Sovella tarvittaessa tehtäviä tähän toteutukseen sopivaksi, esimerkiksi PHP:n tilalta voi tehdä vastaavan Pythonilla; Flaskin tilalta käyttää Djangoa. Tai jättää pois jonkin epärelevantin kohdan.  
+  
+Aloitin työt 16.41.  
+  
+Valitsin toteutettavaksi labraharjoitukseksi Karvisen sivuilta tehtävän: [https://terokarvinen.com/2017/arvioitava-laboratorioharjoitus-linux-palvelimet-ict4tn021-4-tiistai-alkusyksy-2017-5-op/](https://terokarvinen.com/2017/arvioitava-laboratorioharjoitus-linux-palvelimet-ict4tn021-4-tiistai-alkusyksy-2017-5-op/)  
+  
+Aloitin työt tekemällä uuden, tyhjän virtualikoneen, kun olin ensin selaillut tehtävänantoa pintapuolisesti.  
+  
+![Kuva 20.](pics/harjoitus_6/20.png)  
+*Virtuaalikone ruksutteli live-usb:tä käyntiin*  
+  
+LAbratehtävän tehtävänannossa sanottiin: "Kehittäjämme haluavat käyttää LAMP (Linux Apache MySQL PHP) -pinoa. Asenna tarvittavat ohjelmistot ja tee tietokantaa käyttävä esimerkkiohjelma."  
+  
+Päätin soveltaa pinoa sen verran, että vaihdoin SQLiten ja Pythonin/Djangon kahden viimeisen tilalle.  
+  
+Live-tila ei valitettavasti lähtenyt toimimaan virtuaalikoneessani (eikä tuottanut mitään mustaa ruutua kummempaa virhetietoa), joten päätin kokeilla asennusohjelman käynnistämistä suoraan.  
+  
+### Käyttäjät  
+  
+Ensimmäiseksi päätin asentaan salasanamanagerin, jotta saisin hyvät salasanat käyttäjille muistiin harjoitusta varten. Pass-sovelluksen asennusta yrittäessäni huomisin, että repositorioita ei tullut esiasennettuina Debianin CLI-asennuksessa, joten päätin vetää asennuksen sileäksi ja aloittaa alusta, koska se olisi varmasti nopeampi tie kuin niiden asettaminen googlaamisen lisäksi kerralla oikein.  
+  
+![Kuva 21.](pics/harjoitus_6/21.png)  
+*Toisella virtuaalikoneella, joka oli asennettu "livenä", oli reposioriot kohdillaan ja asennus onnistui*  
+  
+Toisella asennuskerralla päätin antaa "liven" ladata itseään käyntiin ainakin vartin. Kärismättömyyteni paljastui syyksi siihen, että "live"-asennus ei ollut toiminut, se olisi tarvinnut vain enemmän aikaa ladatakseen itsensä.  
+  
+Latasin pass-salasanamanagerin, gpg-avaingeneraattorin [työohjeella](https://keyring.debian.org/creating-key.html) ja pwgenin salasanojen generoimiseksi:  
+
+*sudo apt-get update*  
+*sudo apt-get install -y pass*  
+*sudo apt-get install -y pwgen*  
+*sudo apt-get install -y gnupg2*  
+*gpg --list-keys --with-subkey-fingerprint* <-Näyttää gpg-avaimet  
+*gpg --gen-key --default-new-key-algo=rsa4096/cert,sign+rsa4096/encr* <-Generoi gpg-avaimen  
+  
+Näiden komentojen jälkeen gpg kysyi passphrasea generointia varten ja annoin sellaisen.  
+  
+![Kuva 22.](pics/harjoitus_6/22.png)  
+*Komento saatiin suoritettua*  
+  
+Sitten en enää ymmärtänyt mitä olisi seuraavaksi pitänyt tehdä, sillä ohjeen serverille lähetettävä avain esiintyy ohjeessa vain kerran - lähetyskäskyn yhteydessä. Niin siis että mikä avain lähetetään mihin ja miksi?  
+  
+Päätin käyttää harjoituksen salasanojen tallentamiseen Firefoxin salasanamanageria, sillä se oli ainakin helppokäyttöinen. Tähän harjoitustehtävään se oli varmasti myös tarpeeksi tietoturvallinen vaihtoehto - salasanat eivät olleet missään muussa käytössä kuin virtuaalikoneen sisällä olevilla kuvitteellisilla käyttäjillä.  
+  
+**Käyttäjät**  
+"Nakke Nertola, Håkan Värs, Einari Mikkonen, Einari Öljysaari ja Eija Vähäkäähkä"  
+
+Tein heille tunnuksien tekemistä varten scriptin, joka nappaa 3 ensimmäistä kirjainta etu- ja sukunimistä ja tekee niistä käyttäjätunnuksen - tiesin jo tähän ryhtyessäni, että tähän menee 10 kertaisesti se aika mitä menisi asioiden tekemiseen käsin, mutta kokeilemalla oppinee enemmän.  
+  
+Asensin Micron:  
+*sudo apt-get install -y micro*  
+
+Tein skriptikansion:  
+*mkdir scripts*  
+  
+päivitin järjestelmän, koska olin unohtanut tehdä sen alussa:  
+*sudo apt-get upgrade*  
+  
+Lähdin rakentamaan käyttäjänimigeneraattoriani lähteiden [1](https://stackoverflow.com/questions/3194516/replace-special-characters-with-ascii-equivalent) ja [2](https://stackoverflow.com/questions/35964691/generating-username-using-python) perusteella.  
+  
+````
+koodi jonka pohjalle rakensin nimen pilkkomisen osiin:  
+  
+full_name = input("Please enter your name: ")
+first_letter = full_name[0]
+space_index = full_name.find(" ")
+three_letters_surname = full_name[space_index + 1:space_index + 4]
+number = random.randrange (1,999)
+username = (first_letter, three_letters_surname, number)
+print = (username)
+  
+Koodi ääkköseten korvaamiseksi:  
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import unicodedata
+text = u'Cześć'
+print unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
+
+````
+  
+![Kuva 23.](pics/harjoitus_6/23.png)  
+*Muokattu koodi*  
+  
+![Kuva 24.](pics/harjoitus_6/24.png)  
+*Ääkkösten muokkaaminen unix-ystävällisemmiksi onnistui*  
+  
+![Kuva 25.](pics/harjoitus_6/25.png)  
+*Uusi sisältö scriptissä*  
+  
+![Kuva 26.](pics/harjoitus_6/26.png)  
+*Ensimmäinen while-looppi käy nimet läpi ja lisää ne listaan ilman ääkkösiä ja muita kummallisuuksia*  
+  
+![Kuva 27.](pics/harjoitus_6/27.png)  
+*Toinen while-looppi pätkii nimet ja tekee niistä "3 kirjainta + 3 kirjainta + 1 numero"-tyylisiä käyttäjätunnusaihioita
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+Seuraavaksi generoin viidelle käyttäjälle satunnaiset, 12 merkkiä pitkät salasanat:  
+*pwgen -s 12 5*  
+		
+
+  
+
+
+Loin käyttäjät adduser-komennolla. Käytin käyttäjätunnuksen luomiseksi kaavaa: 3 ensimmäistä kirjainta etunimestä ja 3 ensimmäistä kirjainta sukunimestä. Ääkköset korvasin lähimmällä vastaavuudella. 
+  
+´```
+sudo adduser tunnus
+````  
+  
+
   
 ## f) Tee uusi tyhjä virtuaalikone (tai oikea kone) viimeisen kerran arvioitavaa labraa varten. Koneella ei saa olla luottamuksellisia tietoja. Kannattaa tehdä koneelle tarpeeksi iso virtuaalinen levy ja laittaa riittävästi RAM:ia. Guest additions saa olla asennettuna. Koneella ei saa olla muita asetuksia ennakkoon, eikä ylimääräisiä asennettuja ohjelmia.
 
