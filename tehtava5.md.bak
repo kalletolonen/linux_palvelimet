@@ -271,6 +271,11 @@ Kokeilin vielä __str__:n vaihtamista __init__:iin.
 Ymmärräkseni Pythonista ei riittänyt ongelman ratkaisuun, joten poistin Testing-luokan ja viittaukset siihen admin.py:stä ja tein tietokantamigraation uudestaan palatakseni alkutilanteeseen.  
   
 Päivitän artikkelia, kun saan ongelman ratkaistua.  
+
+##Ongelman ratkaisu  - PÄIVITYS ARTIKKELIIN 2022-09-03  
+  
+Kävimme seuraavalla virtuaalitapaamiskerralla läpi ongelmaani Karvisen ja ryhmäläisten kanssa, jolloin opin, että ratkaisu ongelmaani oli [f-string](https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/), joka mahdollisti tekstin ja muuttujien muotoilun tulosteeseen tapauksessani.
+
   
 ## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.  
   
@@ -1554,7 +1559,9 @@ Opin kuitenkin paljon ja aion jälleen vetäistä serverin sileäksi tehtävien 
   
 Selvitettäviksi asioiksi jäi myös miten ohjelmistokehitystä käytännössä tehtäisiin:  
 -Paikallisella koneella omassa ympäristössä ja sitten aina tuotantoserverille vieden?  
--Git:n versionhallinnan hyödyntäminen käytännössä ohjelmointityössä?    
+-Git:n versionhallinnan hyödyntäminen käytännössä ohjelmointityössä?  
+  
+Nämä asiat selviävät kyllä onneksi kokeilemalla.  
 
 
 

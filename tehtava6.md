@@ -1,0 +1,47 @@
+# **Harjoitus 6**
+
+Aloitin työt 12.10.
+
+
+Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h6-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h6)
+
+**Harjoituksen laitekokoonpano**  
+*Järjestelmänä Win 11 + VirtualBox 6.0 + Debian 11*  
+  
+*Koneen perustiedot:*  
+*Suoritin: AMD Ryzen 9 5900HS 8-ytiminen 3,1 - 4,5 GHz, 16 Mt välimuisti*  
+*Muisti: 16 Gt LPDDR4X*  
+*Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
+*Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
+
+## a) Kaikki tehtävät arvioitavaksi. Palauta linkit kaikkiin kotitehtäväraportteihisi. Arviointi tehdään ensisijaisesti tästä linkistä
+[Harjoitus 1](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava1.md)
+[Harjoitus 2](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava2.md)
+[Harjoitus 3](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava3.md)
+[Harjoitus 4]()
+[Harjoitus 5]()
+Harjoitus 6 on tämä harjoitus.
+
+## b) Tarkista, että olet viitannut jokaisessa tehtävässä kaikkiin lähteisiin. Esimerkiksi kurssiin, tehtävänantoihin, käyttämiisi toisten kotitehtävärapotteihin, manuaalisivuihin, kotisivuihin...  
+  
+Tarkistin ja päivitin raporttini - päivitettyihin kohtiin merkitsin selkeästi, että niitä on päivitetty alkuperäisen päivityksen jälkeen. Versiohistoriasta voi tarvittaessa hankkia alkuperäisen palautuksen käyttöönsä.  
+    
+## c) Uusi komento Linuxiin. Tee uusi komento, joka tulostaa käyttäjälle hyödyllistä tietoa. Kokeile, että komento toimii kaikista hakemistoista ja muillakin käyttäjillä kuin omallasi.  
+  
+
+  
+## d) Parametreja. Tee skripti, joka ottaa komentoriviparametreja. Esim. 'greetuser Tero' joka tulostaa "moi" ja parametrinä olevan nimen, esim "moi Tero".  
+  
+
+  
+## e) Ratkaise valitsemasi vanha arvioitava laboratorioharjoitus tältä kurssilta. (Löytyy DuckDuckGolla, Googlella, linkeistä tältä sivulta tai hakemalla yläreunan hakutoiminnolla). Sovella tarvittaessa tehtäviä tähän toteutukseen sopivaksi, esimerkiksi PHP:n tilalta voi tehdä vastaavan Pythonilla; Flaskin tilalta käyttää Djangoa. Tai jättää pois jonkin epärelevantin kohdan.  
+  
+## f) Tee uusi tyhjä virtuaalikone (tai oikea kone) viimeisen kerran arvioitavaa labraa varten. Koneella ei saa olla luottamuksellisia tietoja. Kannattaa tehdä koneelle tarpeeksi iso virtuaalinen levy ja laittaa riittävästi RAM:ia. Guest additions saa olla asennettuna. Koneella ei saa olla muita asetuksia ennakkoon, eikä ylimääräisiä asennettuja ohjelmia.
+
+
+  
+
+  
+
+
+

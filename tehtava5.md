@@ -271,6 +271,16 @@ Kokeilin vielä __str__:n vaihtamista __init__:iin.
 Ymmärräkseni Pythonista ei riittänyt ongelman ratkaisuun, joten poistin Testing-luokan ja viittaukset siihen admin.py:stä ja tein tietokantamigraation uudestaan palatakseni alkutilanteeseen.  
   
 Päivitän artikkelia, kun saan ongelman ratkaistua.  
+
+##Ongelman ratkaisu  - PÄIVITYS ARTIKKELIIN 2022-09-03  
+  
+Kävimme seuraavalla virtuaalitapaamiskerralla läpi ongelmaani Karvisen ja ryhmäläisten kanssa, jolloin opin, että ratkaisu ongelmaani oli [f-string](https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/), joka mahdollisti tekstin ja muuttujien muotoilun tulosteeseen tapauksessani.
+  
+![Kuva 168.](pics/harjoitus_5/168.png)  
+*Muutettu models.py:n sisältö*  
+  
+![Kuva 169.](pics/harjoitus_5/169.png)  
+*Toimiva ratkaisu kehitysserverillä*  
   
 ## b) Prod. Make a production style Django install. Use Apache and mod_wsgi, disable DEBUG.  
   
