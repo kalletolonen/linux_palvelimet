@@ -530,6 +530,101 @@ SneakyGarden.Example.com
   
 Lopetin työt 14.50 ja latasin tehtävän githubiin.  
   
+Aloitin työt 15.15.  
+  
+**Tuotantoasennus, VirtualHosts ja domainin emulointi**  
+  
+Lähteet:   [https://terokarvinen.com/2018/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/](https://terokarvinen.com/2018/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/)  
+[https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava5.md](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava5.md)  
+  
+Kopioin projektini kotihakemistostani ja tein publicwsgi-kansion:  
+*sudo cp -r sneakygarden publicwsgi*  
+  
+Tein uuden conffitiedoston Apachelle:  
+sudo micro /etc/apache2/sites-available/sneakygarden.conf*  
+  
+![Kuva 71.](pics/harjoitus_6/71.png)  
+*Tiedoston sisältö*  
+  
+Enabloin tekemäni conf-tiedoston, poistin vanhan käytöstä ja testasin sisällön oikeellisuuden:  
+*sudo a2ensite sneakygarden.conf*  
+*sudo a2dissite 000-default.conf*  
+*sudo /sbin/apache2ctl configtest*  
+  
+![Kuva 72.](pics/harjoitus_6/72.png)  
+*Conf-tiedosto oli validi*  
+  
+Käynnistin Apachen uudestaan:  
+*sudo systemctl restart apache2*  
+  
+Tein staattiselle sisällölle hakemiston ja tiedoston:  
+*sudo mkdir -p publicwsgi/sneakygarden/static/*  
+*echo "Static ninja" |tee publicwsgi/sneakygarden/static/index.html*  
+  
+
+Tein conffitiedostossa mainitun static-kansion ja sinne index.html-tiedoston.  
+  
+![Kuva 73.](pics/harjoitus_6/73.png)  
+*curl-testi tuotti tekemäni staattisen sivun määrittämästäni osoitteesta*  
+  
+Djangon konffiohjeet seuraavaan kohtaan nappasin Karvisen sivuilta:  
+[https://terokarvinen.com/2022/deploy-django/](https://terokarvinen.com/2022/deploy-django/)  
+  
+**sneakygarden.conf-tiedoston uusi sisältö**  
+````
+Define TDIR /home/kallet/publicwsgi/sneakygarden
+Define TWSGI /home/kallet/publicwsgi/sneakygarden/sneakygarden/wsgi.py
+Define TUSER kallet
+Define TVENV /home/kallet/publicwsgi/env/lib/python3.9/site-packages
+# See https://terokarvinen.com/2022/deploy-django/
+
+<VirtualHost *:80>
+        Alias /static/ ${TDIR}/static/
+        <Directory ${TDIR}/static/>
+                Require all granted
+        </Directory>
+
+        WSGIDaemonProcess ${TUSER} user=${TUSER} group=${TUSER} threads=5 python-path="${TDIR}:${TVENV}"
+        WSGIScriptAlias / ${TWSGI}
+        <Directory ${TDIR}>
+             WSGIProcessGroup ${TUSER}
+             WSGIApplicationGroup %{GLOBAL}
+             WSGIScriptReloading On
+             <Files wsgi.py>
+                Require all granted
+             </Files>
+        </Directory>
+
+</VirtualHost>
+
+Undefine TDIR
+Undefine TWSGI
+Undefine TUSER
+Undefine TVENV
+````
+
+Latasin mod-wsgi:n:  
+*sudo apt-get install -y libapache2-mod-wsgi-py3*  
+  
+Käynnistin serverin uudestaan tarkistettuani syntaksin:  
+*sbin/apache2ctl configtest*  
+*sudo systemctl restart apache2*  
+  
+Sain virheilmoituksen Djangosta ja arvailin, että hakemiston siirtämisellä voisi olla ollut jokin vaikutus siihen, että mod_swgi ei löydä djangoa(?)  
+  
+![Kuva 74.](pics/harjoitus_6/74.png)  
+*Virheilmoitus Djangosta*  
+  
+Päätin kokeilla virtualenvin määrittelemistä uudelleen public_wsgi-kansiossa:  
+*virtualenv -p python3 --system-site-packages env*  
+  
+Jouduin ajamaan käskyn uudestaan sudolla, sillä ilman sitä tuli virheilmoitus siitä, että kohteeseen ei voi kirjoittaa.  
+  
+Totesin että tilanne ei tästä muuttunut, enkä enää osannut kokeilla muuta. Päätin palata aiheeseen myöhemmin täysjärkisenä ja kokeilla projektin tekemistä uudelleen publicwsgi-kansioon alusta lähtien, enkä kopioiden jo olemassa olevaa kansiota - jos se vaikka sekoitti (jätti siirtämättä) jotain asetuksia.  
+  
+
+
+
 
 
 
