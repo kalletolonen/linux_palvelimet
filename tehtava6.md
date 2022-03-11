@@ -14,13 +14,13 @@ Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h
 *Näytönohjain: NVIDIA GeForce RTX 3050 Ti 4 Gt GDDR6*  
 *Kiintolevy: 512 Gt M.2 2230 NVMe PCIe 3.0 SSD*  
 
-## a) Kaikki tehtävät arvioitavaksi. Palauta linkit kaikkiin kotitehtäväraportteihisi. Arviointi tehdään ensisijaisesti tästä linkistä
-[Harjoitus 1](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava1.md)
-[Harjoitus 2](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava2.md)
-[Harjoitus 3](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava3.md)
-[Harjoitus 4]()
-[Harjoitus 5]()
-Harjoitus 6 on tämä harjoitus.
+## a) Kaikki tehtävät arvioitavaksi. Palauta linkit kaikkiin kotitehtäväraportteihisi. Arviointi tehdään ensisijaisesti tästä linkistä  
+[Harjoitus 1](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava1.md)  
+[Harjoitus 2](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava2.md)  
+[Harjoitus 3](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava3.md)  
+[Harjoitus 4](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava4.md)  
+[Harjoitus 5](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava5.md)  
+Harjoitus 6 on tämä harjoitus.  
 
 ## b) Tarkista, että olet viitannut jokaisessa tehtävässä kaikkiin lähteisiin. Esimerkiksi kurssiin, tehtävänantoihin, käyttämiisi toisten kotitehtävärapotteihin, manuaalisivuihin, kotisivuihin...  
   
@@ -223,9 +223,6 @@ print unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
 ![Kuva 24.](pics/harjoitus_6/24.png)  
 *Ääkkösten muokkaaminen unix-ystävällisemmiksi onnistui*  
   
-![Kuva 25.](pics/harjoitus_6/25.png)  
-*Uusi sisältö scriptissä*  
-  
 ![Kuva 26.](pics/harjoitus_6/26.png)  
 *Ensimmäinen while-looppi käy nimet läpi ja lisää ne listaan ilman ääkkösiä ja muita kummallisuuksia*  
   
@@ -237,39 +234,308 @@ print unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
   
 Parannettavia asioita jäi paljon:  
 -Nimet ovat kovakoodattuja listassa (voisi hakea nämä vaikka csv-tiedostosta)  
+-Käyttäjätunnukset tulisi generoinnin jälkeen kirjata csv-tiedostoon, jotta ne ovat helposti käytettävissä
 -Käyttäjätunnusten ja salasanojen automaattinen luonti kokonaisuutena  
   
 Lopetin työt 21.45 ajauduttuani sivuraiteille.  
   
-
-
-
-
-
+Aloitin työt 14.14.  
   
-  
-  
-  
-  
-  
-  
-  
-  
-Seuraavaksi generoin viidelle käyttäjälle satunnaiset, 12 merkkiä pitkät salasanat:  
+Generoin viidelle käyttäjälle satunnaiset, 12 merkkiä pitkät salasanat:  
 *pwgen -s 12 5*  
-		
-
   
-
-
-Loin käyttäjät adduser-komennolla. Käytin käyttäjätunnuksen luomiseksi kaavaa: 3 ensimmäistä kirjainta etunimestä ja 3 ensimmäistä kirjainta sukunimestä. Ääkköset korvasin lähimmällä vastaavuudella. 
+Loin käyttäjät adduser-komennolla ja käytin generoimiani käyttäjätunnuksia.  
   
-´```
+````
 sudo adduser tunnus
 ````  
   
-
+Tallensin käyttäjätunnukset virtuaalikoneessa paikallisesti Firefoxin salasanamanageriin. Lopuksi tarkistin, että loin kaikille viidelle käyttäjälle tunnukset:  
+*cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1*  
   
+Lähde komennolle: [https://askubuntu.com/questions/257421/list-all-human-users](https://askubuntu.com/questions/257421/list-all-human-users)  
+  
+Tein komennosta itselleni scriptin listhumans, ja lisäsin sen paikalliseeen bin-kansioon. Uusien komentojen luomista on käsitelty tarkasti jo aiemmissa tehtäväkohdissa, enkä siten raportoinut sitä tähän tarkasti. Suunnitelmissani on kerätä hyödyllisistä scripteistä git-repositorio käyttööni.  
+  
+![Kuva 29.](pics/harjoitus_6/29.png)  
+*Kommennon tuloste*  
+  
+![Kuva 30.](pics/harjoitus_6/30.png)  
+*listhumans tulosti saman luettelon*  
+  
+**Apachen asennus ja käyttäjien sivut**  
+  
+Hain apachen koneelle ja tarkistin sen toimivuuden:  
+*sudo apt-get install -y apache2*  
+*sudo systemctl apache2.service*  
+*sudo service apache2 status*  
+  
+Korvasin Apachen vakiosivun:  
+*sudo micro var/www/html/index.html*    
+Palvelu rullasi, joten tarkistin curlilla localhostin:  
+*curl localhost*  
+  
+![Kuva 31.](pics/harjoitus_6/31.png)  
+*Korvaava index.hmtl saatiin tehtyä*  
+  
+Päädyin harjoitusmielessä tekemään scriptin käyttäjien kotisivujen luomiseksi.  
+  
+![Kuva 32.](pics/harjoitus_6/32.png)  
+*Scripti luo syötteen mukaan kaikille käyttäjille kotisivut*  
+  
+Päätin myös, että teen aikaisempaan käyttäjätunnusgeneraattoriini tunnusten tallentamisen tiedostoon, jotta voin hyödyntää sitä jatkossa syötteenä kotisivugeneraattorissani.  
+  
+![Kuva 33.](pics/harjoitus_6/33.png)  
+*Lisäsin loppuun koodia, jonka seurauksena käyttäjätunnukset tulostuvat tekstitiedostoon*  
+  
+![Kuva 34.](pics/harjoitus_6/34.png)  
+*Käyttäjätunnukset listattuina*  
+  
+Parannettavaa jäi, kuten aina:  
+-Scripti joka tarkistaa, onko kyseinen käyttäjätunnus jo olemassa  
+-Numeroiden lisääminen käyttäjätunnusten perään vain siinä tapauksessa, että kirjainyhdistelmä on jo käytössä  
+-Käyttäjätunnuksien tekeminen järjestelmään generoiduilla salasanoilla  
+-Käyttäjätunnuksien lähettäminen käyttäjille automaattisesti  
+  
+![Kuva 35.](pics/harjoitus_6/35.png)  
+*Tässä parametrit syötettiin manuaalisesti tekemäni listhumans-komennon avulla, koska olin jo käsipelillä luonut käyttäjät*  
+  
+Seuraavaksi laitoin käyttäjien kotisivut ¨päälle:  
+*sudo a2enmod userdir*  
+*sudo systemctl restart apache2*  
+  
+En saanut käyttäjien kotisivuja toimimaan ja vika löytyi scriptistäni, joka loi hakemistot ja sivut - olin epähuomiossa jättänyt sinne hakemistojen poiston niiden luomisen jälkeen päälle.  
+  
+![Kuva 36.](pics/harjoitus_6/36.png)  
+*Korjattu scripti*  
+  
+![Kuva 37.](pics/harjoitus_6/37.png)  
+*Käyttäjien sivut generoitiin tällä kertaa onnistuneesti*  
+  
+**Suuri palomuuri**  
+  
+Asensin palomuurin ja laitoin http- ja ssh-portit auki:  
+*sudo apt-get install -y ufw*  
+*sudo ufw allow 22/tcp*  
+*sudo ufw allow 80/tcp*  
+  
+Tarkistin palomuurin tilanteen:  
+*sudo ufw status*  
+  
+![Kuva 38.](pics/harjoitus_6/38.png)  
+*Palomuuri oli kunnossa*  
+  
+**WhoWhere**  
+
+Tein bashilla ajettavan scriptin, jonka tallensin ylempänä olevien tehtävien logiikalla ja käyttöoikeuksien muuttamisella oikeaan kansioon.  
+  
+![Kuva 39.](pics/harjoitus_6/39.png)  
+*Scriptini sisältö*  
+  
+![Kuva 40.](pics/harjoitus_6/40.png)  
+*Komento toimi myös luomallani testikäyttäjällä*  
+  
+**SneakyGarden.Example.com**  
+  
+Aloitin työt 11.13.  
+  
+Sovelletut työohjeet:  
+[https://docs.djangoproject.com/en/4.0/intro/tutorial01/](https://docs.djangoproject.com/en/4.0/intro/tutorial01/)  
+[https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava5.md](https://github.com/kalletolonen/linux_palvelimet/blob/main/tehtava5.md)  
+  
+Asensin virtualenvin ja loin Pythonille ympäristön:  
+*sudo apt-get install -y virtualenv*  
+*virtualenv --system-site-packages -p python env/*  
+
+Tarkistin, että olen env:n sisällä:  
+*which pip*  
+  
+![Kuva 41.](pics/harjoitus_6/41.png)  
+*Kaikki oli kunnossa*  
+  
+Lisäsin djangon vaatimuksiin, asensin sen ja tarkistin version:  
+*echo "django" |tee requirements.txt*  
+*pip install -r requirements.txt*  
+*django-admin --version*  
+
+![Kuva 42.](pics/harjoitus_6/42.png)  
+*Asennus oli onnistunut*  
+  
+Aloitin django-projektin:  
+*django-admin startproject sneakygarden*  
+  
+Asensin hakemistopolkujen tarkasteluohjelman ja katsoin rakennetta:  
+*sudo apt-get install -y tree*  
+*tree sneakygarden*  
+  
+![Kuva 43.](pics/harjoitus_6/43.png)  
+*Hakemistorakenne täsmäsi djangoprojektin lähteeseen*  
+  
+Siirryin projektikansiooni ja käynnistin kehitysserverin:  
+*cd sneakygarden*
+*./manage.py runserver*  
+  
+![Kuva 44.](pics/harjoitus_6/44.png)  
+*Serveri käynnistyi*  
+  
+Serveri antoi tavanomaiset virheilmoitukset migraatioiden tekemättömyydestä, enkä ohjeen mukaisesti kiinnittänyt niihin huomiota vielä tässä vaiheessa.  
+  
+![Kuva 45.](pics/harjoitus_6/45.png)  
+*Virheilmoitukset migraatioista*  
+  
+Avasin toisen konsoli-ikkunan, siirryin sneakygarden-hakemistoon ja alustin applikaation:  
+*./manage.py startapp ninjamoves*  
+  
+![Kuva 46.](pics/harjoitus_6/46.png)  
+*Myös applikaation hakemistorakenne oli samanlainen kuin ohjeessa*  
+  
+**Ensimmäisen view:n rakentaminen**  
+  
+Editoin views.py-tiedostoa:  
+*micro ninjamoves/views.py*  
+  
+![Kuva 47.](pics/harjoitus_6/47.png)  
+*Tiedoston sisältö*  
+  
+Seuraavaksi view tuli mapata URL:iin:  
+*micro ninjamoves/urls-py*  
+
+![Kuva 48.](pics/harjoitus_6/48.png)  
+*urls.py:n sisältö*  
+  
+Siirryin muokkaamaan PROJEKTIN urls.py:tä:  
+*micro sneakygarden/sneakygarden/urls.py*  
+  
+![Kuva 49.](pics/harjoitus_6/49.png)  
+*Muokattu sisältö korostettuna*  
+  
+![Kuva 50.](pics/harjoitus_6/50.png)  
+*Olin unohtanut pilkun määritysten välistä*  
+  
+![Kuva 51.](pics/harjoitus_6/51.png)  
+*Import puuttui myös*  
+  
+Korjasin projektitiedostoni urls.py:n sisältöä.  
+  
+![Kuva 52.](pics/harjoitus_6/52.png)  
+*Uusi sisältö*  
+  
+![Kuva 53.](pics/harjoitus_6/53.png)  
+*Onnistunut testi - haluamani sivu oli näkyvissä*  
+  
+Lopetin työt 12.05.  
+  
+Aloitin työt 12.31.  
+  
+**Tietokanta-asetukset**  
+  
+Muokkasin settings.py:tä projektikansioni alakansiossa:  
+*micro sneakygarden/setting.py*  
+  
+![Kuva 54.](pics/harjoitus_6/54.png)  
+*Muokkasin hosts-kohtaa tässä vaiheessa*  
+  
+Tein tietokantamigraatiot:  
+*./manage.py migrate*  
+  
+![Kuva 55.](pics/harjoitus_6/55.png)  
+*Migraatiot onnistuivat*  
+  
+Lisäsin vielä 127.0.0.1-osoitteen ALLOWED_HOSTS-parametriin.  
+  
+![Kuva 56.](pics/harjoitus_6/56.png)  
+*Admin-konsoli aukesi oikein*  
+  
+**Models**  
+  
+Rakensin ninjamoces-applikaatioon models.py:n:  
+*micro ninjamoves/models.py*  
+  
+![Kuva 57.](pics/harjoitus_6/57.png)  
+*models.py:n sisältö*  
+  
+Lisäsin settings.py-tiedostoon viittauksen INSTALLED_APPS-parametriin.  
+  
+![Kuva 58.](pics/harjoitus_6/58.png)  
+*Lisätty parametri*  
+  
+Ajoin migraatiot:  
+*./manage.py makemigrations ninjamoves*  
+*./manage.py migrate*  
+  
+![Kuva 59.](pics/harjoitus_6/59.png)  
+*Migraatiot onnistuivat*  
+  
+**Superuserin luominen**  
+
+Ylläpitäjäksi tuli tehtävänannossa Eija Vähäkäähkä, joten tein hänelle superuserin samalla käyttäjätunnuksella kuin mitä hänellä on järjestelmässäkin, jotta sen muistaminen olisi helpompaa:  
+*./manage.py createsuperuser*  
+  
+![Kuva 60.](pics/harjoitus_6/60.png)  
+*Superuserin luominen onnistui*  
+  
+![Kuva 61.](pics/harjoitus_6/61.png)  
+*Sisäänkirjautuminen admin-konsoliin onnistui*  
+  
+Konsolissa ei kuitenkaan ollut näkyvissä malliani, joten palasin muokkaamaan admin.py:tä:  
+*micro ninjamoves/admin.py*  
+  
+![Kuva 62.](pics/harjoitus_6/62.png)  
+*admin.py:n uusi sisältö*  
+  
+![Kuva 63.](pics/harjoitus_6/63.png)  
+*Eijan admin-näkymä*  
+  
+Loin Eijalle tehtävänannossa olevat liikkeet tietokantaan admin-näkymästä.  
+  
+Lisäsin myös models.py-tiedostoon nätimmän returnin, jotta Eijan on helpompi tarkastella liikkeitä käyttöliittymästään.  
+  
+![Kuva 64.](pics/harjoitus_6/64.png)  
+*models.py:n return*  
+  
+![Kuva 65.](pics/harjoitus_6/65.png)  
+*Eijan admin-näkymä*  
+  
+Lopetin työt 13.21.  
+  
+Aloitin työt 14.15.  
+  
+**Näkymät webbisivulle**  
+  
+Seuraavaksi lisäsin näkymiä ninjamoves/views.py-tiedostoon:  
+*micro ninjamoves/views.py*  
+  
+![Kuva 66.](pics/harjoitus_6/66.png)  
+*Tiedoston uusi sisältö*  
+  
+Sitten muokkasin ninjamoves/urls.py-tiedostoa:  
+*micro ninjamoves/urls.py*  
+  
+![Kuva 67.](pics/harjoitus_6/67.png)  
+*urls.py:n uusi sisältö*  
+  
+![Kuva 68.](pics/harjoitus_6/68.png)  
+*Testi todisti toimivuuden*  
+  
+Muokkasin ninjamoves/views.py:tä.  
+  
+![Kuva 69.](pics/harjoitus_6/69.png)  
+*Uusi sisältö*  
+  
+![Kuva 70.](pics/harjoitus_6/70.png)  
+*Testisivusto toimi*  
+  
+Jäljellä oli siis sivun saattaminen osoitteeseen hosts-tiedoston avulla:
+SneakyGarden.Example.com  
+  
+Lopetin työt 14.50 ja latasin tehtävän githubiin.  
+  
+
+
+
+
+
+
 ## f) Tee uusi tyhjä virtuaalikone (tai oikea kone) viimeisen kerran arvioitavaa labraa varten. Koneella ei saa olla luottamuksellisia tietoja. Kannattaa tehdä koneelle tarpeeksi iso virtuaalinen levy ja laittaa riittävästi RAM:ia. Guest additions saa olla asennettuna. Koneella ei saa olla muita asetuksia ennakkoon, eikä ylimääräisiä asennettuja ohjelmia.
 
 
