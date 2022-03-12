@@ -3,7 +3,7 @@
 Aloitin työt 12.10.
 
 
-Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h4-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h5)
+Harjoitustyön tehtävänantona käytettiin Karvisen kotisivuilta löytyvää [h5-kohtaa](https://terokarvinen.com/2021/linux-palvelimet-ict4tn021-3018/#h5)
 
 **Harjoituksen laitekokoonpano**  
 *Järjestelmänä Win 11 + VirtualBox 6.0 + Debian 11*  

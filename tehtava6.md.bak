@@ -24,7 +24,7 @@ Harjoitus 6 on tämä harjoitus.
 
 ## b) Tarkista, että olet viitannut jokaisessa tehtävässä kaikkiin lähteisiin. Esimerkiksi kurssiin, tehtävänantoihin, käyttämiisi toisten kotitehtävärapotteihin, manuaalisivuihin, kotisivuihin...  
   
-Tarkistin ja päivitin raporttini - päivitettyihin kohtiin merkitsin selkeästi, että niitä on päivitetty alkuperäisen päivityksen jälkeen. Versiohistoriasta voi tarvittaessa hankkia alkuperäisen palautuksen käyttöönsä.  
+Tarkistin ja päivitin raporttini - päivitettyihin kohtiin merkitsin selkeästi, että niitä on päivitetty alkuperäisen palautuksen jälkeen. Versiohistoriasta voi tarvittaessa hankkia alkuperäisen palautuksen käyttöönsä.  
     
 ## c) Uusi komento Linuxiin. Tee uusi komento, joka tulostaa käyttäjälle hyödyllistä tietoa. Kokeile, että komento toimii kaikista hakemistoista ja muillakin käyttäjillä kuin omallasi.  
   
@@ -40,7 +40,7 @@ Tein komentoaihiooni sisällön. Taikakommentti (#! /usr/bin/bash) kertoo mikä 
 Kokeilin scriptin toimivuutta ajamalla sen.  
   
 ![Kuva 2.](pics/harjoitus_6/2.png)  
-*Scripti toimi, kun sen ajoi siinä kansiossa, jossa se sijaitsi.  
+*Scripti toimi, kun sen ajoi siinä kansiossa, jossa se sijaitsi*  
   
 Muokkasin tiedoston käyttäjäoikeudet sellaisiksi, että scriptin saa kuka tahansa ajaa ja tarkistin että tekemäni muutokset tulivat voimaan.  
   
@@ -126,7 +126,7 @@ Tein vielä huvikseni ohjelmasta sellaisen version, jota pystyi ajamaan mistä t
 Selvitin ongelmaa ja lopulta ratkaisin sen, sillä minulla oli virhe bmi-tiedoston shebangissä, eli taikakommentissa.  
   
 ![Kuva 17.](pics/harjoitus_6/17.png)  
-*Muokkasin shebangiin oikean hakemiston (/-merkki puuttui alusta)  
+*Muokkasin shebangiin oikean hakemiston (/-merkki puuttui alusta ja pythonista oikea versio*  
   
 ![Kuva 18.](pics/harjoitus_6/18.png)  
 *Komento toimi eri hakemistoista*  
@@ -147,7 +147,7 @@ Aloitin työt tekemällä uuden, tyhjän virtualikoneen, kun olin ensin selaillu
 ![Kuva 20.](pics/harjoitus_6/20.png)  
 *Virtuaalikone ruksutteli live-usb:tä käyntiin*  
   
-LAbratehtävän tehtävänannossa sanottiin: "Kehittäjämme haluavat käyttää LAMP (Linux Apache MySQL PHP) -pinoa. Asenna tarvittavat ohjelmistot ja tee tietokantaa käyttävä esimerkkiohjelma."  
+Labratehtävän tehtävänannossa sanottiin: "Kehittäjämme haluavat käyttää LAMP (Linux Apache MySQL PHP) -pinoa. Asenna tarvittavat ohjelmistot ja tee tietokantaa käyttävä esimerkkiohjelma."  
   
 Päätin soveltaa pinoa sen verran, että vaihdoin SQLiten ja Pythonin/Djangon kahden viimeisen tilalle.  
   
@@ -158,9 +158,9 @@ Live-tila ei valitettavasti lähtenyt toimimaan virtuaalikoneessani (eikä tuott
 Ensimmäiseksi päätin asentaan salasanamanagerin, jotta saisin hyvät salasanat käyttäjille muistiin harjoitusta varten. Pass-sovelluksen asennusta yrittäessäni huomisin, että repositorioita ei tullut esiasennettuina Debianin CLI-asennuksessa, joten päätin vetää asennuksen sileäksi ja aloittaa alusta, koska se olisi varmasti nopeampi tie kuin niiden asettaminen googlaamisen lisäksi kerralla oikein.  
   
 ![Kuva 21.](pics/harjoitus_6/21.png)  
-*Toisella virtuaalikoneella, joka oli asennettu "livenä", oli reposioriot kohdillaan ja asennus onnistui*  
+*Toisella virtuaalikoneella, joka oli asennettu livenä, oli repositoriot kohdillaan ja asennus onnistui*  
   
-Toisella asennuskerralla päätin antaa "liven" ladata itseään käyntiin ainakin vartin. Kärismättömyyteni paljastui syyksi siihen, että "live"-asennus ei ollut toiminut, se olisi tarvinnut vain enemmän aikaa ladatakseen itsensä.  
+Toisella asennuskerralla päätin antaa liven ladata itseään käyntiin ainakin vartin. Kärsimättömyyteni paljastui syyksi siihen, että live-asennus ei ollut toiminut, se olisi tarvinnut vain enemmän aikaa ladatakseen itsensä.  
   
 Latasin pass-salasanamanagerin, gpg-avaingeneraattorin [työohjeella](https://keyring.debian.org/creating-key.html) ja pwgenin salasanojen generoimiseksi:  
 
@@ -181,9 +181,9 @@ Sitten en enää ymmärtänyt mitä olisi seuraavaksi pitänyt tehdä, sillä oh
 Päätin käyttää harjoituksen salasanojen tallentamiseen Firefoxin salasanamanageria, sillä se oli ainakin helppokäyttöinen. Tähän harjoitustehtävään se oli varmasti myös tarpeeksi tietoturvallinen vaihtoehto - salasanat eivät olleet missään muussa käytössä kuin virtuaalikoneen sisällä olevilla kuvitteellisilla käyttäjillä.  
   
 **Käyttäjät**  
-"Nakke Nertola, Håkan Värs, Einari Mikkonen, Einari Öljysaari ja Eija Vähäkäähkä"  
+Tehtävänannossa käyttäjinä olivat: Nakke Nertola, Håkan Värs, Einari Mikkonen, Einari Öljysaari ja Eija Vähäkäähkä.  
 
-Tein heille tunnuksien tekemistä varten scriptin, joka nappaa 3 ensimmäistä kirjainta etu- ja sukunimistä ja tekee niistä käyttäjätunnuksen - tiesin jo tähän ryhtyessäni, että tähän menee 10 kertaisesti se aika mitä menisi asioiden tekemiseen käsin, mutta kokeilemalla oppinee enemmän.  
+Tein heille tunnuksien tekemistä varten scriptin, joka nappaa 3 ensimmäistä kirjainta etu- ja sukunimistä ja tekee niistä käyttäjätunnuksen - tiesin jo tähän ryhtyessäni, että tähän menee 10 kertaisesti se aika mitä menisi asioiden tekemiseen käsin, mutta kokeilemalla oppisi takuulla enemmän.  
   
 Asensin Micron:  
 *sudo apt-get install -y micro*  
@@ -207,7 +207,7 @@ number = random.randrange (1,999)
 username = (first_letter, three_letters_surname, number)
 print = (username)
   
-Koodi ääkköseten korvaamiseksi:  
+Koodi ääkkösten korvaamiseksi:  
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -233,8 +233,8 @@ print unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
 *Ohjelman tuloste komentokehotteessa*  
   
 Parannettavia asioita jäi paljon:  
--Nimet ovat kovakoodattuja listassa (voisi hakea nämä vaikka csv-tiedostosta)  
--Käyttäjätunnukset tulisi generoinnin jälkeen kirjata csv-tiedostoon, jotta ne ovat helposti käytettävissä
+-Nimet ovat kovakoodattuja listassa (ohjelma voisi hakea nämä vaikka csv-tiedostosta)  
+-Käyttäjätunnukset tulisi generoinnin jälkeen kirjata tiedostoon, jotta ne olisivat helposti käytettävissä
 -Käyttäjätunnusten ja salasanojen automaattinen luonti kokonaisuutena  
   
 Lopetin työt 21.45 ajauduttuani sivuraiteille.  
@@ -276,7 +276,7 @@ Palvelu rullasi, joten tarkistin curlilla localhostin:
 *curl localhost*  
   
 ![Kuva 31.](pics/harjoitus_6/31.png)  
-*Korvaava index.hmtl saatiin tehtyä*  
+*Korvaava index.html saatiin tehtyä*  
   
 Päädyin harjoitusmielessä tekemään scriptin käyttäjien kotisivujen luomiseksi.  
   
@@ -291,7 +291,7 @@ Päätin myös, että teen aikaisempaan käyttäjätunnusgeneraattoriini tunnust
 ![Kuva 34.](pics/harjoitus_6/34.png)  
 *Käyttäjätunnukset listattuina*  
   
-Parannettavaa jäi, kuten aina:  
+Parannettavaa jäi scripteihin, kuten aina:  
 -Scripti joka tarkistaa, onko kyseinen käyttäjätunnus jo olemassa  
 -Numeroiden lisääminen käyttäjätunnusten perään vain siinä tapauksessa, että kirjainyhdistelmä on jo käytössä  
 -Käyttäjätunnuksien tekeminen järjestelmään generoiduilla salasanoilla  
@@ -300,7 +300,7 @@ Parannettavaa jäi, kuten aina:
 ![Kuva 35.](pics/harjoitus_6/35.png)  
 *Tässä parametrit syötettiin manuaalisesti tekemäni listhumans-komennon avulla, koska olin jo käsipelillä luonut käyttäjät*  
   
-Seuraavaksi laitoin käyttäjien kotisivut ¨päälle:  
+Seuraavaksi laitoin käyttäjien kotisivut päälle:  
 *sudo a2enmod userdir*  
 *sudo systemctl restart apache2*  
   
@@ -682,15 +682,66 @@ Lopuksi lisäsin Jussin sudo-ryhmään:
 ![Kuva 82.](pics/harjoitus_6/82.png)  
 *Lisäys onnistui*  
   
+Sitten oli jäljellä sivuston saattaminen osoitteeseen:  
+SneakyGarden.Example.com  
+  
+Muokkasin conf-tiedostoa:  
+sudo micro /etc/apache2/sites-available/sneakygarden.conf*  
+  
+Lisäämäni uusi VirtualHost.  
+  
+````
+</VirtualHost>
+
+<VirtualHost *:80>
+ ServerName sneakygarden.example.com
+ ServerAlias www.sneakygarden.example.com
+ DocumentRoot /home/kallet/publicwsgi/sneakygarden/ninjamoves
+ <Directory /home/kallet/publicwsgi/sneakygarden/ninjamoves>
+   Require all granted
+ </Directory>
+</VirtualHost>
+
+````  
+    
+Muokkasin hosts-tiedostoa:  
+*sudo micro /etc/hosts*  
+  
+````
+# Host addresses
+127.0.0.1  localhost
+127.0.1.1  labraharjoitus2
+127.0.0.1  sneakygarden.example.com
+::1        localhost ip6-localhost ip6-loopback
+ff02::1    ip6-allnodes
+ff02::2    ip6-allrouters
+````  
+  
+Käynnistin demonin uudestaan ja tarkistin virheilmoitukset kokeiltuani noutaa sivuja domainista:  
+sudo cat :10  /var/log/apache2/other_vhosts_access.log  
+  
+````
+sneakygarden.example.com:80 127.0.0.1 - - [12/Mar/2022:16:49:54 +0200] "GET /ninjamoves/ HTTP/1.1" 403 506 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"
+
+sneakygarden.example.com:80 127.0.0.1 - - [12/Mar/2022:16:49:56 +0200] "GET / HTTP/1.1" 403 505 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0"
+
+````
+  
+Localhost/ninjamoves toimi edelleen moitteestomasti.  
+  
+Poistin koko VirtualHost-lisäykseni ja sain pseudodomainin toimimaan miltei oikein.  
+  
+![Kuva 83.](pics/harjoitus_6/83.png)  
+*Toimi miltei niin kuin pitikin - ei suoraan domainista, mutta alikansion kautta*  
+  
+Lopetin työt 16.55.  
+  
+Tehtävän viimeinen ratkaisu jäi mysteeriksi.  
+  
 Loput tehtävän toimet liittyivät labraharjoituksen palauttamiseen ja palautteen antamiseen. Ne olivat sellaisenaan epäoleellisia, joten jätin ne tekemättä.  
   
 ## f) Tee uusi tyhjä virtuaalikone (tai oikea kone) viimeisen kerran arvioitavaa labraa varten. Koneella ei saa olla luottamuksellisia tietoja. Kannattaa tehdä koneelle tarpeeksi iso virtuaalinen levy ja laittaa riittävästi RAM:ia. Guest additions saa olla asennettuna. Koneella ei saa olla muita asetuksia ennakkoon, eikä ylimääräisiä asennettuja ohjelmia.
 
 Asensin uuden virtuaalikoneen - löysin myös toimivat asennusohjeet Guest additionsin asentamiseksi:  
 [https://kifarunix.com/install-virtualbox-guest-additions-on-debian-11/](https://kifarunix.com/install-virtualbox-guest-additions-on-debian-11/)  
-
-
   
-
-
-
