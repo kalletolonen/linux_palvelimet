@@ -620,21 +620,75 @@ Päätin kokeilla virtualenvin määrittelemistä uudelleen public_wsgi-kansioss
   
 Jouduin ajamaan käskyn uudestaan sudolla, sillä ilman sitä tuli virheilmoitus siitä, että kohteeseen ei voi kirjoittaa.  
   
-Totesin että tilanne ei tästä muuttunut, enkä enää osannut kokeilla muuta. Päätin palata aiheeseen myöhemmin täysjärkisenä ja kokeilla projektin tekemistä uudelleen publicwsgi-kansioon alusta lähtien, enkä kopioiden jo olemassa olevaa kansiota - jos se vaikka sekoittaa jotain asetuksia.  
+Totesin että tilanne ei tästä muuttunut, enkä enää osannut kokeilla muuta. Päätin palata aiheeseen myöhemmin täysjärkisenä ja kokeilla projektin tekemistä uudelleen publicwsgi-kansioon alusta lähtien, enkä kopioiden jo olemassa olevaa kansiota - jos se vaikka sekoitti (jätti siirtämättä) jotain asetuksia.  
   
-
-
-
-
-
-
-
-
-
+Lopetin työt testattuani alkuperäisen projektini edelleen toimivaksi 16.53.  
+  
+Aloitin työt 14.15.  
+  
+Yö toi ratkaisun ongelmaan, minulla oli jäänyt vanha conf-tiedosto käyttöön.  
+  
+Käytössä olevan conf-tiedoston voi tarkistaa hakemalla hakemiston sisällön:  
+*sudo ls /etc/apache2/sites-enabled/*  
+  
+Vaihdoin sneakygarden.conf-tiedoston käyttöön ja käynnistin demonin uudelleen:  
+*sudo a2dissite 000-default.conf*  
+*sudo a2ensite sneakygarden.conf*  
+  
+Tarkistin, että demoni oli oikea:  
+*curl -sI localhost|grep Server*  
+  
+![Kuva 75.](pics/harjoitus_6/75.png)  
+*curl tuotti toivotun tuloksen*  
+  
+![Kuva 76.](pics/harjoitus_6/76.png)  
+*Myös selain näytti siltä mitä pitikin*  
+  
+Seuraavaksi otin DEBUG-tilan pois käytöstä editoimalla settings.py:tä:  
+*micro hakemisto/settings.py*  
+  
+![Kuva 77.](pics/harjoitus_6/77.png)  
+*Editoitu kohta tiedostossa*  
+  
+![Kuva 78.](pics/harjoitus_6/78.png)  
+*Eija pystyi lisäämään admin-konsolista uuden ninjaliikkeen*  
+  
+**Admin-konsolin ulkoasun parantaminen**  
+  
+*micro hakemisto/settings.py*  
+  
+![Kuva 79.](pics/harjoitus_6/79.png)  
+*Lisäsin rivit 14 ja 17*  
+  
+Sitten ajoin collectstaticin:  
+*./manage.py collectstatic*  
+  
+![Kuva 80.](pics/harjoitus_6/80.png)  
+*Admin-konsoli sai uuden ilmeen*  
+  
+**Uusi käyttäjä**  
+  
+Jussi Laivatalosta tuli järjestelmän uusi ylläpitäjä. Generoin Jussille uuden käyttäjätunnuksen lisäämällä hänet generointiscriptiini ja generoin vahvan salasanan pwgenillä:  
+*python3 namegen.py*  
+*cat output.txt*  
+*pwgen 12 1*  
+  
+![Kuva 81.](pics/harjoitus_6/81.png)  
+*Uusi käyttäjä luotiin onnistuneesti*  
+  
+Lopuksi lisäsin Jussin sudo-ryhmään:  
+*sudo adduser juslai5 sudo*  
+  
+![Kuva 82.](pics/harjoitus_6/82.png)  
+*Lisäys onnistui*  
+  
+Loput tehtävän toimet liittyivät labraharjoituksen palauttamiseen ja palautteen antamiseen. Ne olivat sellaisenaan epäoleellisia, joten jätin ne tekemättä.  
+  
 ## f) Tee uusi tyhjä virtuaalikone (tai oikea kone) viimeisen kerran arvioitavaa labraa varten. Koneella ei saa olla luottamuksellisia tietoja. Kannattaa tehdä koneelle tarpeeksi iso virtuaalinen levy ja laittaa riittävästi RAM:ia. Guest additions saa olla asennettuna. Koneella ei saa olla muita asetuksia ennakkoon, eikä ylimääräisiä asennettuja ohjelmia.
 
+Asensin uuden virtuaalikoneen - löysin myös toimivat asennusohjeet Guest additionsin asentamiseksi:  
+[https://kifarunix.com/install-virtualbox-guest-additions-on-debian-11/](https://kifarunix.com/install-virtualbox-guest-additions-on-debian-11/)  
 
-  
 
   
 
