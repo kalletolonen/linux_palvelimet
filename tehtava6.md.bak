@@ -448,7 +448,7 @@ Lisäsin vielä 127.0.0.1-osoitteen ALLOWED_HOSTS-parametriin.
   
 **Models**  
   
-Rakensin ninjamoces-applikaatioon models.py:n:  
+Rakensin ninjamoves-applikaatioon models.py:n:  
 *micro ninjamoves/models.py*  
   
 ![Kuva 57.](pics/harjoitus_6/57.png)  
@@ -541,7 +541,7 @@ Kopioin projektini kotihakemistostani ja tein publicwsgi-kansion:
 *sudo cp -r sneakygarden publicwsgi*  
   
 Tein uuden conffitiedoston Apachelle:  
-sudo micro /etc/apache2/sites-available/sneakygarden.conf*  
+*sudo micro /etc/apache2/sites-available/sneakygarden.conf*  
   
 ![Kuva 71.](pics/harjoitus_6/71.png)  
 *Tiedoston sisältö*  
@@ -734,9 +734,9 @@ Poistin koko VirtualHost-lisäykseni ja sain pseudodomainin toimimaan miltei oik
 ![Kuva 83.](pics/harjoitus_6/83.png)  
 *Toimi miltei niin kuin pitikin - ei suoraan domainista, mutta alikansion kautta*  
   
-Lopetin työt 16.55.  
-  
 Tehtävän viimeinen ratkaisu jäi mysteeriksi.  
+  
+Lopetin työt 17.15.  
   
 Loput tehtävän toimet liittyivät labraharjoituksen palauttamiseen ja palautteen antamiseen. Ne olivat sellaisenaan epäoleellisia, joten jätin ne tekemättä.  
   

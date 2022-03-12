@@ -448,7 +448,7 @@ Lisäsin vielä 127.0.0.1-osoitteen ALLOWED_HOSTS-parametriin.
   
 **Models**  
   
-Rakensin ninjamoces-applikaatioon models.py:n:  
+Rakensin ninjamoves-applikaatioon models.py:n:  
 *micro ninjamoves/models.py*  
   
 ![Kuva 57.](pics/harjoitus_6/57.png)  
@@ -541,7 +541,7 @@ Kopioin projektini kotihakemistostani ja tein publicwsgi-kansion:
 *sudo cp -r sneakygarden publicwsgi*  
   
 Tein uuden conffitiedoston Apachelle:  
-sudo micro /etc/apache2/sites-available/sneakygarden.conf*  
+*sudo micro /etc/apache2/sites-available/sneakygarden.conf*  
   
 ![Kuva 71.](pics/harjoitus_6/71.png)  
 *Tiedoston sisältö*  
@@ -668,7 +668,7 @@ Sitten ajoin collectstaticin:
   
 **Uusi käyttäjä**  
   
-Jussi Laivatalosta tuli järjestelmän uusi ylläpitäjä. Generoin Jussille uuden käyttäjätunnuksen lisäämällä hänet generointiscriptiini ja generoin vahvan salasanan pwgenillä:  
+Jussi Laitavalosta tuli järjestelmän uusi ylläpitäjä. Generoin Jussille uuden käyttäjätunnuksen lisäämällä hänet generointiscriptiini ja generoin vahvan salasanan pwgenillä:  
 *python3 namegen.py*  
 *cat output.txt*  
 *pwgen 12 1*  
